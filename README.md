@@ -37,9 +37,7 @@ Run directly in your browser - no installations required!
 - NOTE: the proxy is still being worked on though
 
 ### 📺 Movies & TV
-- **Watch movies easily** you can even watch spongebob in class!
-- Be able to watch movies and shows with no sign-in required, all you have to do is get on our website and click one!
-- Watch them before Netflix's staff comes knocking at my door
+- **Feature removed** 
 
 ### 📱 Apps 
 - **We have apps too!** don't need your phone!
