@@ -281,62 +281,6 @@
             z-index: 1;
         }
     
-        .movietvbutton {
-            display: inline-block;
-            background-color: #ffcc00;
-            color: #333;
-            border: 4px solid #ff9900;
-            border-radius: 10px;
-            padding: 20px 40px;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-    
-        .movietvbutton::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: rgba(255, 204, 0, 0.3);
-            border-radius: 50%;
-            transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
-            z-index: 0;
-            transform: translate(-50%, -50%) scale(0);
-        }
-    
-        .movietvbutton:hover::after {
-            width: 400%;
-            height: 400%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1);
-        }
-    
-        .movietvbutton:hover {
-            background-color: #ff9900;
-            color: #fff;
-            border-color: #cc7a00;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            transform: translateY(-2px);
-            z-index: 1;
-        }
-    
-        .movietvbutton-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-    
         .navbar { 
             background: linear-gradient(90deg, #1a73e8 , #0d47a1); 
             padding: 15px; 
@@ -516,7 +460,7 @@
     <div class="tabs">
         <button class="tab" onclick="visit(home);">Home</button>
         <button class="tab" onclick="visit(games);">Games</button>
-        <button class="tab" onclick="visit(moviestv)">Movies & TV</button>
+        <button disabled class="tab" onclick="visit(moviestv)">Movies & TV</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
         <button class="tab" onclick="visit(proxy)">Proxy</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
@@ -912,7 +856,7 @@ const unsortedGameLinks = [
     {
         name: 'Idle Breakout',
         image: 'https://th.bing.com/th/id/OIP.4USnYTp6w9wm1FY0hPa-MAHaEU?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/bobydob/JSEngine@25ea1da0fd27d58c36d0e4b21ae1e18405ea1244/build/id-br/ibo.xml&container=ig',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/idlebreakout/index.html',
         description: 'Idle Breakout is an incremental game that combines the classic mechanics of brick-breaking with idle gameplay elements. Players start with a simple paddle and ball to break bricks, earning points and resources as they progress. As players accumulate resources, they can purchase upgrades, unlock new balls, and automate the breaking process, allowing for continuous progress even when not actively playing. The game encourages strategic planning and optimization, making it a satisfying experience for fans of idle and casual gaming.',
     },
     {
@@ -1114,6 +1058,12 @@ const unsortedGameLinks = [
         description: 'Pixel Battlegrounds is an action-packed online multiplayer shooter that immerses players in a vibrant, pixelated world filled with intense combat and strategic gameplay. Choose your character, team up with friends, and engage in fast-paced battles across various maps, utilizing a wide array of weapons and power-ups to outsmart your opponents. With its retro-inspired graphics and addictive gameplay, Pixel Battlegrounds offers a thrilling experience for players looking to test their skills in a colorful, chaotic battlefield!',
     },
     {
+        name: 'Eaglercraft 1.12.2',
+        image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://eaglercraft.com/mc/1.12.2/',
+        description: 'Eaglercraft 1.12.2 is a browser-based version of Minecraft 1.12.2, allowing players to explore, build, and survive in a pixelated world without the need for downloads. Enjoy classic Minecraft gameplay with friends in multiplayer mode, complete with customizable profiles and various game modes. Dive into this accessible and nostalgic experience directly from your web browser!'
+    },
+    {
         name: 'Eaglercraft 1.8.8',
         image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://eaglercraft.com/mc/1.8.8/',
@@ -1176,7 +1126,7 @@ const unsortedGameLinks = [
     {
         name: 'Roblox',
         image: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg',
-        link: 'https://dashboard-cq4z.onrender.com/',
+        link: 'https://skibidirizzzzzzer.global.ssl.fastly.net/',
         description: 'Roblox is a dynamic online platform that allows users to create, share, and play games made by other users, offering a vast universe of user-generated content. With millions of games spanning various genres—from adventure and role-playing to simulations and obstacle courses—players can customize their avatars and interact with friends in a vibrant, immersive environment. The platform fosters creativity and collaboration, making it a favorite among gamers of all ages!',
     },
     {
@@ -1338,7 +1288,7 @@ const unsortedGameLinks = [
     {
         name: 'Infinite Craft',
         image: 'https://th.bing.com/th/id/OIP.smBCthy_hp-WLdRBzf5FVgHaD4?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://unfiltering.github.io/infinite-craft/',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/infi/index.html',
         description: 'Infinite Craft is a sandbox-style game that allows players to explore, build, and create in a blocky, pixelated world reminiscent of Minecraft. Players can gather resources, craft tools, and construct structures while exploring various biomes and landscapes. With its open-ended gameplay, Infinite Craft encourages creativity and imagination, allowing players to design their own worlds and experiences. The game often features survival elements, where players must manage health and resources while fending off enemies or environmental challenges.',
     },
     {
@@ -1626,7 +1576,7 @@ const unsortedGameLinks = [
     {
         name: 'Paper.io 2',
         image: 'https://th.bing.com/th/id/R.cde51c3743ea1ff34da3d066b0040af8?rik=fg4JQJmOgLbJ5g&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/paperio/index.html',
+        link: 'https://codinggithub.global.ssl.fastly.net/schoolwork/paperio2/index.html',
         description: 'Paper.io 2 is a multiplayer online game where players control a colored square that moves around a grid, aiming to capture territory by drawing lines and enclosing areas. The objective is to expand your territory while avoiding being cut off by other players, as colliding with their lines results in elimination. The game features simple controls and addictive gameplay, encouraging strategic thinking and quick reflexes as players compete to dominate the map. With its vibrant graphics and competitive nature, Paper.io 2 offers a fun and engaging experience for players of all ages.'
     },
     {
@@ -1764,7 +1714,7 @@ const unsortedGameLinks = [
     {
         name: 'Super Mario 63',
         image: 'https://th.bing.com/th/id/OIP.bnnc-xhnOZSDg9wlkNewxgHaFP?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://frogiee1isobsessedwithgtag.global.ssl.fastly.net/schoolwork/mario63/index.html',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/mario63/index.html',
         description: 'Mario 63 is a fan-made online platformer game inspired by the classic Mario series, particularly drawing elements from Super Mario 64 and Super Mario Sunshine. In this game, players control Mario as he explores various 3D environments, collects stars, and completes challenges while navigating through levels filled with enemies and obstacles. The game features a variety of power-ups, unique mechanics, and creative level designs, showcasing the creativity of the fan community. While it is not an official Nintendo title, Mario 63 has gained popularity for its nostalgic gameplay and engaging design, appealing to fans of the Mario franchise.'
     },
     {
@@ -1774,7 +1724,7 @@ const unsortedGameLinks = [
         description: 'Super Mario 64 is a revolutionary 3D platformer released by Nintendo in 1996 for the Nintendo 64. Players control Mario as he explores various worlds, collects Power Stars, and battles Bowser to rescue Princess Peach. The game is celebrated for its innovative gameplay mechanics and open-world design, setting a new standard for platformers and influencing the genre for years to come.'
     },
     {
-        name: 'Mario Party',
+        name: 'Mario Party Advance',
         image: 'https://th.bing.com/th/id/OIP.2SZKQylLakbqF9XrahsmcAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://dps2004.github.io/gba/launcher.html#marioparty',
         description: 'Mario Party is a popular party video game series developed by Nintendo, featuring characters from the Mario franchise. Players compete in a board game-style format, taking turns to roll dice and move around a game board while participating in various mini-games to earn coins and stars. The mini-games range from competitive challenges to cooperative tasks, providing a diverse gameplay experience. With its colorful graphics, engaging multiplayer modes, and a mix of strategy and luck, Mario Party is a favorite for social gaming, making it a staple for gatherings and family fun.'
@@ -1788,13 +1738,13 @@ const unsortedGameLinks = [
     {
         name: 'Skribbl.io',
         image: 'https://th.bing.com/th/id/R.62f5b400be742e6aa33eab4af60c3c81?rik=ifCLXfqzyLnNVA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://frogiee1isobsessedwithgtag.global.ssl.fastly.net/loader.html?url=https://skribbl.global.ssl.fastly.net/',
+        link: 'https://codinggithub.global.ssl.fastly.net/loader.html?url=https://skribbl.global.ssl.fastly.net/',
         description: 'Skribbl.io is an online multiplayer drawing and guessing game where players take turns drawing a word while others try to guess what it is. Each round, one player is given a word to illustrate, and the other players type their guesses in a chat box. The game is simple, fun, and encourages creativity, making it a popular choice for friends and family gatherings, as well as casual gaming sessions. With customizable rooms and various word categories, Skribbl.io offers an engaging experience for players of all ages.'
     },
     {
         name: 'Five Nights at Winston\'s',
         image: 'https://th.bing.com/th/id/OIP.t3Dv_Jry-6eaW_lwq6ybXwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://frogiee1isobsessedwithgtag.global.ssl.fastly.net/loader.html?url=/schoolwork/fnaw.html',
+        link: 'https://codinggithub.global.ssl.fastly.net/loader.html?url=/schoolwork/fnaw.html',
         description: 'Five Nights at Winston\'s is a horror game inspired by the Five Nights at Freddy\'s series, where players assume the role of a janitor in a school haunted by quirky, animated erasers. The objective is to survive the night by monitoring cameras and preventing these bizarre characters from entering the office. Each night presents increasing challenges as the erasers become more aggressive, requiring players to manage their power and strategy effectively. With its unique blend of humor and horror, the game offers a fresh and entertaining experience for fans of the genre.'
     },
     {
@@ -2440,10 +2390,64 @@ const unsortedGameLinks = [
         description: 'Dadish 3 takes the platforming action to new heights as Dadish faces off against a new threat that has captured his children. The game features even more creative level designs, new power-ups, and a variety of quirky characters to interact with. With its engaging gameplay and delightful storytelling, Dadish 3 offers a fun and nostalgic experience for fans of the series and newcomers alike.'
     },
     {
-        name: 'Osu!',
+        name: 'osu!',
         image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/osu/icon.png',
         link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/osu/index.html',
         description: 'osu! is a free-to-play rhythm game where players use a mouse, tablet, or touchscreen to hit notes in time with music. Developed by Dean "peppy" Herbert, it features several game modes, including osu!standard, osu!taiko, osu!catch, and osu!mania, each offering unique gameplay mechanics. Players can create and share their own beatmaps, resulting in a vast library of songs and challenges that keep the game fresh and engaging. With its competitive elements and strong community, osu! has become a popular choice among rhythm game enthusiasts.'
+    },
+    {
+        name: 'osu!mania',
+        image: 'https://entertain.my.faithh.df.cissp.or.id/semag/osumania/mania.jpg',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/osumania/index.html',
+        description: 'osu!mania is one of the game modes in the popular rhythm game osu!, designed to mimic the gameplay of traditional rhythm games like Dance Dance Revolution and Beatmania. In osu!mania, players must hit falling notes that correspond to the music, using a keyboard to press the appropriate keys as the notes reach the bottom of the screen. The game features various difficulty levels and a wide range of songs, allowing players to challenge themselves and improve their timing and accuracy. With its unique gameplay mechanics and vibrant community, osu!mania offers a distinct and engaging experience within the broader osu! ecosystem.'
+    },
+    {
+        name: 'Blockpost',
+        image: 'https://playblockpost.pages.dev/assets/images/blockposttextlogo.png',
+        link: 'https://playblockpost.pages.dev/assets/blockpost-main/',
+        description: 'Blockpost is a multiplayer first-person shooter (FPS) game that features blocky, voxel-style graphics reminiscent of classic games like Minecraft. Players can engage in various game modes, including team battles and free-for-all matches, using a wide array of weapons and customizable characters. The game emphasizes fast-paced action and strategic gameplay, allowing players to build and destroy structures within the environment. With its engaging mechanics and community-driven content, Blockpost offers a fun and dynamic experience for fans of online shooters.'
+    },
+    {
+        name: 'Doge Miner',
+        image: 'https://th.bing.com/th/id/OIP.52nIdkyXxopjg0DYm5GTKgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/dogeminer/index.html',
+        description: 'Doge Miner is an incremental clicker game that allows players to mine for Dogecoin, a popular cryptocurrency that started as a meme. In the game, players begin with a small amount of Dogecoin and can earn more by clicking to mine, purchasing upgrades, and hiring workers to automate the mining process. The game features various humorous elements and references to the Doge meme culture, making it entertaining for fans of cryptocurrency and casual gaming alike. As players progress, they can unlock new mining equipment, explore different planets, and increase their Dogecoin earnings, creating a fun and engaging experience.'
+    },
+    {
+        name: 'Karlson',
+        image: 'https://th.bing.com/th/id/R.172ede024e8cbf49787a44c9934190b8?rik=%2fiOHZ969%2bsRy5g&pid=ImgRaw&r=0&adlt=strict',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/karlson/index.html',
+        description: 'Karlson is a first-person platformer game developed by Dani, known for its fast-paced gameplay and unique mechanics. Players control a character named Karlson, navigating through various levels filled with obstacles, enemies, and challenges while utilizing parkour-style movements and grappling hooks. The game features a vibrant art style and a humorous tone, often incorporating elements of chaos and destruction. With its engaging gameplay and community-driven content, Karlson has garnered attention and excitement from fans of indie games and platformers.'
+    },
+    {
+        name: 'Doodle Jump',
+        image: 'https://entertain.my.faithh.df.cissp.or.id/semag/doodlejump/icon.png',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/doodlejump/index.html',
+        description: 'Doodle Jump is a popular mobile game that features a simple yet addictive gameplay mechanic. Players control a small, cartoonish creature known as the Doodler, who jumps from platform to platform while ascending an endless vertical screen. The objective is to climb as high as possible while avoiding obstacles such as monsters and black holes, and collecting power-ups to enhance gameplay. With its charming hand-drawn graphics and easy-to-learn controls, Doodle Jump has become a classic in the mobile gaming world, appealing to players of all ages.'
+    },
+    {
+        name: 'Learn to Fly',
+        image: 'https://entertain.my.faithh.df.cissp.or.id/semag/learntofly/icon.png',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/learntofly/index.html',
+        description: 'Learn to Fly 1 is a flash-based game where players control a penguin who dreams of flying. The objective is to launch the penguin off a ramp and achieve the highest distance possible by upgrading equipment and using various power-ups. Players earn money by completing levels and can purchase upgrades like better rockets, gliders, and other enhancements to improve their flying capabilities.'
+    },
+    {
+        name: 'Learn to Fly 2',
+        image: 'https://entertain.my.faithh.df.cissp.or.id/semag/learntofly2/logo.jpg',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/learntofly2/index.html',
+        description: 'Learn to Fly 2 builds upon the original game with improved graphics, new gameplay mechanics, and additional features. In this sequel, players continue to help the penguin achieve its flying dreams by launching it and navigating through various challenges. The game introduces new types of upgrades, including different vehicles and abilities, as well as a storyline that adds depth to the gameplay experience.'
+    },
+    {
+        name: 'Learn to Fly Idle',
+        image: 'https://entertain.my.faithh.df.cissp.or.id/semag/learntoflyidle/icon.jpg',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/learntoflyidle/index.html',
+        description: 'Learn to Fly Idle is an idle clicker game that takes the flying concept from the previous titles and turns it into an incremental experience. Players still help the penguin fly, but the focus is on earning money and upgrades passively over time. As players progress, they can unlock new upgrades and features that automate the flying process, allowing for a more relaxed gaming experience while still aiming for high distances and achievements.'
+    },
+    {
+        name: 'Wordle',
+        image: 'https://th.bing.com/th/id/OIP.J9sXaBOnge1bFMEa2h6V9AHaE_?rs=1&pid=ImgDetMain',
+        link: 'https://betakyros.github.io/wordle/#thirtyMinutely',
+        description: 'Wordle is a popular online word puzzle game that challenges players to guess a five-letter word within six attempts. Each guess provides feedback in the form of colored tiles: a green tile indicates that a letter is in the correct position, a yellow tile means the letter is in the word but in the wrong position, and a gray tile signifies that the letter is not in the word at all. The game is known for its simple yet addictive gameplay, encouraging players to use logic and deduction to figure out the correct word. Originally created by Josh Wardle, Wordle gained widespread popularity and inspired numerous spin-offs and variations across different platforms.'
     }
 
 ];
@@ -2678,241 +2682,6 @@ function games() {
     document.body.appendChild(gameRow);
 }
 
-const movie_list = [
-    {
-        name: 'Sonic 3',
-        link: 'https://drive.google.com/file/d/1lLZQm6W5z5QW3IBhbkMcENZfTOBQWtwa/view',
-        image: 'https://th.bing.com/th/id/OIP.Ct690rXJ5r7nQawhrwtBSQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Sonic 2',
-        link: 'https://drive.google.com/file/d/1Uj5yjxE0rkI0dJjciYo1ddkd7sknUIHv/view',
-        image: 'https://th.bing.com/th/id/OIP.pEcCX2NSigq8W9ILccNm4gHaEK?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Sonic 1',
-        link: 'https://drive.google.com/file/d/1dDZWmuI8_dw_-XV5jBe3gBN-1uIGxyPn/view',
-        image: 'https://th.bing.com/th/id/OIP.f8ZbqYK3xaNH3WLKBdb6jwHaQC?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Five Nights at Freddy\'s',
-        link: 'https://drive.google.com/file/d/1OyO1OdhtfwR883Uvi0QPP5iooGcxTVSY/view',
-        image: 'https://th.bing.com/th/id/OIP.mtCFAoDDXpHJ8pCdTUICswHaI_?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Spongebob Movie',
-        link: 'https://drive.google.com/file/d/1W5unOJKHdXNQqGc5YNOIlO5b-_yVkiII/view',
-        image: 'https://th.bing.com/th/id/OIP.scsQ4oTufVvR-zhbq8nODQHaLH?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Jaws',
-        link: 'https://drive.google.com/file/d/1ys7CQlyywTD5YlMeCpfp0ThltWcMH99E/view',
-        image: 'https://th.bing.com/th/id/R.483a98d06f73d0ed60128d32e67637eb?rik=JSWGHof6OXRZZQ&riu=http%3a%2f%2fwww.oscars.org%2fsites%2foscars%2ffiles%2f01_jaws_main_0.jpg&ehk=TjXqhs7R3MFN6thPMFpgljiN%2fUlsQoDstqBHVsVViEQ%3d&risl=&pid=ImgRaw&r=0&adlt=strict',
-    },
-    {
-        name: 'Jaws 2',
-        link: 'https://drive.google.com/file/d/1gA6fN27Rm6lj2FUUKiGv-sRZkLWmLly7/view',
-        image: 'https://th.bing.com/th/id/R.49c24279ff150aa34a84376fff772b4e?rik=fCMX3iyjQsxVuQ&pid=ImgRaw&r=0&adlt=strict',
-    },
-    {
-        name: 'Jaws 3',
-        link: 'https://drive.google.com/file/d/14pJGESxKXcFj3R3ysrQJ3bZIRCOPQpny/view?usp=drive_link',
-        image: 'https://th.bing.com/th/id/OIP.PmrH5DhCAWSJRZMqfF3TpgHaLH?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Jaws: The Revenge',
-        link: 'https://drive.google.com/file/d/1vX-PNgtbaRWw_exdJt_foTjDdWaWAXrP/view?usp=drive_link',
-        image: 'https://th.bing.com/th/id/R.7998317dd2bf7a47b4f87c1c1f1e4a44?rik=lWXGPqgQXicvyA&pid=ImgRaw&r=0&adlt=strict',
-    },
-    {
-        name: 'Deadpool',
-        link: 'https://drive.google.com/file/d/17QTeEVPc-E4YsWm-tQ4toG-DpLefpx4E/view?usp=drive_link',
-        image: 'https://th.bing.com/th/id/R.86d1e465f937f914efe6e037c82585b9?rik=UFIyfoo%2bkjbKiw&pid=ImgRaw&r=0&adlt=strict',
-    },
-    {
-        name: 'Despicable Me 4',
-        link: 'https://drive.google.com/file/d/1siki1wYP3LpfjFpUT8Z9lJuJzl7MdBhX/view',
-        image: 'https://th.bing.com/th/id/OIP.UXUCOc0K6kNxCjiiunqUkAHaLH?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Dog Man',
-        link: 'https://drive.google.com/file/d/1aXHiOSQjs7rCj933p22WnVSHOsVnv7IB/view?pli=1',
-        image: 'https://th.bing.com/th/id/OIP.VqLl7oLBwGhvEySITZcklQHaLH?rs=1&pid=ImgDetMain&adlt=strict'
-    }
-]
-
-const show_list = [
-    {
-        name: 'Family Guy',
-        link: 'https://drive.google.com/drive/folders/11W6C-Jqv9iQVasqjfiaYz77puax1UTjH',
-        image: 'https://th.bing.com/th/id/OIP.g8zW5fe9QCGurLQzqmfe7QHaEK?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'South Park',
-        link: 'https://drive.google.com/drive/folders/1PzKaoaK4blzlaoxnwC20gZoeYE5mDxWL',
-        image: 'https://th.bing.com/th/id/OIP.dWne5RdIEbeLbSkxCMGKbAHaHs?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Spongebob',
-        link: 'https://drive.google.com/drive/folders/1cOFMumtLFERJqS6Y5oTyBb6ZRXNHCgZF',
-        image: 'https://th.bing.com/th/id/R.4a69c7156c58f0b03f4763b87c16311e?rik=vlv95hr%2btgGWGA&pid=ImgRaw&r=0&adlt=strict',
-    },
-    {
-        name: 'Sonic X',
-        link: 'https://drive.google.com/drive/u/0/folders/1rM_wiU6k3TbIDvrp3kt72-4BFWO4GC7G',
-        image: 'https://th.bing.com/th/id/OIP.Ma93So4EdwkdcM0jwr0VeAHaLH?rs=1&pid=ImgDetMain&adlt=strict'
-    },
-    {
-        name: 'Gravity Falls',
-        link: 'https://drive.google.com/drive/folders/1Q6s6AB7BAOndbFy4xcnuX4FjO8uHnqaZ',
-        image: 'https://th.bing.com/th/id/OIP.3-3Jex2aLNeQDSBgOpJ9IgHaLj?rs=1&pid=ImgDetMain'
-    },
-    {
-        name: 'The Simpsons',
-        link: 'https://drive.google.com/drive/folders/1ZtFBjPAE-qVzdHJ3EKnvlBFNhux5m3Hi',
-        image: 'https://th.bing.com/th/id/OIP.iee2PthK8HvhCX88LpzkIAHaLH?rs=1&pid=ImgDetMain&adlt=strict',
-    },
-    {
-        name: 'Squid Game',
-        link: 'https://drive.google.com/drive/folders/1Zs2H3Nxl-yQHm21RJNbh2bIAesJ5ouY9',
-        image: 'https://th.bing.com/th/id/OIP.cyMjq_kfCAGzaOQkemOmkwHaKn?rs=1&pid=ImgDetMain&adlt=strict'
-    }
-]
-
-function moviestv() {
-    let title = document.createElement('h1');
-    title.textContent = 'Movies & TV';
-    title.style.color = 'white'; 
-    title.style.textAlign = 'center'; 
-    title.style.fontSize = '50px';
-    title.style.marginBottom = '20px'; 
-    document.body.appendChild(title);
-
-    let movietv_container = document.createElement('div')
-    movietv_container.className = 'movietvbutton-container'
-    document.body.appendChild(movietv_container)
-
-    let movie_button = document.createElement('button');
-    movie_button.textContent = 'Movies';
-    movie_button.className = 'movietvbutton'
-    movie_button.onclick = () => {
-        visit(movies);
-    };
-    movietv_container.appendChild(movie_button);
-
-    let shows_button = document.createElement('button');
-    shows_button.textContent = 'Shows';
-    shows_button.className = 'movietvbutton'
-    shows_button.onclick = () => {
-        visit(shows);
-    };
-    movietv_container.appendChild(shows_button);
-}
-
-function movies() {
-    let title = document.createElement('h1');
-    title.textContent = 'Movies';
-    title.style.color = 'white'; 
-    title.style.textAlign = 'center'; 
-    title.style.fontSize = '50px';
-    title.style.marginBottom = '20px'; 
-    document.body.appendChild(title);
-
-    const movieRow = document.createElement('div');
-    movieRow.style.display = 'flex';
-    movieRow.style.justifyContent = 'center';
-    movieRow.style.flexWrap = 'wrap';
-
-    for (const movie of movie_list) {
-        const movieContainer = document.createElement('div');
-        movieContainer.className = 'select-button';
-        movieContainer.style.textAlign = 'center';
-        movieContainer.style.margin = '20px'; 
-        movieContainer.style.color = 'white';
-
-        const movieImage = document.createElement('img');
-        movieImage.src = movie.image;
-        movieImage.alt = movie.name;
-        movieImage.style.width = '200px';
-        movieImage.style.height = '400px'; 
-        movieImage.style.border = '2px white solid'
-        movieImage.style.cursor = 'pointer'; 
-
-        movieImage.onclick = function() {
-            window.open(movie.link, '_blank');
-        };
-        movieContainer.appendChild(movieImage);
-
-        const movieButton = document.createElement('button');
-        movieButton.textContent = movie.name;
-        movieButton.style.marginTop = '10px';
-        movieButton.style.padding = '10px 20px'; 
-        movieButton.style.fontSize = '14px';
-        movieButton.style.fontWeight = 'bold'; 
-        movieButton.style.cursor = 'pointer'; 
-        movieButton.onclick = function() {
-            window.open(movie.link, '_blank');
-        };
-        movieContainer.appendChild(movieButton);
-
-        movieRow.appendChild(movieContainer);
-    }
-
-    document.body.appendChild(movieRow);
-}
-
-function shows() {
-    let title = document.createElement('h1');
-    title.textContent = 'Shows';
-    title.style.color = 'white'; 
-    title.style.textAlign = 'center'; 
-    title.style.fontSize = '50px';
-    title.style.marginBottom = '20px'; 
-    document.body.appendChild(title);
-
-    const showsRow = document.createElement('div');
-    showsRow.style.display = 'flex';
-    showsRow.style.justifyContent = 'center';
-    showsRow.style.flexWrap = 'wrap';
-
-    for (const show of show_list) {
-        const showContainer = document.createElement('div');
-        showContainer.className = 'select-button';
-        showContainer.style.textAlign = 'center';
-        showContainer.style.margin = '20px'; 
-        showContainer.style.color = 'white';
-
-        const showImage = document.createElement('img');
-        showImage.src = show.image;
-        showImage.alt = show.name;
-        showImage.style.width = '200px';
-        showImage.style.height = '400px'; 
-        showImage.style.border = '2px white solid'
-        showImage.style.cursor = 'pointer'; 
-
-        showImage.onclick = function() {
-            window.open(show.link, '_blank');
-        };
-        showContainer.appendChild(showImage);
-
-        const showButton = document.createElement('button');
-        showButton.textContent = show.name;
-        showButton.style.marginTop = '10px';
-        showButton.style.padding = '10px 20px'; 
-        showButton.style.fontSize = '14px';
-        showButton.style.fontWeight = 'bold'; 
-        showButton.style.cursor = 'pointer'; 
-        showButton.onclick = function() {
-            window.open(show.link, '_blank');
-        };
-        showContainer.appendChild(showButton);
-
-        showsRow.appendChild(showContainer);
-    }
-
-    document.body.appendChild(showsRow);
-}
-
 const app_list = [
     {
         name: 'Soundboard',
@@ -3132,6 +2901,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v1.8 (3/12/2025): ', content: ['RIP Movies & TV (removed due to legal reasons)', 'Added 10 games', 'Fixed some broken games again'] },
         { version: 'version v1.7 (3/11/2025):', content: ['Fixed some links that don\'t work.', 'Added 3 apps', 'Added app counter', 'Added request a game button', 'Added 10 games'] },
         { version: 'version v1.6 (3/10/2025):', content: ['Tiny bug fixes', 'Added 10 games'] },
         { version: 'version v1.5 (3/9/2025):', content: ['Fixing some games that don\'t work because Google sucks', 'Added Play in Proxy button', 'Better CSS styling', 'Added note if games don\'t work', 'Added 10 games'] },
