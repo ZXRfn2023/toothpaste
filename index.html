@@ -400,7 +400,7 @@
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v1.9</p>
+    <p class="version"><b>WEBSITE VERSION:</b> v2.0</p>
     <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -460,7 +460,6 @@
     <div class="tabs">
         <button class="tab" onclick="visit(home);">Home</button>
         <button class="tab" onclick="visit(games);">Games</button>
-        <button disabled class="tab" onclick="visit(moviestv)">Movies & TV</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
         <button class="tab" onclick="visit(proxy)">Proxy</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
@@ -496,22 +495,45 @@ function visit(launchRequest) {
     launchRequest();
 }
 
+
 function websitePlayer(title, link, description) {
     const containerDiv = document.createElement('div');
     containerDiv.style.display = 'flex';
-    containerDiv.style.flexDirection = 'row';
-    containerDiv.style.alignItems = 'flex-start';
+    containerDiv.style.flexDirection = 'column'; 
+    containerDiv.style.alignItems = 'center'; 
     document.body.appendChild(containerDiv);
+
+    const reportButton = document.createElement('button');
+    reportButton.textContent = 'Report Blocked or Not Working Game';
+    reportButton.style.width = '100%';
+    reportButton.style.padding = '10px';
+    reportButton.style.fontSize = '16px';
+    reportButton.style.cursor = 'pointer';
+    reportButton.style.border = 'none';
+    reportButton.style.borderRadius = '5px';
+    reportButton.style.backgroundColor = 'red';
+    reportButton.style.color = 'white';
+    reportButton.onclick = () => {
+        window.open('https://forms.gle/ifBB6ym5W23MGx8b6', '_blank');
+    };
+    containerDiv.appendChild(reportButton); 
+
+    const gameContainer = document.createElement('div');
+    gameContainer.style.display = 'flex'; 
+    gameContainer.style.alignItems = 'flex-start'; 
+    gameContainer.style.marginTop = '20px'; 
+    gameContainer.style.width = '100%'; 
+    containerDiv.appendChild(gameContainer); 
 
     const gamePlayerDiv = document.createElement('div');
     gamePlayerDiv.className = 'gp-div';
     gamePlayerDiv.style.border = '3px solid white';
     gamePlayerDiv.style.width = '300px';
-    gamePlayerDiv.style.height = '100%';
+    gamePlayerDiv.style.height = '100%'; 
     gamePlayerDiv.style.borderRadius = '30px';
     gamePlayerDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
     gamePlayerDiv.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.5)';
-    containerDiv.appendChild(gamePlayerDiv);
+    gameContainer.appendChild(gamePlayerDiv); 
 
     const gamePlayerName = document.createElement('h1');
     gamePlayerName.textContent = title;
@@ -593,7 +615,7 @@ function websitePlayer(title, link, description) {
         fontSize: '16px',
         cursor: 'pointer',
         border: 'none',
-        borderRadius: '5px',
+        borderRadius: ' 5px',
         boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
         transition: 'background-color 0.3s, transform 0.3s',
         height: '40px',
@@ -734,16 +756,15 @@ function websitePlayer(title, link, description) {
 
     const iframe = document.createElement('iframe');
     iframe.id = 'game-iframe';
-    iframe.style.width = '100%';
-    iframe.style.height = '600px';
+    iframe.style.flex = '1'; 
+    iframe.style.height = '600px'; 
     iframe.style.border = 'none';
     iframe.style.display = 'block';
-    iframe.style.marginLeft = '20px';
     iframe.style.border = '2px solid white';
     iframe.style.borderRadius = '15px';
     iframe.src = link.link;
     iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-pointer-lock');
-    containerDiv.appendChild(iframe);
+    gameContainer.appendChild(iframe); 
 
     widthInput.value = Math.floor(iframe.getBoundingClientRect().width);
     
@@ -875,7 +896,7 @@ const unsortedGameLinks = [
         name: 'Snow Rider 3D',
         image: 'https://th.bing.com/th/id/OIP.LGTHWklK84YiEEvUuTt1IQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://bigbackjollysanta.cissp.or.id/semag/snowrider3d/index.html',
-        description: 'Snow Rider 3D is an exhilarating racing game that allows players to navigate snowy landscapes on a variety of vehicles, including snowmobiles and sleds. With its vibrant 3D graphics and realistic physics, players can perform tricks, race against the clock, and compete in challenging courses filled with obstacles and jumps. The game offers a fun and immersive winter sports experience, appealing to fans of racing and adventure games alike.',
+        description: 'Snowrider 3D is an exhilarating racing game that allows players to navigate snowy landscapes on a variety of vehicles, including snowmobiles and sleds. With its vibrant 3D graphics and realistic physics, players can perform tricks, race against the clock, and compete in challenging courses filled with obstacles and jumps. The game offers a fun and immersive winter sports experience, appealing to fans of racing and adventure games alike.',
     },
     {
         name: 'The Final Earth 2',
@@ -1708,7 +1729,7 @@ const unsortedGameLinks = [
     {
         name: 'Bad Piggies',
         image: 'https://th.bing.com/th/id/OIP.iPkXsqcI8GA3ToAd5VckegHaEK?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://3kh0s.github.io/games/badpiggies/index.html',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/badpiggies/index.html',
         description: 'Bad Piggies is a puzzle video game developed by Rovio Entertainment, released in 2012 as a spin-off of the popular Angry Birds franchise. In the game, players control the titular Bad Piggies, who are trying to steal the Angry Birds\' eggs. The objective is to build various contraptions using available materials to help the pigs reach their goal in each level. Players must use creativity and problem-solving skills to design vehicles and devices that navigate obstacles and achieve specific objectives, making it a fun and engaging experience for fans of puzzle games. The game features colorful graphics, humorous animations, and a variety of levels that increase in complexity.'
     },
     {
@@ -2260,8 +2281,8 @@ const unsortedGameLinks = [
     {
         name: 'Block Blast',
         image: 'https://th.bing.com/th/id/R.ae371e18b76783d036eeef3ef068f215?rik=VetpIeaPHdFexg&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://linkmadebybobby-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/daxcodesalt/x2/blastingblocks.xml&container=ig',
-        description: 'Block Blast is a fast-paced puzzle game where players strategically match and explode colorful blocks to clear the board and earn high scores. With intuitive tap-and-swipe controls, the game challenges you to chain combos, unlock power-ups, and tackle increasingly complex levels or endless modes. Vibrant visuals, dynamic sound effects, and addictive gameplay keep you engaged as you race against the clock or aim for perfection. Whether you\'re a casual player or a puzzle pro, Block Blast offers endless fun with its blend of simplicity and strategic depth!'
+        link: 'https://reunbozdo.github.io/',
+        description: 'BlockBlast is a fast-paced puzzle game where players strategically match and explode colorful blocks to clear the board and earn high scores. With intuitive tap-and-swipe controls, the game challenges you to chain combos, unlock power-ups, and tackle increasingly complex levels or endless modes. Vibrant visuals, dynamic sound effects, and addictive gameplay keep you engaged as you race against the clock or aim for perfection. Whether you\'re a casual player or a puzzle pro, BlockBlast offers endless fun with its blend of simplicity and strategic depth!'
     },
     {
         name: 'Knights Arena',
@@ -2508,6 +2529,66 @@ const unsortedGameLinks = [
         image: 'https://th.bing.com/th/id/OIP.rNBf3BNbriIUS3GYMYsSlgHaLH?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/assignments/microsoft-flight-simulator/index.html',
         description: 'Microsoft Flight Simulator is a highly acclaimed flight simulation video game series developed by Microsoft. The latest installment, released in August 2020, features stunningly realistic graphics and an expansive open world that allows players to fly anywhere in the world using a wide variety of aircraft. The game utilizes satellite data and advanced technology to recreate real-world landscapes, weather conditions, and air traffic, providing an immersive flying experience. With its detailed flight mechanics, extensive customization options, and support for virtual reality, Microsoft Flight Simulator appeals to both aviation enthusiasts and casual gamers alike.'
+    },
+    {
+        name: 'Monopoly',
+        image: 'https://th.bing.com/th/id/OIP.mePwiA42afYumc_Sl_4TkgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#monopoly',
+        description: 'Monopoly is a classic board game where players buy, trade, and develop properties to bankrupt their opponents. Players move around the board using dice rolls, purchasing properties and charging rent when others land on them. The game combines luck and strategy, requiring players to manage money and negotiate deals to dominate the market. With numerous themed editions and digital versions, Monopoly remains a timeless favorite for family game nights and competitive play.'
+    },
+    {
+        name: 'Sonic Advance',
+        image: 'https://th.bing.com/th/id/OIP.XHQFMgF6pHK6LEA6winAlgHaHa?rs=1&pid=ImgDetMain',
+        link: 'https://jhlee12.github.io/gba/launcher.html#sonic_advance',
+        description: 'Sonic Advance is a platform game developed by Dimps and published by Sega for the Game Boy Advance, released in 2001. It is part of the Sonic the Hedgehog franchise and features classic side-scrolling gameplay, allowing players to control Sonic and other characters like Tails, Knuckles, and Amy Rose as they navigate through various levels filled with obstacles, enemies, and rings. The game is known for its vibrant graphics, fast-paced action, and the introduction of new gameplay mechanics, such as the ability to perform special moves and collect power-ups. Sonic Advance received positive reviews for its engaging level design and nostalgic appeal, making it a beloved title among fans of the series.'
+    },
+    {
+        name: 'Sonic Advance 2',
+        image: 'https://th.bing.com/th/id/OIP.h-QKKBph4kPYt6AKJ8qVTgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#sonic_advance2',
+        description: 'Sonic Advance 2 is a platform game developed by Dimps and published by Sega for the Game Boy Advance, released in 2002 as a sequel to the original Sonic Advance. The game features fast-paced gameplay and introduces new mechanics, such as the ability to perform a "boost" move, which allows players to gain speed and perform tricks. Players can choose from multiple characters, including Sonic, Tails, Knuckles, and Cream the Rabbit, each with unique abilities that affect gameplay. Sonic Advance 2 is praised for its vibrant graphics, engaging level design, and the addition of a multiplayer mode, making it a popular title among fans of the Sonic franchise.'
+    },
+    {
+        name: 'Sonic Advance 3',
+        image: 'https://th.bing.com/th/id/OIP.e-a7A0L5yvJJ9SdrXfAMgQHaLH?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#sonic_advance3',
+        description: 'Sonic Advance 3 is a platform game developed by Dimps and published by Sega for the Game Boy Advance, released in 2004 as the third installment in the Sonic Advance series. The game introduces a unique tag-team mechanic, allowing players to choose two characters to play simultaneously, switching between them to utilize their special abilities and navigate levels more effectively. Players can select from a roster of characters, including Sonic, Tails, Knuckles, Cream, and Amy, each with distinct skills that enhance gameplay. Sonic Advance 3 is known for its colorful graphics, engaging level design, and the addition of new gameplay elements, such as the ability to collect and use power-ups, making it a well-received title among fans of the franchise.'
+    },
+    {
+        name: 'Pokemon Emerald',
+        image: 'https://th.bing.com/th/id/OIP.-1Fi7t18dlRQvhPnb1rtxQHaHx?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#pokemonemerald',
+        description: 'Pokémon Emerald is a role-playing game developed by Game Freak for the Game Boy Advance, released in 2004 as an enhanced version of Pokémon Ruby and Sapphire. Set in the Hoenn region, it features a storyline centered around the legendary Pokémon Rayquaza and the conflict between Kyogre and Groudon. The game introduces the Battle Frontier, offering unique battle challenges and rewards beyond the traditional gym battles. Pokémon Emerald is celebrated for its improved graphics, expanded features, and engaging gameplay, making it a beloved title among Pokémon fans.'
+    },
+    {
+        name: 'Pokemon Leaf Green',
+        image: 'https://th.bing.com/th/id/OIP.AxECgY2G3YdoyX7yft_60AAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#pokemongreen',
+        description: 'Pokémon LeafGreen is a role-playing video game developed by Game Freak and published by Nintendo for the Game Boy Advance, released in 2004 as a remake of the original Pokémon Green, which was exclusive to Japan. Set in the Kanto region, the game follows the journey of a Pokémon Trainer as they aim to become the Pokémon Champion by defeating gym leaders and the Elite Four. Players can capture, train, and evolve various Pokémon while exploring the world, battling rivals, and completing the Pokédex. Pokémon LeafGreen, along with its counterpart Pokémon FireRed, is praised for its updated graphics, enhanced gameplay mechanics, and nostalgic appeal, making it a favorite among both new and veteran players.'
+    },
+    {
+        name: 'Pokemon Fire Red',
+        image: 'https://th.bing.com/th/id/OIP.Kqc48FBqYcjq8Uk3gISJ-gHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#pokemonred',
+        description: 'Pokémon FireRed is a role-playing video game developed by Game Freak and published by Nintendo for the Game Boy Advance, released in 2004 as a remake of the original Pokémon Red, which debuted in 1996. Set in the Kanto region, players embark on a journey to become the Pokémon Champion by capturing and training Pokémon, battling gym leaders, and completing the Pokédex. FireRed features updated graphics, improved gameplay mechanics, and new content, including the addition of the Sevii Islands, which offer additional quests and Pokémon to discover. Alongside its counterpart, Pokémon LeafGreen, FireRed is celebrated for its nostalgic charm and accessibility, appealing to both longtime fans and newcomers to the Pokémon series.'
+    },
+    {
+        name: 'Pokemon Ruby',
+        image: 'https://th.bing.com/th/id/R.f22d648b2c873333468cdc1242ee02d1?rik=BS8OWH96QWDkGw&pid=ImgRaw&r=0&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#pokemonruby',
+        description: 'Pokémon Ruby is a role-playing video game developed by Game Freak and published by Nintendo for the Game Boy Advance, released in 2002. It is set in the Hoenn region and follows the journey of a Pokémon Trainer who aims to become the Pokémon Champion by defeating gym leaders and the Elite Four. Players can capture, train, and evolve a variety of Pokémon while exploring diverse environments, battling rivals, and thwarting the plans of the villainous Team Aqua. Pokémon Ruby is known for its engaging gameplay, enhanced graphics, and the introduction of new features such as double battles and Pokémon abilities, making it a significant entry in the Pokémon series.'
+    },
+    {
+        name: 'Pokemon Sapphire',
+        image: 'https://th.bing.com/th/id/OIP.7Hls3c0FJ8NnE9AmLQPsBwHaLH?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#pokemonsapphire',
+        description: 'Pokémon Sapphire is a role-playing video game developed by Game Freak and published by Nintendo for the Game Boy Advance, released in 2002 as one of the third-generation Pokémon games alongside Pokémon Ruby. Set in the Hoenn region, players embark on a quest to become the Pokémon Champion by capturing and training Pokémon, battling gym leaders, and completing the Pokédex. The game introduces new features such as double battles, Pokémon abilities, and a variety of environments to explore, including forests, caves, and oceans. Pokémon Sapphire is praised for its engaging gameplay, improved graphics, and the inclusion of legendary Pokémon like Kyogre, making it a beloved title among fans of the franchise.'
+    },
+    {
+        name: 'Simpons Road Rage',
+        image: 'https://th.bing.com/th/id/R.fc94c46d928431d2062446e852bbce3e?rik=vkfgt1y%2fkIiaRQ&pid=ImgRaw&r=0&adlt=strict',
+        link: 'https://jhlee12.github.io/gba/launcher.html#simpsons',
+        description: 'The Simpsons: Road Rage is a racing video game released in 2001 for various platforms, including PlayStation 2, Xbox, and GameCube. Developed by Radical Entertainment, the game features characters from the popular animated television series The Simpsons and allows players to drive around the fictional town of Springfield in a variety of vehicles. The primary objective is to pick up passengers and drop them off at their destinations while competing against other characters and avoiding obstacles. The game is known for its humorous take on the series, vibrant graphics, and a variety of game modes, including a mission mode and a multiplayer option, making it a fun experience for fans of the show and racing games alike.'
     }
 
 ];
@@ -2961,6 +3042,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v2.0 (3/20/2025):', content: ['Movies & TV tab erased', 'Added Report Blocked or Not Working button', 'Added 10 games', 'Fixed some broken games'] },
         { version: 'version v1.9 (3/15/2025):', content: ['Fixed some games again', 'Added 10 games'] },
         { version: 'version v1.8 (3/12/2025): ', content: ['RIP Movies & TV (removed due to legal reasons)', 'Added 10 games', 'Fixed some broken games again'] },
         { version: 'version v1.7 (3/11/2025):', content: ['Fixed some links that don\'t work.', 'Added 3 apps', 'Added app counter', 'Added request a game button', 'Added 10 games'] },
