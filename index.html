@@ -400,46 +400,46 @@
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.0</p>
-    <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const versionElement = document.querySelector('.version');
-            const statusElement = document.querySelector('.update-status');
-            if (!versionElement) return;
-            
-            const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
-            if (!versionMatch) return;
-            
-            const currentVersion = versionMatch[0];
-            const docID = "1qIX0ofXUJYfw47u4s7ztUj9VCUo9SsEtQxXLO6YfLww";
-            
-            fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://docs.google.com/document/d/${docID}/export?format=txt`)}`)
-                .then(response => response.json())
-                .then(data => {
-                    const versionData = data.contents.match(/(?:WEBSITE|VERSION)[:\s]*?(v\d+\.\d+)/i);
-                    if (!versionData || !versionData[1]) return;
-                    
-                    const latestVersion = versionData[1];
-                    if (currentVersion !== latestVersion) {
-                        const link = document.createElement('a');
-                        link.href = "https://docs.google.com/presentation/d/16XuxjnyTYXVM6GC1FyMqHkRpiimzRlAoODPSU4JrzMU/edit?pli=1#slide=id.p";
-                        link.target = "_blank";
-                        link.textContent = "YOU ARE ON AN OUTDATED VERSION OF TOOTHPASTE NETWORK CLICK HERE TO GET THE LATEST";
-                        document.body.innerHTML = "";
-                        document.body.style.cssText = "margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:black;";
-                        link.style.cssText = "color:red;background:yellow;text-decoration:underline;font-weight:bold;font-size:36px;padding:20px;margin:auto;";
-                        document.body.appendChild(link);
-                    } else {
-                        statusElement.textContent = "You are on the latest version.";
-                        statusElement.style.color = "lime";
-                    }
-                })
-                .catch(error => {
-                    statusElement.textContent = "Failed to check for updates.";
-                    statusElement.style.color = "red";
-                });
+    <p class="version"><b>WEBSITE VERSION:</b> v2.1</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
+    <script> document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
+    const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
+    if (!versionMatch) return;
+
+    const currentVersion = versionMatch[0];
+    const docID = "1qIX0ofXUJYfw47u4s7ztUj9VCUo9SsEtQxXLO6YfLww";
+
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://docs.google.com/document/d/${docID}/export?format=txt`)}`)
+        .then(response => response.json())
+        .then(data => {
+            const versionData = data.contents.match(/(?:WEBSITE|VERSION)[:\s]*?(v\d+\.\d+)/i);
+            if (!versionData || !versionData[1]) return;
+
+            const latestVersion = versionData[1];
+            if (currentVersion !== latestVersion) {
+                fetch("https://raw.githubusercontent.com/toothpastenetwork/toothpastenetwork.github.io/main/index.html")
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.text();
+                    })
+                    .then(html => {
+                        document.open();
+                        document.write(html);
+                        document.close();
+                    })
+                    .catch(error => {
+                        statusElement.textContent = "Failed to load the latest version. Please check your connection.";
+                        statusElement.style.color = "red";
+                    });
+            } else {
+                statusElement.textContent = "You are on the latest version.";
+                statusElement.style.color = "lime";
+            }
+        })
+        .catch(error => {
+            statusElement.textContent = "Failed to check for updates.";
+            statusElement.style.color = "red";
         });
+    });
     </script>
 
     <center class="centered-download">
@@ -763,7 +763,7 @@ function websitePlayer(title, link, description) {
     iframe.style.border = '2px solid white';
     iframe.style.borderRadius = '15px';
     iframe.src = link.link;
-    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-pointer-lock');
+    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-pointer-lock allow-forms');
     gameContainer.appendChild(iframe); 
 
     widthInput.value = Math.floor(iframe.getBoundingClientRect().width);
@@ -991,7 +991,7 @@ const unsortedGameLinks = [
     {
         name: 'Moto X3M',
         image: 'https://th.bing.com/th/id/OIP.jbtRNX7Z9tvdQ8D1uK8bbQHaHW?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://tv.off.df.cissp.or.id/semag/motox3m/index.html',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/motox3m/index.html',
         description: 'Moto X3M is an exciting online motorcycle racing game that features a series of challenging obstacle courses. Players control a motocross rider as they navigate through various levels filled with ramps, jumps, and hazards. The objective is to complete each course as quickly as possible while performing stunts and avoiding crashes. The game features smooth controls, vibrant graphics, and a variety of levels that increase in difficulty, making it a fun and addictive experience for fans of racing and platforming games. Players can also unlock new bikes and customize their rider as they progress through the game.',
     },
     {
@@ -1051,7 +1051,7 @@ const unsortedGameLinks = [
     {
         name: 'Snowball.io',
         image: 'https://th.bing.com/th/id/OIP.MnBAX_Qnhq_w4FFrtriO0gHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/SQLite4Unity3d@8516fc0bd1d2be662ca484f5dc506268b24763ef/Example/Assets/snowball.xml&container=ig',
+        link: 'https://snowballio-online.github.io/file/',
         description: 'Snowball.io is a fast-paced multiplayer battle royale game where players control adorable snowmen in a snowy arena, rolling giant snowballs to knock opponents off the map. As you collect snow and grow your snowball, you can unleash powerful attacks to eliminate rivals and become the last snowman standing. With its simple controls, vibrant graphics, and competitive gameplay, Snowball.io offers a fun and engaging experience for players of all ages!'
     },
     {
@@ -1345,7 +1345,7 @@ const unsortedGameLinks = [
     {
         name: 'Geometry Dash Meltdown',
         image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/geomelt/cover.png',
-        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/geomelt/index.html',
+        link: 'https://scratch.mit.edu/projects/143663274/embed',
         description: 'Geometry Dash Meltdown is an official spin-off of the Geometry Dash series, offering a new set of levels and music. It features the same addictive gameplay mechanics as the original, where players must jump and fly through various obstacles in sync with the rhythm of the music. With its unique levels and catchy soundtracks, Meltdown provides a fresh experience for fans of the series.'
     },
     {
@@ -1363,7 +1363,7 @@ const unsortedGameLinks = [
     {
         name: 'Bloxorz',
         image: 'https://th.bing.com/th/id/OIP.6jjUQ7Niv2cl4NvkOrkf_QAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://education76.github.io/g/bloxorz/',
+        link: 'https://ggmggmgg.github.io/zbloxorz.html',
         description: 'Bloxorz is a puzzle game where players control a rectangular block and aim to navigate it to a designated goal within a grid-based level. The objective is to maneuver the block by rolling it over tiles, avoiding pitfalls, and solving various spatial challenges. Players must think strategically to tilt and rotate the block, ensuring it lands correctly on the goal while overcoming obstacles. With its clever level design and increasing difficulty, Bloxorz provides an engaging and brain-teasing experience for puzzle enthusiasts.'
     },
     {
@@ -1597,7 +1597,7 @@ const unsortedGameLinks = [
     {
         name: 'Paper.io 2',
         image: 'https://th.bing.com/th/id/R.cde51c3743ea1ff34da3d066b0040af8?rik=fg4JQJmOgLbJ5g&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://codinggithub.global.ssl.fastly.net/schoolwork/paperio2/index.html',
+        link: 'https://ggmggmgg.github.io/g/paperio2/paperio2.html',
         description: 'Paper.io 2 is a multiplayer online game where players control a colored square that moves around a grid, aiming to capture territory by drawing lines and enclosing areas. The objective is to expand your territory while avoiding being cut off by other players, as colliding with their lines results in elimination. The game features simple controls and addictive gameplay, encouraging strategic thinking and quick reflexes as players compete to dominate the map. With its vibrant graphics and competitive nature, Paper.io 2 offers a fun and engaging experience for players of all ages.'
     },
     {
@@ -2191,7 +2191,7 @@ const unsortedGameLinks = [
     {
         name: 'Deepest Sword',
         image: 'https://th.bing.com/th/id/OIP.jExUGoLtuURTmeF5kDq1hAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/element@195236d82acbb7a956d6d7a8e6d997db8cae01fa/d_sw.xml&container=ig',
+        link: 'https://ggmggmgg.github.io/g/deepestsword/index.html',
         description: 'Deepest Sword is an indie platformer that invites players to embark on a quest to retrieve a legendary sword hidden deep within a perilous cave. As players navigate through various levels, the sword grows longer, allowing them to reach new areas and defeat enemies. The game features charming pixel art, atmospheric music, and clever level design that encourages exploration and skillful maneuvering. With its unique mechanics and engaging gameplay, Deepest Sword offers a rewarding experience for those seeking a fun and challenging adventure.'
     },
     {
@@ -3042,6 +3042,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v2.1 (3/26/2025)', content: ['Fixed some broken games', 'Added latest website version injector (no more issue when dealing with outdated versions!)'] },
         { version: 'version v2.0 (3/20/2025):', content: ['Movies & TV tab erased', 'Added Report Blocked or Not Working button', 'Added 10 games', 'Fixed some broken games'] },
         { version: 'version v1.9 (3/15/2025):', content: ['Fixed some games again', 'Added 10 games'] },
         { version: 'version v1.8 (3/12/2025): ', content: ['RIP Movies & TV (removed due to legal reasons)', 'Added 10 games', 'Fixed some broken games again'] },
