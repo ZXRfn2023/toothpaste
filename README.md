@@ -3,11 +3,11 @@
 # 🦷 Toothpaste Network 🦷
 
 **Play Unblocked. No BS.**  
-*Now with 250+ games and counting!*
+*Now with 300 games and counting!*
 
-[![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://toothpaste-network.com)
-[![Status](https://img.shields.io/badge/status-active-brightgreen.svg)](https://toothpaste-network.com)
-[![Updates](https://img.shields.io/badge/updates-frequent-orange.svg)](https://toothpaste-network.com)
+[![Version](https://img.shields.io/badge/version-2.1-blue.svg)](https://toothpastenetwork.github.io)
+[![Status](https://img.shields.io/badge/status-active-brightgreen.svg)](https://toothpastenetwork.github.io)
+[![Updates](https://img.shields.io/badge/updates-frequent-orange.svg)](https://toothpastenetwork.github.io)
 
 </div>
 
