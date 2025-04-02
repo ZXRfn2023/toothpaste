@@ -400,7 +400,7 @@
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.1</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
+    <p class="version"><b>WEBSITE VERSION:</b> v2.2</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
     <script> document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
     const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
     if (!versionMatch) return;
@@ -442,6 +442,25 @@
     });
     </script>
 
+    <center class="adCenter"><iframe id="docIframe" width="800" height="150" style="border: 2px yellow solid;"></iframe></center>
+
+    <script>
+        const docID = "15pS7jkF3Q9avR-OqfQkoMtdLKCrhsKEfApP4SKSySF4";
+
+        fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://docs.google.com/document/d/${docID}/export?format=txt`)}`)
+            .then(response => response.json())
+            .then(data => {
+                const content = data.contents;
+
+                const iframe = document.getElementById('docIframe');
+                const docContent = `${content}`;
+                const blob = new Blob([docContent], { type: 'text/html' });
+                const iframeUrl = URL.createObjectURL(blob);
+                iframe.src = iframeUrl;
+            })
+            .catch(error => console.error('Error fetching the document:', error));
+    </script>
+
     <center class="centered-download">
         <a href="index.html" class="download-button" download="index.html">Download Website</a>
     </center>
@@ -462,6 +481,7 @@
         <button class="tab" onclick="visit(games);">Games</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
         <button class="tab" onclick="visit(proxy)">Proxy</button>
+        <button disabled class="tab" onclick="'coming soon'">Exploits</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
         <button class="tab" onclick="visit(changelog)">Changelog</button>
     </div>
@@ -488,6 +508,7 @@ function visit(launchRequest) {
             !element.classList.contains('tabs') && 
             !element.classList.contains('centered-download') &&
             !element.classList.contains('update-status') && 
+            !element.classList.contains('adCenter') &&
             !element.classList.contains('version')) {
             element.remove();
         }
@@ -615,7 +636,7 @@ function websitePlayer(title, link, description) {
         fontSize: '16px',
         cursor: 'pointer',
         border: 'none',
-        borderRadius: ' 5px',
+        borderRadius: '5px',
         boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
         transition: 'background-color 0.3s, transform 0.3s',
         height: '40px',
@@ -673,51 +694,6 @@ function websitePlayer(title, link, description) {
 
     buttonContainer.appendChild(refreshButton);
 
-    const theaterButton = document.createElement('button');
-    theaterButton.textContent = 'Theater Mode';
-    Object.assign(theaterButton.style, buttonStyle);
-    theaterButton.style.backgroundColor = 'orange';
-    theaterButton.style.color = 'black';
-
-    theaterButton.addEventListener('mouseover', () => {
-        theaterButton.style.transform = 'scale(1.05)';
-    });
-
-    theaterButton.addEventListener('mouseout', () => {
-        theaterButton.style.transform = 'scale(1)';
-    });
-
-    buttonContainer.appendChild(theaterButton);
-
-    let isTheaterMode = false;
-
-    theaterButton.addEventListener('click', () => {
-        const iframe = document.getElementById('game-iframe');
-        const gamePlayerDiv = document.querySelector('.gp-div');
-
-        if (!isTheaterMode) {
-            iframe.style.width = '100%';
-            gamePlayerDiv.style.width = '100%';
-            gamePlayerDiv.style.marginTop = '20px';
-            containerDiv.style.flexDirection = 'column';
-            buttonContainer.style.flexDirection = 'row';
-            buttonContainer.style.justifyContent = 'center';
-            buttonContainer.style.marginTop = '10px';
-            buttonContainer.style.gap = '30px';
-            theaterButton.textContent = 'Exit Theater Mode';
-        } else {
-            iframe.style.width = widthInput.value + 'px';
-            gamePlayerDiv.style.width = '300px';
-            gamePlayerDiv.style.marginTop = '0';
-            containerDiv.style.flexDirection = 'row';
-            buttonContainer.style.flexDirection = 'column';
-            buttonContainer.style.gap = '0';
-            theaterButton.textContent = 'Theater Mode';
-        }
-
-        isTheaterMode = !isTheaterMode;
-    });
-
     const loadingOverlay = document.createElement('div');
     loadingOverlay.style.position = 'absolute';
     loadingOverlay.style.top = '0';
@@ -767,13 +743,16 @@ function websitePlayer(title, link, description) {
     gameContainer.appendChild(iframe); 
 
     widthInput.value = Math.floor(iframe.getBoundingClientRect().width);
-    
+    heightInput.value = Math.floor(iframe.getBoundingClientRect().height);
+
     widthInput.addEventListener('input', () => {
-        iframe.style.width = `${widthInput.value}px`;
+        const newWidth = Math.max(widthInput.value, 100);
+        iframe.style.width = `${newWidth}px`;
     });
 
     heightInput.addEventListener('input', () => {
-        iframe.style.height = `${heightInput.value}px`;
+        const newHeight = Math.max(heightInput.value, 100);
+        iframe.style.height = `${newHeight}px`;
     });
 
     let searchbarElement = document.querySelector('.searchbar');
@@ -835,25 +814,25 @@ const unsortedGameLinks = [
     {
         name: '60 Second Burger Run',
         image: 'https://th.bing.com/th/id/OIP.avUN8Khc091JCsy3azJNJAHaEU?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/60sburgerrun/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/60sburgerrun/index.html',
         description: '60 Second Burger Run is a fast-paced, time-management game where players must prepare and serve burgers within a strict one-minute time limit. Players navigate through a bustling kitchen, collecting ingredients and assembling burgers while avoiding obstacles and managing their time efficiently. The game challenges players\' reflexes and multitasking skills as they strive to complete as many orders as possible before the clock runs out.',
     },
     {
         name: 'Among Us',
         image: 'https://th.bing.com/th/id/OIP.Id5vBbqOKzKUZmhlbLkYpgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/amongus/index.html',
+        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/amongus/index.html',
         description: 'Among Us is an online multiplayer social deduction game where players take on the roles of Crewmates or Impostors aboard a spaceship. Crewmates work together to complete tasks while trying to identify and vote out the Impostors, who aim to sabotage their efforts and eliminate them without being caught. The game emphasizes teamwork, deception, and strategy.',
     },
     {
         name: 'Angry Birds',
         image: 'https://th.bing.com/th/id/OIP.TcrlXWy7b3sByvFCgdBXMgHaEL?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://lbannana.github.io/angrybirds/',
+        link: 'http://pretty-wooded-thumb.glitch.me/english/src/angry-birds',
         description: 'Angry Birds is a popular mobile game franchise where players use a slingshot to launch colorful birds at structures inhabited by green pigs. The objective is to destroy all the pigs by strategically aiming and utilizing the unique abilities of each bird, which adds a layer of strategy to the gameplay. With its engaging physics-based mechanics, vibrant graphics, and increasingly challenging levels, Angry Birds has become a beloved classic in casual gaming.',
     },
     {
         name: 'Small World Cup',
         image: 'https://play-lh.googleusercontent.com/Peoq_yG_TJPKp34SBEyaX0pWwe4nuhvP8aTX1iuRpOXNzWuRGXCIn7rW914qaMSZPa0',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://136620384-873177897590022156.preview.editmysite.com/uploads/b/4181373-127396464257261240/files/aswc.xml&container=ig',
+        link: 'https://man.what-in.tf/schoolwork/a-small-world-cup-main/index.html',
         description: 'A Small World Cup is a fun and engaging online soccer game that allows players to compete in a simplified, arcade-style version of the World Cup. Players can choose their favorite national teams and participate in quick matches, focusing on fast-paced gameplay and easy controls. The game emphasizes casual play, making it accessible for soccer fans of all ages while providing an entertaining experience filled with goals and excitement.',
     },
     {
@@ -991,37 +970,37 @@ const unsortedGameLinks = [
     {
         name: 'Moto X3M',
         image: 'https://th.bing.com/th/id/OIP.jbtRNX7Z9tvdQ8D1uK8bbQHaHW?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://entertain.my.faithh.df.cissp.or.id/semag/motox3m/index.html',
+        link: 'https://unblockedgamesfree.github.io/moto-x3m/',
         description: 'Moto X3M is an exciting online motorcycle racing game that features a series of challenging obstacle courses. Players control a motocross rider as they navigate through various levels filled with ramps, jumps, and hazards. The objective is to complete each course as quickly as possible while performing stunts and avoiding crashes. The game features smooth controls, vibrant graphics, and a variety of levels that increase in difficulty, making it a fun and addictive experience for fans of racing and platforming games. Players can also unlock new bikes and customize their rider as they progress through the game.',
     },
     {
         name: 'Moto X3M 2',
         image: 'https://th.bing.com/th/id/OIP.N2UVyeNcFOmhBUOqiyYUAQHaJ4?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://840137492-163049537400263946.preview.editmysite.com/uploads/b/139890129-622598590552046666/files/mx3m2.xml&container=ig',
+        link: 'https://unblockedgamesfree.github.io/moto-x3m-2/',
         description: 'Moto X3M 2 is a high-octane dirt bike racing game that combines precision driving with adrenaline-pumping stunts across treacherous obstacle courses. Players navigate through dynamic levels filled with ramps, loops, traps, and explosive hazards, aiming to reach the finish line while pulling off jaw-dropping tricks for bonus points. The game features time trials, collectible stars, and unlockable bikes with customizable upgrades to enhance speed and performance. With its physics-based challenges, vibrant visuals, and pulse-pounding gameplay, Moto X3M 2 delivers a thrilling mix of skill, strategy, and chaotic fun for casual and hardcore gamers alike!'
     },
     {
         name: 'Moto X3M 3',
         image: 'https://th.bing.com/th/id/OIP.mAnNO7sx9lw2Ej_VCGApWAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/mx3m3.xml&container=ig',
+        link: 'https://playervpn.github.io/motox3m.html',
         description: 'Moto X3M 3 cranks up the chaos in this physics-based dirt bike sequel, challenging players to conquer even wilder obstacle courses packed with ramps, traps, and explosive surprises. Master gravity-defying flips, mid-air tricks, and split-second timing to blaze through icy tundras, lava-filled arenas, and other dynamic environments while hunting for hidden stars to unlock new bikes and upgrades. With tighter controls, more levels, and a devilish mix of precision and creativity, the game rewards daring stunts and flawless runs. Whether you’re racing the clock or battling for leaderboard dominance, Moto X3M 3 delivers heart-pounding, tire-smashing thrills for stunt junkies and speed demons alike!'
     },
     {
         name: 'Moto X3M Pool Party',
         image: 'https://th.bing.com/th/id/OIP.lUoctn62_d3pipeihPM41gHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://tv.off.df.cissp.or.id/semag/motox3m-pool/index.html',
+        link: 'https://unblockedgamesfree.github.io/moto-x3m-pool-party/',
         description: 'Moto X3M Pool Party splashes into action with a sun-soaked, water-themed twist on the chaotic dirt bike series! Race through vibrant poolside obstacle courses filled with slippery slides, inflatable toys, splash zones, and treacherous traps, pulling off mid-air flips and tricks to dodge hazards and shave seconds off your time. Collect hidden stars to unlock quirky bikes, tackle time trials, and master physics-defying jumps across tropical levels that blend summer fun with nail-biting challenges. With its buoyant visuals, slippery surprises, and addictive stunt-driven gameplay, Moto X3M Pool Party is a refreshingly wild ride for thrill-seekers and casual racers alike!'
     },
     {
         name: 'Moto X3M Spookyland',
         image: 'https://th.bing.com/th/id/OIP.HP9dUBPQHv6s-eWqWeeyZQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://tv.off.df.cissp.or.id/semag/motox3m-spooky/index.html',
+        link: 'https://unblockedgamesfree.github.io/moto-x3m-spooky-land/',
         description: 'Moto X3M Spookyland launches players into a spine-tingling, Halloween-themed racing adventure where they navigate eerie obstacle courses filled with haunted traps, floating ghosts, and pumpkin-smashing challenges. Execute bone-rattling stunts across graveyards, haunted mansions, and foggy forests while dodging zombies, swinging axes, and explosive surprises to reach the finish line. Collect hidden candy or skulls to unlock spooky bikes and eerie upgrades, all set against a backdrop of creepy visuals and atmospheric sound effects. With its hair-raising twists, physics-based chaos, and seasonal flair, Moto X3M Spookyland delivers a ghoulishly fun mix of frights and high-octane racing thrills!'
     },
     {
         name: 'Moto X3M Winter',
         image: 'https://th.bing.com/th/id/OIP.4Q7g3tZleaZgKck1W-C-RgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://tv.off.df.cissp.or.id/semag/motox3m-winter/index.html',
+        link: 'https://unblockedgamesfree.github.io/moto-x3m-pool-party/',
         description: 'Moto X3M Winter throws players into a frosty, adrenaline-fueled racing challenge where they tackle icy tracks, snow-packed jumps, and treacherous winter hazards on a nimble dirt bike. Drift across slippery slopes, launch off frozen ramps, and dodge obstacles like snowmen, avalanches, and crackling ice traps while performing mid-air flips and tricks to boost your score. Collect hidden snowflakes to unlock frost-themed bikes and upgrades, and race against the clock in bite-sized, physics-driven levels that demand precision and creativity. With its chilly visuals, slippery thrills, and heart-pounding stunts, Moto X3M Winter serves up a frostbitten blend of speed and chaos for racing enthusiasts and casual players alike!'  
     },
     {
@@ -1039,7 +1018,7 @@ const unsortedGameLinks = [
     {
         name: 'Cookie Clicker',
         image: 'https://th.bing.com/th/id/OIP.TSoDpGIJtiUF1xLMpkEIfgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/cookieclicker/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/cookieclicker/index.html',
         description: 'Cookie Clicker is an addictive incremental game where players click on a giant cookie to produce more cookies and unlock a variety of upgrades. As you accumulate cookies, you can purchase buildings and upgrades that automate cookie production, leading to exponential growth and increasingly whimsical achievements. With its charming graphics and quirky humor, Cookie Clicker offers a satisfying and engaging experience that keeps players coming back for more cookie-baking fun!',
     },
     {
@@ -1147,7 +1126,7 @@ const unsortedGameLinks = [
     {
         name: 'Roblox',
         image: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg',
-        link: 'https://skibidirizzzzzzer.global.ssl.fastly.net/',
+        link: 'https://ubgroblox.global.ssl.fastly.net/',
         description: 'Roblox is a dynamic online platform that allows users to create, share, and play games made by other users, offering a vast universe of user-generated content. With millions of games spanning various genres—from adventure and role-playing to simulations and obstacle courses—players can customize their avatars and interact with friends in a vibrant, immersive environment. The platform fosters creativity and collaboration, making it a favorite among gamers of all ages!',
     },
     {
@@ -1273,7 +1252,7 @@ const unsortedGameLinks = [
     {
         name: 'Slither.io',
         image: 'https://th.bing.com/th/id/OIP.7nIKK6er9HwEjoy8FXjYYgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://scratch.mit.edu/projects/108566337/embed',
+        link: 'https://blockzone.github.io/active/iframe.html#https://slither.io',
         description: 'Slither.io is a multiplayer online game where players control a snake-like creature, aiming to grow by consuming colorful pellets scattered throughout the game arena. Players must navigate carefully to avoid colliding with other snakes while trying to outmaneuver them to make them crash, allowing for more growth. With its simple controls and competitive gameplay, Slither.io offers an addictive experience as players strive to become the longest snake on the leaderboard.',
     },
     {
@@ -1435,8 +1414,8 @@ const unsortedGameLinks = [
     {
         name: 'Fruit Merge',
         image: 'https://th.bing.com/th/id/OIP.v7lfIOZtgZyut364eWNABAHaEI?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://107867007-460744551111723157.preview.editmysite.com/uploads/b/148239657-716773247581577736/files/mf.xml&container=ig',
-        description: 'Fruit Merge is a casual puzzle game where players combine different types of fruits to create new, higher-value fruits. The gameplay typically involves dragging and dropping fruits onto each other to merge them, unlocking new varieties and earning points as players progress through levels. With colorful graphics and simple mechanics, Fruit Merge offers a relaxing and addictive experience, appealing to fans of match-3 and merging games. Players can strategize their moves to maximize their merges and achieve high scores while enjoying the vibrant fruit-themed visuals.'
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/watermelongame/index.html',
+        description: 'Watermelon Fruit Merge is a casual puzzle game where players combine different types of fruits to create new, higher-value fruits. The gameplay typically involves dragging and dropping fruits onto each other to merge them, unlocking new varieties and earning points as players progress through levels. With colorful graphics and simple mechanics, Fruit Merge offers a relaxing and addictive experience, appealing to fans of match-3 and merging games. Players can strategize their moves to maximize their merges and achieve high scores while enjoying the vibrant fruit-themed visuals.'
     },
     {
         name: 'Melon Playground',
@@ -1663,7 +1642,7 @@ const unsortedGameLinks = [
     {
         name: 'Stickman Hook',
         image: 'https://th.bing.com/th/id/R.dac46b5612bc65233c55c479dbbb9e84?rik=MYpBqVFLo4mAmw&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://stickman-hook-game.github.io/file/',
+        link: 'https://everlong.df.cissp.or.id/semag/stickman-hook/index.html',
         description: 'Stickman Hook is a popular online game that features a stickman character navigating through various levels using a grappling hook. Players swing from hooks and try to reach the finish line while avoiding obstacles and hazards. The game is known for its simple controls, engaging physics-based mechanics, and colorful graphics, making it both fun and addictive as players aim to complete levels quickly and efficiently.'
     },
     {
@@ -1741,7 +1720,7 @@ const unsortedGameLinks = [
     {
         name: 'Super Mario 64',
         image: 'https://th.bing.com/th/id/OIP.yGzo0W8MKYxzhheQW1ZQ4AHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/supermario64/index.html',
+        link: 'https://r8r7.github.io/jonathanrivera/games/sm64/',
         description: 'Super Mario 64 is a revolutionary 3D platformer released by Nintendo in 1996 for the Nintendo 64. Players control Mario as he explores various worlds, collects Power Stars, and battles Bowser to rescue Princess Peach. The game is celebrated for its innovative gameplay mechanics and open-world design, setting a new standard for platformers and influencing the genre for years to come.'
     },
     {
@@ -1795,7 +1774,7 @@ const unsortedGameLinks = [
     {
         name: 'Sausage Flip',
         image: 'https://th.bing.com/th/id/OIP.7waNdNd8E2r98iFOZes-IQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://7tt86t8-opensocial.googleusercontent.com/gadgets/ifr?url=https://276004251-163805371142805694.preview.editmysite.com/uploads/b/139890129-630426005846085079/files/sf.xml&container=ig',
+        link: 'https://khanacademyclonebut-itspossible.pagostepeapulco.gob.mx/assets/games/sausage-flip/',
         description: 'Sausage Flip is a quirky arcade game where players control a silly sausage, launching it through various challenging levels filled with obstacles. The objective is to navigate the environment by flipping the sausage, utilizing physics-based mechanics to reach the finish line. With its colorful graphics and humorous design, the game offers a fun and engaging experience for players of all ages. Players can unlock different skins and enjoy a variety of levels, making each playthrough unique and entertaining.'
     },
     {
@@ -1985,9 +1964,9 @@ const unsortedGameLinks = [
         description: 'Cyberpunk is a subgenre of science fiction that explores futuristic, dystopian societies characterized by advanced technology, cybernetics, and a breakdown of social order. Often set in urban environments, it features themes of artificial intelligence, virtual reality, and the impact of technology on human life. The genre is known for its gritty aesthetics, neon lights, and a blend of high-tech and low-life elements, highlighting the contrast between advanced technology and societal decay. Notable works in the cyberpunk genre include films like "Blade Runner," the video game "Cyberpunk 2077," and various novels by authors such as William Gibson and Neal Stephenson.'
     },
     {
-        name: 'Curveball',
+        name: 'Curveball 3D',
         image: 'https://th.bing.com/th/id/OIP.eo7-q0X33Pwf0URc3uhj3gAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fcurveball.xml&container=ig',
+        link: 'https://unblockedgamesfree.github.io/curve-ball-3d/',
         description: 'Curveball is a classic arcade-style game that combines elements of skill and strategy in a fast-paced, competitive environment. Players control a paddle to bounce a ball back and forth, aiming to outmaneuver their opponent by curving the ball\'s trajectory to make it difficult to return. The game features simple controls and addictive gameplay, making it easy to pick up but challenging to master. With its retro graphics and engaging mechanics, Curveball offers a fun experience for players looking for quick matches and competitive challenges.'
     },
     {
@@ -2133,6 +2112,12 @@ const unsortedGameLinks = [
         image: 'https://th.bing.com/th/id/OIP.4XqpeZFWXeioDa5bWaav0gHaHa?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://multiverseg.github.io/vex8/',
         description: 'Vex 8 is the latest installment in the popular platformer series, offering a fresh set of challenges and innovative gameplay mechanics. Players once again control the agile stick figure, Vex, as he navigates through a vast array of levels filled with intricate obstacles, puzzles, and timed challenges. The game introduces new features, such as enhanced movement options and environmental interactions, that allow for more dynamic gameplay and exploration. With its captivating graphics, engaging level design, and a variety of collectibles to discover, Vex 8 provides a thrilling platforming experience that pushes the boundaries of the series and keeps players on their toes.'
+    },
+    {
+        name: 'Vex X3M',
+        image: 'https://th.bing.com/th/id/OIP.nifNU-i730WwVCzNwxSQ1gHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://khanacademyclonebut-itspossible.pagostepeapulco.gob.mx/assets/games/vex-x3m/',
+        description: 'Vex X3M is an engaging online platformer game where players control a stick figure character navigating through challenging obstacle courses filled with traps and hazards. The goal is to reach the end of each level as quickly as possible while avoiding obstacles and collecting stars for extra points. With smooth controls and increasing difficulty, Vex X3M offers a fun and addictive experience for fans of platforming games.'
     },
     {
         name: 'Cut the Rope',
@@ -2335,13 +2320,13 @@ const unsortedGameLinks = [
     {
         name: 'State.io',
         image: 'https://keep.it.freaky.df.cissp.or.id/semag/stateio/icon.webp',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/stateio/index.html',
+        link: 'https://3kh0s.github.io/games/stateio/index.html',
         description: 'State.io is a strategic multiplayer game that combines elements of territory control and real-time strategy. Players compete to conquer and expand their territories on a map by strategically deploying units and capturing neighboring states. The objective is to outmaneuver opponents, manage resources effectively, and dominate the map. With its simple yet engaging mechanics, colorful graphics, and competitive gameplay, State.io offers a fun and challenging experience for players who enjoy strategy games and tactical planning.'
     },
     {
         name: 'Territorial.io',
         image: 'https://keep.it.freaky.df.cissp.or.id/semag/territorialio/territorialio.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/territorialio/index.html',
+        link: 'https://territorial.io',
         description: 'Territorial.io is a multiplayer strategy game that focuses on territory control and conquest. Players start with a small piece of land and must expand their territory by strategically deploying units to conquer neighboring territories while managing resources effectively. The game features various modes, including free-for-all and team-based gameplay, allowing players to compete against others in real-time. With its simple mechanics, engaging gameplay, and the need for tactical planning, Territorial.io offers a fun and competitive experience for fans of strategy games. The game also includes a map editor, enabling players to create and share their own maps, adding to its replayability.'
     },
     {
@@ -2432,7 +2417,13 @@ const unsortedGameLinks = [
         name: 'Doge Miner',
         image: 'https://th.bing.com/th/id/OIP.52nIdkyXxopjg0DYm5GTKgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://entertain.my.faithh.df.cissp.or.id/semag/dogeminer/index.html',
-        description: 'Doge Miner is an incremental clicker game that allows players to mine for Dogecoin, a popular cryptocurrency that started as a meme. In the game, players begin with a small amount of Dogecoin and can earn more by clicking to mine, purchasing upgrades, and hiring workers to automate the mining process. The game features various humorous elements and references to the Doge meme culture, making it entertaining for fans of cryptocurrency and casual gaming alike. As players progress, they can unlock new mining equipment, explore different planets, and increase their Dogecoin earnings, creating a fun and engaging experience.'
+        description: 'Dogeminer is an incremental clicker game that allows players to mine for Dogecoin, a popular cryptocurrency that started as a meme. In the game, players begin with a small amount of Dogecoin and can earn more by clicking to mine, purchasing upgrades, and hiring workers to automate the mining process. The game features various humorous elements and references to the Doge meme culture, making it entertaining for fans of cryptocurrency and casual gaming alike. As players progress, they can unlock new mining equipment, explore different planets, and increase their Dogecoin earnings, creating a fun and engaging experience.'
+    },
+    {
+        name: 'Doge Miner 2',
+        image: 'https://th.bing.com/th/id/R.8b4454142107e327f32e7e1d6a0b588e?rik=PorbSF%2bA5eGVJA&pid=ImgRaw&r=0&adlt=strict',
+        link: 'https://realben9.github.io/dm2sc/',
+        description: 'Dogeminer 2 is a free clicker adventure game where players mine Dogecoins by clicking on rocks and can hire helpers to automate the mining process. As players accumulate coins, they can upgrade their mining operations and purchase various tools to enhance efficiency. The game features colorful graphics and an intuitive interface, making it accessible and engaging. A unique aspect of Doge Miner 2 is the ability to buy a spaceship and explore different planets, adding an adventurous element to the gameplay.'
     },
     {
         name: 'Karlson',
@@ -2589,6 +2580,114 @@ const unsortedGameLinks = [
         image: 'https://th.bing.com/th/id/R.fc94c46d928431d2062446e852bbce3e?rik=vkfgt1y%2fkIiaRQ&pid=ImgRaw&r=0&adlt=strict',
         link: 'https://jhlee12.github.io/gba/launcher.html#simpsons',
         description: 'The Simpsons: Road Rage is a racing video game released in 2001 for various platforms, including PlayStation 2, Xbox, and GameCube. Developed by Radical Entertainment, the game features characters from the popular animated television series The Simpsons and allows players to drive around the fictional town of Springfield in a variety of vehicles. The primary objective is to pick up passengers and drop them off at their destinations while competing against other characters and avoiding obstacles. The game is known for its humorous take on the series, vibrant graphics, and a variety of game modes, including a mission mode and a multiplayer option, making it a fun experience for fans of the show and racing games alike.'
+    },
+    {
+        name: 'Slice Master',
+        image: 'https://th.bing.com/th/id/OIP.OF0PjiKzfO53RtdgohUyWwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://blockzone.github.io/g/slice-master.html',
+        description: 'Slice Master is a casual mobile game that focuses on slicing various objects, typically food items, in a satisfying and engaging manner. Players use simple swipe controls to cut through fruits, vegetables, and other items while aiming for high scores and completing levels. The game often features colorful graphics, fun sound effects, and various challenges that increase in difficulty as players progress. With its easy-to-learn mechanics and addictive gameplay, Slice Master appeals to players looking for a quick and entertaining gaming experience.'
+    },
+    {
+        name: 'Burger Bounty',
+        image: 'https://unblockedgamesfree.github.io/assets/img/thumbs/classroom6x/burger-bounty.png',
+        link: 'https://unblockedgamesfree.github.io/burger-bounty/',
+        description: 'Burger Bounty is a casual mobile game that combines elements of cooking and adventure. In the game, players take on the role of a chef tasked with creating and serving delicious burgers to customers while navigating various challenges and obstacles. The gameplay typically involves gathering ingredients, assembling burgers, and managing time effectively to satisfy customer orders. With its colorful graphics, engaging mechanics, and fun sound effects, Burger Bounty offers an entertaining experience for players who enjoy cooking games and time management challenges.'
+    },
+    {
+        name: 'Digdig.io',
+        image: 'https://th.bing.com/th/id/R.c6df6aa2656ad56ab8e6af0cb36ba8c7?rik=xXHwg2dAbb2wMA&pid=ImgRaw&r=0&adlt=strict',
+        link: 'https://blockzone.github.io/active/iframe.html#https://digdig.io',
+        description: 'Digdig.io is a multiplayer online game that combines elements of digging and resource management. In the game, players control a character that digs underground to collect various resources, such as gems and minerals, while avoiding obstacles and competing against other players. The goal is to gather as many resources as possible to upgrade your character and improve your digging abilities. As players progress, they can unlock new tools and features, enhancing their gameplay experience. With its simple mechanics and competitive nature, Digdig.io offers an engaging and addictive experience for fans of casual multiplayer games.'
+    },
+    {
+        name: 'Hobo',
+        image: 'https://th.bing.com/th/id/OIP.pyZgbfZg5JecwLZxlFrjZwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo.swf',
+        description: 'Hobo 1: The original game introduces players to Hobo\'s journey as he fights off various enemies in a city setting, using a combination of punches, kicks, and special moves.'
+    },
+    {
+        name: 'Hobo 2',
+        image: 'https://th.bing.com/th/id/OIP.PVNq4ZvGpgkZd2YOPkd52QHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo2.swf',
+        description: 'Hobo 2: This sequel expands on the gameplay with new levels and enemies, introducing more complex combat mechanics and the ability to unlock new abilities.'
+    },
+    {
+        name: 'Hobo 3',
+        image: 'https://th.bing.com/th/id/OIP.bJ9MFjzvr2sQC4uCMES3yAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo3.swf',
+        description: 'Hobo 3: In this installment, Hobo finds himself in a futuristic setting, facing off against robots and other sci-fi themed adversaries, while continuing to develop his combat skills.'
+    },
+    {
+        name: 'Hobo 4',
+        image: 'https://th.bing.com/th/id/OIP.1oi43EGGmHvZHZ6mi8Yl7AAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo4.swf',
+        description: 'Hobo 4: Hobo is sent to prison in this version, where players must navigate through the prison environment, battling guards and other inmates while trying to escape.'
+    },
+    {
+        name: 'Hobo 5',
+        image: 'https://th.bing.com/th/id/OIP.ef0HCM9oWtuOOlyMrpKghwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo5.swf',
+        description: 'Hobo 5: This game takes a more humorous approach, featuring Hobo battling against zombies and other supernatural foes, with an emphasis on over-the-top action.'
+    },
+    {
+        name: 'Hobo 6',
+        image: 'https://th.bing.com/th/id/OIP.65BJoCtS5Kpav9olkzZJjAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo6.swf',
+        description: 'Hobo 6: In this installment, Hobo faces off against aliens, adding a sci-fi twist to the gameplay and introducing new abilities and challenges.'
+    },
+    {
+        name: 'Hobo 7',
+        image: 'https://th.bing.com/th/id/OIP.im57SdaOSSqes39KfQlD9QHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo7.swf',
+        description: 'Hobo 7: The final game in the series brings Hobo\'s journey to a conclusion, featuring a mix of all previous elements and offering a variety of gameplay styles as players help Hobo confront his ultimate challenges.'
+    },
+    {
+        name: 'Ballon Run',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/bal/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/bal/index.html',
+        description: 'Balloon Run is an entertaining online game where players control a character that runs through various levels while collecting balloons and avoiding obstacles. The objective is to gather as many balloons as possible to score points while navigating through colorful environments filled with challenges. With simple controls and engaging gameplay, Balloon Run offers a fun experience for players of all ages, encouraging quick reflexes and strategic movement to achieve high scores.'
+    },
+    {
+        name: 'Bubble Shooter',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/bub/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/bub/index.html',
+        description: 'Bubble Shooter is a classic arcade-style game where players aim and shoot colored bubbles to create groups of three or more of the same color, causing them to pop and clear from the screen. The objective is to eliminate all the bubbles before they reach the bottom of the screen. With simple yet addictive gameplay, players can strategize their shots to maximize their score and progress through various levels, often facing increasingly challenging layouts. The game features vibrant graphics and can be played casually, making it a popular choice for players of all ages.'
+    },
+    {
+        name: 'Banjo Kazooie',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/banjokazooie/banjokazooie.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/banjokazooie/index.html',
+        description: 'Banjo-Kazooie is a beloved platforming video game developed by Rare and released for the Nintendo 64 in 1998. Players control Banjo, a bear, and his bird companion Kazooie as they embark on a quest to rescue Banjo\'s sister Tooty from the evil witch Gruntilda. The game features a vibrant, open-world environment filled with creative levels, puzzles, and collectibles, including musical notes and jiggies, which are essential for progression. Known for its charming characters, humor, and engaging gameplay, Banjo-Kazooie has become a classic in the gaming community and is often praised for its design and nostalgic value.'
+    },
+    {
+        name: 'Breaking the Bank',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/breakingthebank/balling.avif',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/breakingthebank/index.html',
+        description: 'Henry Stickmin: Breaking the Bank is the first game in the Henry Stickmin series, created by PuffballsUnited. In this point-and-click adventure game, players control Henry Stickmin as he attempts to rob a bank using various methods. The game features a humorous and interactive approach, allowing players to choose from multiple options for how to execute the heist, each leading to different outcomes—some successful and others resulting in comedic failures. The game\'s charm lies in its simple graphics, witty writing, and the variety of choices that encourage replayability as players explore all the possible paths and endings.'
+    },
+    {
+        name: 'Escaping the Prison',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/escapingtheprison/pwison.avif',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/escapingtheprison/index.html',
+        description: 'Henry Stickmin: Escaping the Prison is the second game in the Henry Stickmin series, developed by PuffballsUnited. In this point-and-click adventure, players take on the role of Henry Stickmin, who is trying to escape from prison after being captured. The game features a variety of choices that lead to different escape methods, such as using tools, disguises, or even enlisting the help of other characters. Each choice results in unique outcomes, including both successful escapes and humorous failures, making the game highly replayable. With its simple art style, clever writing, and engaging gameplay, "Escaping the Prison" continues the series\' charm and appeal.'
+    },
+    {
+        name: 'Fleeing the Complex',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/fleeingthecomplex/flee.jpg',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/fleeingthecomplex/index.html',
+        description: 'Henry Stickmin: Fleeing the Complex is the third installment in the Henry Stickmin series, developed by PuffballsUnited. In this point-and-click adventure game, players once again control Henry Stickmin, who finds himself in a high-security prison complex. The objective is to escape by making a series of choices that lead to various outcomes, including successful escapes or humorous failures. The game introduces new characters and features, such as the ability to choose between different strategies and tools, enhancing the gameplay experience. With its signature humor, engaging storylines, and multiple endings, "Fleeing the Complex" continues to captivate fans of the series.'
+    },
+    {
+        name: 'Infiltrating the Airship',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/infiltratingtheairship/air.avif',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/infiltratingtheairship/index.html',
+        description: 'Henry Stickmin: Infiltrating the Airship is the fourth game in the Henry Stickmin series, where players help Henry attempt to infiltrate a criminal airship. The game features a variety of choices that lead to different methods of infiltration, resulting in unique outcomes, including both successful missions and humorous failures. With its clever writing, engaging gameplay, and the introduction of new characters like the Toppat Clan, the game encourages replayability as players explore all possible paths. Its charm and humor have made it a beloved entry in the series.'
+    },
+    {
+        name: 'Stealing the Diamond',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/stealingthediamond/diamante.avif',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/stealingthediamond/index.html',
+        description: 'Henry Stickmin: Stealing the Diamond is the fifth game in the Henry Stickmin series, where players assist Henry in his attempt to steal a valuable diamond from a museum. The game features a variety of choices that lead to different methods of theft, each resulting in unique outcomes, including both successful heists and comedic failures. With its engaging gameplay, clever humor, and multiple paths to explore, players are encouraged to replay the game to discover all the possible scenarios. The game continues the series\' charm and creativity, making it a favorite among fans.'
     }
 
 ];
@@ -2675,14 +2774,6 @@ function games() {
     title.style.fontSize = '50px';
     title.style.marginBottom = '20px'; 
     document.body.appendChild(title);
-
-    let note = document.createElement('h1');
-    note.textContent = 'If a game doesn\'t work click "Play in Proxy" if that doesn\'t work or you have a game request email toothpasteisverygood@gmail.com';
-    note.style.color = 'white'; 
-    note.style.textAlign = 'center'; 
-    note.style.fontSize = '32px';
-    note.style.marginBottom = '20px'; 
-    document.body.appendChild(note);
 
     const searchContainer = document.createElement('div');
     searchContainer.className = 'searchbar';
@@ -2865,6 +2956,12 @@ const app_list = [
         link: 'https://oleksandrchernokolov.github.io/Calculator/',
         image: 'https://ilikemycheezdrippy.ng.cissp.or.id/sppa/calc/cover.svg',
         description: 'A calculator is a device or software application used to perform mathematical calculations, ranging from basic arithmetic operations like addition, subtraction, multiplication, and division to more complex functions such as exponentiation, square roots, and trigonometric calculations. Calculators come in various forms, including handheld devices, desktop applications, and online tools, each designed to cater to different user needs. Scientific calculators offer advanced features for higher-level mathematics, while graphing calculators can plot functions and analyze data visually. With the advent of smartphones, many users now rely on calculator apps that provide a convenient and versatile way to perform calculations on the go.'
+    },
+    {
+        name: 'TikTok',
+        link: 'https://blockzone.github.io/active/iframe.html#https://tiktok.com',
+        image: 'https://th.bing.com/th/id/R.f6c8998e519d8da5734348e5e4422960?rik=cdSp1lSoxgsLcQ&pid=ImgRaw&r=0&adlt=strict',
+        description: 'TikTok is a popular social media platform that allows users to create, share, and discover short videos, typically set to music or sound bites. The app features a variety of editing tools and effects, enabling users to express their creativity through dance, comedy, and various challenges. TikTok\'s algorithm curates personalized feeds, keeping users engaged with content that aligns with their interests. Its vibrant community fosters trends and viral content, making it a hub for entertainment and self-expression.'
     }
 ]
 
@@ -3042,7 +3139,8 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
-        { version: 'version v2.1 (3/26/2025)', content: ['Fixed some broken games', 'Added latest website version injector (no more issue when dealing with outdated versions!)'] },
+        { version: 'version v2.2 (4/2/2025):', content: ['Removed Game Note', 'Removed Theater Mode (useless feature)', 'Added Ads', 'Exploits coming soon!', 'Fixed broken/blocked games', 'Various bug fixes', 'Added 1 app', 'Added 20 games'] },
+        { version: 'version v2.1 (3/26/2025):', content: ['Fixed some broken games', 'Added latest website version injector (no more issue when dealing with outdated versions!)'] },
         { version: 'version v2.0 (3/20/2025):', content: ['Movies & TV tab erased', 'Added Report Blocked or Not Working button', 'Added 10 games', 'Fixed some broken games'] },
         { version: 'version v1.9 (3/15/2025):', content: ['Fixed some games again', 'Added 10 games'] },
         { version: 'version v1.8 (3/12/2025): ', content: ['RIP Movies & TV (removed due to legal reasons)', 'Added 10 games', 'Fixed some broken games again'] },
@@ -3245,12 +3343,13 @@ function proxy() {
         urlInput.style.flexGrow = '1';
         urlInput.style.padding = '8px';
         urlInput.style.borderRadius = '15px';
-        urlInput.style.border = '1px solid #444';
+        urlInput.style.border = ' 1px solid #444';
         urlInput.style.backgroundColor = '#111';
         urlInput.style.color = '#fff';
 
         const goButton = document.createElement('button');
         goButton.textContent = 'Go';
+        goButton.style.color = 'black';
         goButton.style.padding = '8px 16px';
         goButton.style.borderRadius = '15px';
         goButton.style.backgroundColor = 'white';
@@ -3352,7 +3451,7 @@ function proxy() {
                         width: 600px;
                         border-radius: 50px;
                         border: none;
-                        background: rgba(255, 255, 255, 0.1);
+                        background: rgba(255,  255, 255, 0.1);
                         color: #fff;
                         font-size: 17px;
                         backdrop-filter: blur(15px);
@@ -3401,7 +3500,7 @@ function proxy() {
             position: absolute;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0 , 255, 255, 0.1) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -3479,7 +3578,8 @@ function proxy() {
                         searchBox.addEventListener('keypress', e => {
                             if (e.key === 'Enter') {
                                 const query = searchBox.value;
-                                load(query);
+                                const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                                proxyLoad(googleUrl, frame, loadingOverlay);
                             }
                         });
                     }
