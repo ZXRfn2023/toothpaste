@@ -5,7 +5,7 @@
 **Play Unblocked. No BS.**  
 *Now with 300+ games and counting!*
 
-[![Version](https://img.shields.io/badge/version-2.2-blue.svg)](https://toothpastenetwork.github.io)
+[![Version](https://img.shields.io/badge/version-2.3-blue.svg)](https://toothpastenetwork.github.io)
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)](https://toothpastenetwork.github.io)
 [![Updates](https://img.shields.io/badge/updates-frequent-orange.svg)](https://toothpastenetwork.github.io)
 
