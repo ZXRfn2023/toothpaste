@@ -400,7 +400,7 @@
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.2</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
+    <p class="version"><b>WEBSITE VERSION:</b> v2.3</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
     <script> document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
     const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
     if (!versionMatch) return;
@@ -476,11 +476,13 @@
         }
     </script>
 
+    <h1 class="proxyinfo" style="font-size: 36px; text-align: center;">PROXY IS CURRENTLY DOWN I AM MAKING A BETTER ONE</h1>
+
     <div class="tabs">
         <button class="tab" onclick="visit(home);">Home</button>
         <button class="tab" onclick="visit(games);">Games</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
-        <button class="tab" onclick="visit(proxy)">Proxy</button>
+        <button disabled class="tab" onclick="visit(proxy)">Proxy</button>
         <button disabled class="tab" onclick="'coming soon'">Exploits</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
         <button class="tab" onclick="visit(changelog)">Changelog</button>
@@ -509,6 +511,7 @@ function visit(launchRequest) {
             !element.classList.contains('centered-download') &&
             !element.classList.contains('update-status') && 
             !element.classList.contains('adCenter') &&
+            !element.classList.contains('proxyinfo') &&
             !element.classList.contains('version')) {
             element.remove();
         }
@@ -519,247 +522,253 @@ function visit(launchRequest) {
 
 function websitePlayer(title, link, description) {
     const containerDiv = document.createElement('div');
-    containerDiv.style.display = 'flex';
-    containerDiv.style.flexDirection = 'column'; 
-    containerDiv.style.alignItems = 'center'; 
+    Object.assign(containerDiv.style, {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+        fontFamily: 'Segoe UI, sans-serif',
+        fontWeight: 'bolder',
+        color: '#fff'
+    });
     document.body.appendChild(containerDiv);
 
     const reportButton = document.createElement('button');
-    reportButton.textContent = 'Report Blocked or Not Working Game';
-    reportButton.style.width = '100%';
-    reportButton.style.padding = '10px';
-    reportButton.style.fontSize = '16px';
-    reportButton.style.cursor = 'pointer';
-    reportButton.style.border = 'none';
-    reportButton.style.borderRadius = '5px';
-    reportButton.style.backgroundColor = 'red';
-    reportButton.style.color = 'white';
-    reportButton.onclick = () => {
-        window.open('https://forms.gle/ifBB6ym5W23MGx8b6', '_blank');
-    };
-    containerDiv.appendChild(reportButton); 
+    reportButton.textContent = 'Report Blocked / Not Working';
+    Object.assign(reportButton.style, {
+        width: '100%',
+        maxWidth: '600px',
+        padding: '12px',
+        fontSize: '16px',
+        cursor: 'pointer',
+        border: 'none',
+        borderRadius: '8px',
+        background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
+        color: 'white',
+        fontWeight: 'bold',
+        marginBottom: '20px',
+        boxShadow: '0 3px 10px rgba(255, 0, 0, 0.4)',
+        transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+    });
+    reportButton.onmouseover = () => reportButton.style.transform = 'scale(1.05)';
+    reportButton.onmouseout = () => reportButton.style.transform = 'scale(1)';
+    reportButton.onclick = () => window.open('https://forms.gle/ifBB6ym5W23MGx8b6', '_blank');
+    containerDiv.appendChild(reportButton);
 
     const gameContainer = document.createElement('div');
-    gameContainer.style.display = 'flex'; 
-    gameContainer.style.alignItems = 'flex-start'; 
-    gameContainer.style.marginTop = '20px'; 
-    gameContainer.style.width = '100%'; 
-    containerDiv.appendChild(gameContainer); 
+    Object.assign(gameContainer.style, {
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        gap: '30px',
+        width: '100%'
+    });
+    containerDiv.appendChild(gameContainer);
 
     const gamePlayerDiv = document.createElement('div');
-    gamePlayerDiv.className = 'gp-div';
-    gamePlayerDiv.style.border = '3px solid white';
-    gamePlayerDiv.style.width = '300px';
-    gamePlayerDiv.style.height = '100%'; 
-    gamePlayerDiv.style.borderRadius = '30px';
-    gamePlayerDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    gamePlayerDiv.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.5)';
-    gameContainer.appendChild(gamePlayerDiv); 
+    Object.assign(gamePlayerDiv.style, {
+        border: '2px solid #0f0',
+        borderRadius: '20px',
+        background: 'rgba(0, 0, 0, 0.8)',
+        padding: '20px',
+        boxShadow: '0 0 20px rgba(0, 255, 0, 0.4)',
+        width: '300px',
+        flexShrink: '0'
+    });
 
     const gamePlayerName = document.createElement('h1');
     gamePlayerName.textContent = title;
-    gamePlayerName.style.textAlign = 'center';
-    gamePlayerName.style.color = 'lime';
-    gamePlayerName.style.fontSize = '30px';
-    gamePlayerName.style.fontWeight = 'bold';
-    gamePlayerName.style.margin = '10px 0';
-    gamePlayerDiv.appendChild(gamePlayerName);
+    Object.assign(gamePlayerName.style, {
+        textAlign: 'center',
+        fontSize: '24px',
+        marginBottom: '10px',
+        fontWeight: 'bolder',
+        backgroundImage: 'linear-gradient(to right, #00BFFF, #00FF7F)', 
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent'
+    });
+
 
     const gamePlayerDescription = document.createElement('p');
     gamePlayerDescription.textContent = description;
-    gamePlayerDescription.style.textAlign = 'center';
-    gamePlayerDescription.style.color = 'white';
-    gamePlayerDescription.style.fontSize = '15px';
-    gamePlayerDescription.style.margin = '10px 0';
-    gamePlayerDescription.style.fontSize = '13px';
-    gamePlayerDiv.appendChild(gamePlayerDescription);
+    Object.assign(gamePlayerDescription.style, {
+        textAlign: 'center',
+        fontSize: '14px',
+        opacity: 0.8,
+        marginBottom: '20px'
+    });
+
+    gamePlayerDiv.append(gamePlayerName, gamePlayerDescription);
 
     const sizeControls = document.createElement('div');
-    sizeControls.style.margin = '10px 0';
-    gamePlayerDiv.appendChild(sizeControls);
+    sizeControls.style.marginBottom = '20px';
 
-    const widthControl = document.createElement('div');
-    widthControl.style.display = 'flex';
-    widthControl.style.justifyContent = 'space-between';
-    widthControl.style.alignItems = 'center';
-    widthControl.style.marginBottom = '10px';
+    const createSizeControl = (labelText, input) => {
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.marginBottom = '10px';
 
-    const widthLabel = document.createElement('label');
-    widthLabel.textContent = 'Width (px):';
-    widthLabel.style.color = 'white';
-    widthLabel.style.marginRight = '10px';
+        const label = document.createElement('label');
+        label.textContent = labelText;
+        Object.assign(label.style, {
+            marginRight: '10px',
+            color: '#ccc',
+            width: '90px'
+        });
+
+        Object.assign(input.style, {
+            flex: '1',
+            padding: '6px',
+            borderRadius: '4px',
+            border: '1px solid #555',
+            background: '#111',
+            color: '#fff',
+            width: '100px'
+        });
+
+        wrapper.append(label, input);
+        return wrapper;
+    };
 
     const widthInput = document.createElement('input');
-    widthInput.style.color = 'black';
     widthInput.type = 'number';
     widthInput.min = '100';
     widthInput.max = '2000';
-    widthInput.style.width = '100px';
-    widthInput.style.padding = '5px';
-
-    widthControl.appendChild(widthLabel);
-    widthControl.appendChild(widthInput);
-    sizeControls.appendChild(widthControl);
-
-    const heightControl = document.createElement('div');
-    heightControl.style.display = 'flex';
-    heightControl.style.justifyContent = 'space-between';
-    heightControl.style.alignItems = 'center';
-
-    const heightLabel = document.createElement('label');
-    heightLabel.textContent = 'Height (px):';
-    heightLabel.style.color = 'white';
-    heightLabel.style.marginRight = '10px';
 
     const heightInput = document.createElement('input');
-    heightInput.style.color = 'black';
     heightInput.type = 'number';
     heightInput.min = '100';
     heightInput.max = '2000';
     heightInput.value = '600';
-    heightInput.style.width = '100px';
-    heightInput.style.padding = '5px';
 
-    heightControl.appendChild(heightLabel);
-    heightControl.appendChild(heightInput);
-    sizeControls.appendChild(heightControl);
+    sizeControls.appendChild(createSizeControl('Width (px):', widthInput));
+    sizeControls.appendChild(createSizeControl('Height (px):', heightInput));
+    gamePlayerDiv.appendChild(sizeControls);
 
     const buttonContainer = document.createElement('div');
-    buttonContainer.style.display = 'flex';
-    buttonContainer.style.flexDirection = 'column';
-    buttonContainer.style.alignItems = 'center'; 
-    buttonContainer.style.margin = '20px 0';
-    gamePlayerDiv.appendChild(buttonContainer);
-
-    const buttonStyle = {
-        padding: '10px 20px',
-        fontSize: '16px',
-        cursor: 'pointer',
-        border: 'none',
-        borderRadius: '5px',
-        boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
-        transition: 'background-color 0.3s, transform 0.3s',
-        height: '40px',
+    Object.assign(buttonContainer.style, {
         display: 'flex',
-        alignItems: 'center',
+        flexWrap: 'wrap',
         justifyContent: 'center',
-        margin: '0 15px',
+        gap: '10px',
+        marginTop: '10px'
+    });
+
+    const baseButtonStyle = {
+        background: 'linear-gradient(135deg, #00f260, #0575e6)',
+        color: '#fff',
+        border: 'none',
+        padding: '10px 18px',
+        borderRadius: '999px',
+        fontWeight: 'bold',
+        fontSize: '14px',
+        cursor: 'pointer',
+        boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+        transition: 'all 0.25s ease-in-out',
+        letterSpacing: '0.5px',
+        minWidth: '140px'
     };
 
-    const fullscreenButton = document.createElement('button');
-    fullscreenButton.textContent = 'Toggle Fullscreen';
-    Object.assign(fullscreenButton.style, buttonStyle);
-    fullscreenButton.style.backgroundColor = 'lime';
-    fullscreenButton.style.color = 'black';
+    const hoverIn = e => {
+        e.target.style.transform = 'scale(1.1)';
+        e.target.style.filter = 'brightness(1.1)';
+    };
 
-    fullscreenButton.addEventListener('mouseover', () => {
-        fullscreenButton.style.backgroundColor = 'lime';
-        fullscreenButton.style.transform = 'scale(1.05)';
-    });
-
-    fullscreenButton.addEventListener('mouseout', () => {
-        fullscreenButton.style.transform = 'scale(1)';
-    });
-
-    buttonContainer.appendChild(fullscreenButton);
-
-    fullscreenButton.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            iframe.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-            });
-        } else {
-            document.exitFullscreen();
-        }
-    });
-
-    const refreshButton = document.createElement('button');
-    refreshButton.textContent = 'Refresh';
-    Object.assign(refreshButton.style, buttonStyle);
-    refreshButton.style.backgroundColor = 'cyan';
-    refreshButton.style.color = 'black';
-
-    refreshButton.addEventListener('mouseover', () => {
-        refreshButton.style.backgroundColor = 'cyan';
-        refreshButton.style.transform = 'scale(1.05)';
-    });
-
-    refreshButton.addEventListener('mouseout', () => {
-        refreshButton.style.transform = 'scale(1)';
-    });
-
-    refreshButton.addEventListener('click', () => {
-        iframe.src = iframe.src;
-    });
-
-    buttonContainer.appendChild(refreshButton);
-
-    const loadingOverlay = document.createElement('div');
-    loadingOverlay.style.position = 'absolute';
-    loadingOverlay.style.top = '0';
-    loadingOverlay.style.left = '0';
-    loadingOverlay.style.width = '100%';
-    loadingOverlay.style.height = '100%';
-    loadingOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    loadingOverlay.style.color = 'white';
-    loadingOverlay.style.display = 'flex';
-    loadingOverlay.style.alignItems = 'center';
-    loadingOverlay.style.justifyContent = 'center';
-    loadingOverlay.style.fontSize = '20px';
-    loadingOverlay.textContent = 'The proxy is in beta so this may not work / Loading...';
-    loadingOverlay.style.display = 'none'; 
-    containerDiv.appendChild(loadingOverlay);
-
-    const playInProxyButton = document.createElement('button');
-    playInProxyButton.textContent = 'Play in Proxy';
-    Object.assign(playInProxyButton.style, buttonStyle);
-    playInProxyButton.style.backgroundColor = 'yellow';
-    playInProxyButton.style.color = 'black';
-
-    playInProxyButton.addEventListener('mouseover', () => {
-        playInProxyButton.style.transform = 'scale(1.05)';
-    });
-
-    playInProxyButton.addEventListener('mouseout', () => {
-        playInProxyButton.style.transform = 'scale(1)';
-    });
-
-    playInProxyButton.addEventListener('click', () => {
-        proxyLoad(link.link, iframe, loadingOverlay);
-    });
-
-    buttonContainer.appendChild(playInProxyButton);
+    const hoverOut = e => {
+        e.target.style.transform = 'scale(1)';
+        e.target.style.filter = 'brightness(1)';
+    };
 
     const iframe = document.createElement('iframe');
+    Object.assign(iframe.style, {
+        flex: '1',
+        height: '600px',
+        border: '2px solid white',
+        borderRadius: '15px',
+        minWidth: '400px'
+    });
     iframe.id = 'game-iframe';
-    iframe.style.flex = '1'; 
-    iframe.style.height = '600px'; 
-    iframe.style.border = 'none';
-    iframe.style.display = 'block';
-    iframe.style.border = '2px solid white';
-    iframe.style.borderRadius = '15px';
     iframe.src = link.link;
     iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-pointer-lock allow-forms');
-    gameContainer.appendChild(iframe); 
+
+    iframe.addEventListener('click', () => {
+        alert('Iframe clicked, focusing...');
+        iframe.contentWindow.focus();
+        iframe.contentWindow.document.body.requestPointerLock();
+    });
+
+    gameContainer.append(gamePlayerDiv, iframe);
 
     widthInput.value = Math.floor(iframe.getBoundingClientRect().width);
     heightInput.value = Math.floor(iframe.getBoundingClientRect().height);
 
     widthInput.addEventListener('input', () => {
-        const newWidth = Math.max(widthInput.value, 100);
-        iframe.style.width = `${newWidth}px`;
+        iframe.style.width = `${Math.max(widthInput.value, 100)}px`;
     });
 
     heightInput.addEventListener('input', () => {
-        const newHeight = Math.max(heightInput.value, 100);
-        iframe.style.height = `${newHeight}px`;
+        iframe.style.height = `${Math.max(heightInput.value, 100)}px`;
     });
 
-    let searchbarElement = document.querySelector('.searchbar');
-    if (searchbarElement) {
-        searchbarElement.remove();
-    }
+    const buttons = [
+        {
+            text: 'Toggle Fullscreen',
+            onClick: () => {
+                if (!document.fullscreenElement) {
+                    iframe.requestFullscreen().catch(err =>
+                        console.error(`Fullscreen error: ${err.message} (${err.name})`)
+                    );
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        },
+        {
+            text: 'Refresh',
+            onClick: () => {
+                iframe.src = iframe.src;
+            }
+        },
+        // {
+        //     text: 'Play in Proxy',
+        //     onClick: () => {
+        //         proxyLoad(link.link, iframe, loadingOverlay);
+        //     }
+        // },
+        {
+            text: 'Mostly Fullscreen',
+            onClick: () => {
+                document.body.innerHTML = '';
+                document.body.appendChild(iframe);
+                Object.assign(iframe.style, {
+                    width: '100vw',
+                    height: '100vh',
+                    border: 'none',
+                    borderRadius: '0',
+                });
+            }
+        }
+
+    ];
+
+    buttons.forEach(({ text, onClick }) => {
+        const btn = document.createElement('button');
+        btn.textContent = text;
+        Object.assign(btn.style, baseButtonStyle);
+        btn.addEventListener('mouseover', hoverIn);
+        btn.addEventListener('mouseout', hoverOut);
+        btn.addEventListener('click', onClick);
+        buttonContainer.appendChild(btn);
+    });
+
+    gamePlayerDiv.appendChild(buttonContainer);
+
+    const searchbarElement = document.querySelector('.searchbar');
+    if (searchbarElement) searchbarElement.remove();
 }
+
 
 function deleteSelectButtons() {
     const selectButtons = document.querySelectorAll('div.select-button');
@@ -808,7 +817,7 @@ const unsortedGameLinks = [
     {
         name: '12 Minibattles',
         image: 'https://th.bing.com/th/id/OIP.Ghy3z19O7K1ZN8mYbFdSdgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/yrgen73/12@a123adec162beb14858ce684f98e50784b452be1/12.xml&container=ig',
+        link: 'https://unblockedgamesfree.github.io/12-minibattles/',
         description: '12 MiniBattles is a fun and fast-paced multiplayer game that features a series of mini-games where players can compete against each other in various challenges. Each mini-game is designed to test different skills, such as reflexes, strategy, and coordination, making it a diverse and engaging experience. With simple controls and quick rounds, players can enjoy a competitive atmosphere with friends or online opponents, aiming to win the most mini-battles to claim victory.',
     },
     {
@@ -1018,7 +1027,7 @@ const unsortedGameLinks = [
     {
         name: 'Cookie Clicker',
         image: 'https://th.bing.com/th/id/OIP.TSoDpGIJtiUF1xLMpkEIfgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/cookieclicker/index.html',
+        link: 'https://advanced-channeler.02.gz-associates.com/?t=tmm-cookieclicker',
         description: 'Cookie Clicker is an addictive incremental game where players click on a giant cookie to produce more cookies and unlock a variety of upgrades. As you accumulate cookies, you can purchase buildings and upgrades that automate cookie production, leading to exponential growth and increasingly whimsical achievements. With its charming graphics and quirky humor, Cookie Clicker offers a satisfying and engaging experience that keeps players coming back for more cookie-baking fun!',
     },
     {
@@ -1058,6 +1067,12 @@ const unsortedGameLinks = [
         description: 'Pixel Battlegrounds is an action-packed online multiplayer shooter that immerses players in a vibrant, pixelated world filled with intense combat and strategic gameplay. Choose your character, team up with friends, and engage in fast-paced battles across various maps, utilizing a wide array of weapons and power-ups to outsmart your opponents. With its retro-inspired graphics and addictive gameplay, Pixel Battlegrounds offers a thrilling experience for players looking to test their skills in a colorful, chaotic battlefield!',
     },
     {
+        name: 'Eaglercraft WurstX',
+        image: 'https://wurst.wiki/_media/logo/w_32.png?w=400&h=400&tok=a5796f',
+        link: 'https://eaglerhacks.github.io/wurstX.html',
+        description: 'The Wurst Client for Eaglercraft is a modified version of the popular Minecraft Wurst hacked client, offering a range of cheats and utility mods. You can find downloads and features on sites like WurstClient.net, which provides access to various versions and detailed descriptions of its capabilities.'
+    },
+    {
         name: 'Eaglercraft 1.12.2',
         image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://eaglercraft.com/mc/1.12.2/',
@@ -1084,7 +1099,7 @@ const unsortedGameLinks = [
     {
         name: 'Hole.io',
         image: 'https://th.bing.com/th/id/R.05fd95b02d4ee90f00a8827e7f1fea7d?rik=sZ3wAo%2bedcx5Nw&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/holeio/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/holeio/index.html',
         description: 'Hole.io is a fast-paced multiplayer game where players control a black hole, competing to consume objects and grow larger while navigating a vibrant cityscape. The goal is to outsmart opponents by swallowing as much as possible before time runs out, creating a chaotic and fun battle for dominance. With simple controls and addictive gameplay, Hole.io offers a unique twist on the battle royale genre that keeps players coming back for more!',
     },
     {
@@ -1096,7 +1111,7 @@ const unsortedGameLinks = [
     {
         name: 'Monkey Mart',
         image: 'https://th.bing.com/th/id/OIP.aD-UW5qxQUWBDQEQn55miwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/monkeymart/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/monkeymart/index.html',
         description: 'Monkey Mart is a fun and engaging simulation game where players manage a bustling grocery store run by adorable monkeys. As the store owner, you\'ll stock shelves, serve customers, and expand your business while navigating various challenges and upgrades. With its charming graphics and addictive gameplay, Monkey Mart offers a delightful experience for players looking to build their own thriving retail empire!',
     },
     {
@@ -1138,7 +1153,7 @@ const unsortedGameLinks = [
     {
         name: 'World\'s Hardest Game',
         image: 'https://th.bing.com/th/id/OIP.3PVFf20QfiMPzc4R-tu2GgHaJ4?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fthe-world-s-hardest-game.xml&container=ig',
+        link: 'https://netflixa.blacknapkins.org/semag/worldshardestgame/index.html',
         description: 'The World\'s Hardest Game is a challenging online puzzle platformer that tests players\' reflexes and problem-solving skills. Players navigate a small red square through a series of increasingly difficult levels filled with moving obstacles and hazards, aiming to reach the green square while avoiding being hit. With its frustratingly tough gameplay and precise controls, this game is designed to push players to their limits and provide a rewarding sense of accomplishment upon completion!',
     },
     {
@@ -1216,37 +1231,37 @@ const unsortedGameLinks = [
     {
         name: 'Duck Life 1',
         image: 'https://th.bing.com/th/id/R.b741daa071c739733f3403e077a5e61b?rik=o%2bryhdh%2b%2bqlWTw&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife1/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife1/index.html',
         description: 'Duck Life 1 is a fun and engaging online game where players raise and train a duck to compete in various races. Players start by hatching a duckling and then must feed, train, and care for it to improve its skills in running, swimming, and flying. As the duck progresses, players can enter races to earn coins, which can be used to upgrade their duck\'s abilities and unlock new areas. With its charming graphics and addictive gameplay, Duck Life 1 offers a delightful experience for players of all ages!',
     },
     {
         name: 'Duck Life 2',
         image: 'https://th.bing.com/th/id/OIP.4lowPbr1wCpJYtEChGlMzgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife2/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife2/index.html',
         description: 'Duck Life 2 is the sequel to the popular Duck Life game, where players continue to raise and train their duck to compete in various challenges and races. In this installment, players can train their duck in four different skills: running, swimming, flying, and climbing. As players progress, they can enter competitions to earn coins, which can be used to upgrade their duck\'s abilities and unlock new areas and features. With improved graphics, new training mini-games, and an engaging storyline, Duck Life 2 offers an enjoyable experience for fans of the series and newcomers alike!',
     },
     {
         name: 'Duck Life 3',
         image: 'https://th.bing.com/th/id/OIP.iI00VS_WEfVEW3KMS9UKzAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife3/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife3/index.html',
         description: 'Duck Life 3 is the third installment in the beloved Duck Life series, where players continue to train and raise their duck to compete in various races and challenges. In this game, players can train their duck in five different skills: running, swimming, flying, climbing, and a new skill called "flying." Players can also customize their duck with different hats and accessories. As they progress, they can enter tournaments and earn coins to upgrade their duck\'s abilities and unlock new areas. With its charming graphics, engaging gameplay, and a variety of training mini-games, Duck Life 3 offers a delightful experience for fans of the series and new players alike!'
     },
     {
         name: 'Duck Life 4',
         image: 'https://th.bing.com/th/id/OIP.H9NRXwOI1J3DVQwegWPwlAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife4/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife4/index.html',
         description: 'Duck Life 4 is the fourth game in the popular series where players train and raise their duck to compete in races and challenges. Players can develop various skills, including running, swimming, flying, climbing, and fighting, while customizing their duck with different outfits. With engaging gameplay, new mini-games, and a storyline that leads to tournaments, Duck Life 4 offers a fun and immersive experience for fans and newcomers alike.'
     },
     {
         name: 'Duck Life 5',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife5/ducklife5.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife5/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife5/ducklife5.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife5/index.html',
         description: 'Duck Life 5 is the fifth installment in the popular Duck Life series, where players train and race their own duck to become the champion of the Duck Racing League. In this game, players can customize their duck and improve its skills through various mini-games that focus on running, swimming, flying, and climbing. As players progress, they can compete in races against other ducks, earn coins, and unlock new abilities and upgrades. With its charming graphics, engaging gameplay, and a mix of training and racing elements, Duck Life 5 offers a delightful experience for fans of the series and newcomers alike.'
     },
     {
         name: 'Duck Life 6',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife6/ducklife5.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/ducklife6/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife6/ducklife5.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ducklife6/index.html',
         description: 'Duck Life 6 is the sixth installment in the beloved Duck Life series, where players embark on a new adventure to train and race their duck. In this game, players can customize their duck and improve its skills through various mini-games that focus on running, swimming, flying, and climbing. The goal is to compete in races against other ducks, earn coins, and unlock new abilities and upgrades. This installment introduces new features, including the ability to explore different environments and participate in tournaments. With its charming graphics, engaging gameplay, and a mix of training and racing elements, Duck Life 6 offers an enjoyable experience for both fans of the series and new players.'
     },
     {
@@ -1275,14 +1290,14 @@ const unsortedGameLinks = [
     },
     {
         name: 'Flappy Copter',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/flappycopter/cover.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/flappycopter/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/flappycopter/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/flappycopter/index.html',
         description: 'Flappy Copter is a fun and addictive arcade game that challenges players to navigate a helicopter through a series of obstacles. Players tap the screen to make the copter flap its blades and ascend, while carefully avoiding pipes and other hazards. The objective is to achieve the highest score by flying as far as possible without crashing. With its simple controls, charming graphics, and increasingly difficult levels, Flappy Copter provides an engaging experience that tests players\' reflexes and timing.'
     },
     {
         name: 'Bouncy Flappy',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/bounce/cover.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/bounce/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/bounce/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/bounce/index.html',
         description: 'Bouncy Flappy is an addictive arcade-style game that combines the mechanics of classic flapping games with a bouncy twist. Players control a cute character that must navigate through a series of obstacles by tapping the screen to make it bounce and fly. The goal is to achieve the highest score by maneuvering through gaps and avoiding hazards while collecting bonuses along the way. With its vibrant graphics and simple yet challenging gameplay, Bouncy Flappy offers endless fun for players looking to test their reflexes and improve their skills.'
     },
     {
@@ -1540,7 +1555,7 @@ const unsortedGameLinks = [
     {
         name: '1 On 1 Hockey',
         image: 'https://th.bing.com/th/id/OIP.6qaBjUo8wNDQxHFWdgaUgAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://jodxbzz3fxxlayic6q6qrfl2-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F1-on-1-hockey.xml&container=ig',
+        link: 'https://gavicine.github.io/hockey/',
         description: '1 on 1 Hockey is a fast-paced, competitive format where two players face off against each other, focusing on individual skills such as puck handling, shooting, and defensive maneuvers. The objective is to score goals while preventing the opponent from doing the same, often played in a smaller rink or designated area to enhance the intensity of the match. This format allows players to improve their technical abilities and strategic thinking in a fun and engaging environment.'
     },
     {
@@ -1552,7 +1567,7 @@ const unsortedGameLinks = [
     {
         name: '1 On 1 Soccer',
         image: 'https://th.bing.com/th/id/OIP.oO2if2qnnWsp2xZs_s4weQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/1on1soccer/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/1on1soccer/index.html',
         description: '1 on 1 Soccer is a competitive format where two players face off against each other, focusing on individual skills such as dribbling, shooting, and defending. The objective is to score goals while trying to outmaneuver the opponent, often played in a smaller area to increase the intensity and pace of the game. This format allows players to improve their technical abilities and tactical awareness while enjoying a fun and engaging soccer experience.'
     },
     {
@@ -1606,7 +1621,7 @@ const unsortedGameLinks = [
     {
         name: 'Flash Sonic',
         image: 'https://th.bing.com/th?id=OIP.GKeYKb-Rsnofgzc7zpUOzAAAAA&w=110&h=110&c=7&rs=1&qlt=80&pcl=f9f9f9&o=6&cdv=1&pid=18.2&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fsonic-the-hedgehog.xml&container=ig',
+        link: 'https://deepakrummy.github.io/games/ultimateflashsonic/index.html',
         description: 'Sonic on Flash refers to various fan-made games and animations featuring Sonic the Hedgehog that were created using Adobe Flash technology. These projects often include platforming gameplay, mini-games, and animated shorts that showcase Sonic and his friends in vibrant, interactive environments. Many of these Flash games gained popularity on websites like Newgrounds and Kongregate, allowing fans to experience Sonic in new and creative ways outside of the official game releases. However, with the decline of Flash support in recent years, many of these games have become less accessible, leading to efforts to preserve or recreate them using modern technologies.'
     },
     {
@@ -1888,7 +1903,7 @@ const unsortedGameLinks = [
     {
         name: 'Cell Machine',
         image: 'https://th.bing.com/th/id/R.95442c4e4b46e22bb0806d5fc805450a?rik=w5GR%2by5gTi4ypw&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/cell-machine/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/cell-machine/index.html',
         description: 'Cell Machine is a puzzle game that revolves around cellular automata, where players manipulate cells on a grid to solve various challenges. The game allows players to create and control different types of cells, each with unique behaviors and interactions, to achieve specific goals. With a focus on logic and strategy, players must think critically to design solutions that progress through increasingly complex levels. The minimalist design and engaging mechanics make Cell Machine a captivating experience for fans of puzzle and strategy games.'
     },
     {
@@ -2177,7 +2192,7 @@ const unsortedGameLinks = [
         name: 'Deepest Sword',
         image: 'https://th.bing.com/th/id/OIP.jExUGoLtuURTmeF5kDq1hAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://ggmggmgg.github.io/g/deepestsword/index.html',
-        description: 'Deepest Sword is an indie platformer that invites players to embark on a quest to retrieve a legendary sword hidden deep within a perilous cave. As players navigate through various levels, the sword grows longer, allowing them to reach new areas and defeat enemies. The game features charming pixel art, atmospheric music, and clever level design that encourages exploration and skillful maneuvering. With its unique mechanics and engaging gameplay, Deepest Sword offers a rewarding experience for those seeking a fun and challenging adventure.'
+        description: 'The Deepest Sword is an indie platformer that invites players to embark on a quest to retrieve a legendary sword hidden deep within a perilous cave. As players navigate through various levels, the sword grows longer, allowing them to reach new areas and defeat enemies. The game features charming pixel art, atmospheric music, and clever level design that encourages exploration and skillful maneuvering. With its unique mechanics and engaging gameplay, Deepest Sword offers a rewarding experience for those seeking a fun and challenging adventure.'
     },
     {
         name: 'Eat Blobs',
@@ -2236,7 +2251,7 @@ const unsortedGameLinks = [
     {
         name: 'Unfair Mario',
         image: 'https://th.bing.com/th/id/OIP.BG-49lVDkJobMuDmAtFQ1AHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/unfmar/index.html',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/unfmar/index.html',
         description: 'Unfair Mario is a humorous and challenging platformer that parodies traditional Mario-style games. Players control Mario as he navigates through levels filled with unexpected traps, obstacles, and surprises that defy the typical platforming conventions. The game is designed to be intentionally frustrating, with hidden pitfalls and sudden challenges that catch players off guard, leading to a comedic experience. With its retro graphics and quirky gameplay, Unfair Mario tests players\' patience and reflexes while providing plenty of laughs as they attempt to complete each level despite the unfairness.'
     },
     {
@@ -2295,39 +2310,39 @@ const unsortedGameLinks = [
     },
     {
         name: 'Bad Ice Cream',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/badicecream/bad-ice-cream.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/badicecream/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badicecream/bad-ice-cream.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badicecream/index.html',
         description: 'Bad Ice Cream is a fun and quirky multiplayer puzzle game where players control a cute ice cream character on a mission to collect fruits while avoiding various enemies. Set in colorful, maze-like levels, players must navigate through ice blocks, strategically breaking them to create paths and trap foes. The game features both single-player and cooperative modes, allowing friends to team up or compete against each other. With its charming graphics, engaging gameplay, and a variety of levels, Bad Ice Cream offers a delightful experience for players of all ages.'
     },
     {
         name: 'Bad Ice Cream 2',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/badicecream2/bad-ice-cream-2.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/badicecream2/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badicecream2/bad-ice-cream-2.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badicecream2/index.html',
         description: 'Bad Ice Cream 2 is the exciting sequel to the original game, bringing back the beloved ice cream characters for more deliciously challenging adventures. Players once again navigate through colorful, maze-like levels filled with obstacles and enemies, using their ice cream powers to collect fruits while avoiding being caught. This installment introduces new characters, power-ups, and enhanced gameplay mechanics, allowing for even more strategic play. With its vibrant graphics, cooperative multiplayer mode, and increasingly complex levels, Bad Ice Cream 2 offers a delightful mix of fun and challenge for players of all ages.'
     },
     {
         name: 'Bad Ice Cream 3',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/badicecream3/bad-ice-cream-3.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/badicecream3/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badicecream3/bad-ice-cream-3.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badicecream3/index.html',
         description: 'Bad Ice Cream 3 is the third installment in the fun puzzle-platformer series where players control adorable ice cream characters. The game features colorful levels filled with obstacles and enemies, challenging players to collect fruits while avoiding danger. New characters and power-ups enhance the gameplay, allowing for more strategic options. With both single-player and multiplayer modes, Bad Ice Cream 3 offers an engaging experience for players of all ages.'
     },
     {
         name: 'Bad Time Simulator',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/badtimesimulator/icon-114.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/badtimesimulator/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badtimesimulator/icon-114.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/badtimesimulator/index.html',
         description: 'Bad Time Simulator is a fan-made game inspired by the popular indie game Undertale, specifically featuring the character Sans and his iconic battle mechanics. In this game, players face off against Sans in a challenging and fast-paced combat scenario that tests their reflexes and timing. The gameplay involves dodging attacks and executing precise movements to survive as long as possible against the relentless onslaught of Sans\'s unique attack patterns. With its retro-style graphics and engaging soundtrack, Bad Time Simulator offers a nostalgic yet intense experience for fans of the original game and newcomers alike.'
     },
     {
         name: 'State.io',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/stateio/icon.webp',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/stateio/icon.webp',
         link: 'https://3kh0s.github.io/games/stateio/index.html',
         description: 'State.io is a strategic multiplayer game that combines elements of territory control and real-time strategy. Players compete to conquer and expand their territories on a map by strategically deploying units and capturing neighboring states. The objective is to outmaneuver opponents, manage resources effectively, and dominate the map. With its simple yet engaging mechanics, colorful graphics, and competitive gameplay, State.io offers a fun and challenging experience for players who enjoy strategy games and tactical planning.'
     },
     {
         name: 'Territorial.io',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/territorialio/territorialio.png',
-        link: 'https://territorial.io',
-        description: 'Territorial.io is a multiplayer strategy game that focuses on territory control and conquest. Players start with a small piece of land and must expand their territory by strategically deploying units to conquer neighboring territories while managing resources effectively. The game features various modes, including free-for-all and team-based gameplay, allowing players to compete against others in real-time. With its simple mechanics, engaging gameplay, and the need for tactical planning, Territorial.io offers a fun and competitive experience for fans of strategy games. The game also includes a map editor, enabling players to create and share their own maps, adding to its replayability.'
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/territorialio/territorialio.png',
+        link: 'https://j0n12.github.io/macvg/projects/territorial/game.html',
+        description: 'Territorial.io is a multiplayer strategy game that focuses on territory control and conquest. Players start with a small piece of land and must expand their territory by strategically deploying units to conquer neighboring territories while managing resources effectively. The game features various modes, including free-for-all and team-based gameplay, allowing players to compete against others in real-time. With its simple mechanics, engaging gameplay, and the need for tactical planning, Territorial.io offers a fun and competitive experience for fans of strategy games. The game also includes a map editor, enabling players to create and share their own maps, adding to its replayability.',
     },
     {
         name: 'Bit Planes',
@@ -2469,32 +2484,32 @@ const unsortedGameLinks = [
     },
     {
         name: 'DOOM',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/doom/logo.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/doom/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/doom/logo.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/doom/index.html',
         description: 'DOOM is a groundbreaking first-person shooter (FPS) video game developed by id Software and first released in 1993. It is widely regarded as one of the most influential games in the genre, known for its fast-paced gameplay, 3D graphics, and immersive environments. Players assume the role of a space marine battling hordes of demons and monsters from Hell, navigating through various levels filled with weapons, power-ups, and secrets. The game\'s success led to numerous sequels, spin-offs, and a lasting legacy in gaming culture, making DOOM a cornerstone of the FPS genre.'
     },
     {
         name: 'DOOM 64',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/doom64/doom64.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/doom64/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/doom64/doom64.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/doom64/index.html',
         description: 'DOOM 64 is a first-person shooter developed by Midway Games and released for the Nintendo 64 in 1997. It serves as a sequel to the original DOOM series and features new levels, enemies, and gameplay mechanics while maintaining the core elements that made the franchise popular. The game is known for its darker atmosphere, enhanced graphics, and unique level design, which includes more complex environments and puzzles compared to its predecessors. DOOM 64 has gained a cult following over the years and was later re-released on modern platforms, allowing a new generation of players to experience this classic title.'
     },
     {
         name: 'DOOM WASM',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/doom-wasm/cover.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/doom-wasm/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/doom-wasm/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/doom-wasm/index.html',
         description: 'DOOM WASM is a WebAssembly port of the classic DOOM game, allowing it to run directly in web browsers without the need for installation. Developed by Viktor Lázár, it enhances the original gameplay with improved performance and compatibility across various platforms. The port retains the iconic first-person shooter experience while enabling local multiplayer options, making it accessible to both new players and fans of the franchise. As an open-source project, DOOM WASM encourages community engagement and contributions, preserving the legacy of DOOM for modern audiences.'
     },
     {
         name: 'Pizza Tower',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/pizzatower/images/menubg.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/pizzatower/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/pizzatower/images/menubg.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/pizzatower/index.html',
         description: 'Pizza Tower is an indie platformer game inspired by classic 2D titles, particularly the Wario Land series. Players control a character named Peppino Spaghetti, a pizza chef on a quest to save his pizzeria from an evil tower filled with various enemies and obstacles. The game features fast-paced gameplay, vibrant hand-drawn graphics, and a unique art style that captures the essence of retro platformers. With its emphasis on exploration, speed, and creative level design, Pizza Tower has garnered a dedicated following and is praised for its engaging mechanics and humor.'
     },
     {
         name: 'Madalin Cars',
-        image: 'https://keep.it.freaky.df.cissp.or.id/semag/madalincars/icon.png',
-        link: 'https://keep.it.freaky.df.cissp.or.id/semag/madalincars/index.html',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/madalincars/icon.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/madalincars/index.html',
         description: 'Madalin Cars is an online multiplayer car simulation game that allows players to drive a variety of vehicles in an open-world environment. Players can choose from a wide selection of cars, including sports cars, supercars, and classic vehicles, and explore different maps while performing stunts, racing, or simply cruising around. The game features realistic driving physics and customizable options, enabling players to modify their cars and enhance their gaming experience. With its engaging gameplay and social elements, Madalin Cars has become popular among fans of car simulation and racing games.'
     },
     {
@@ -2688,6 +2703,60 @@ const unsortedGameLinks = [
         image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/stealingthediamond/diamante.avif',
         link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/stealingthediamond/index.html',
         description: 'Henry Stickmin: Stealing the Diamond is the fifth game in the Henry Stickmin series, where players assist Henry in his attempt to steal a valuable diamond from a museum. The game features a variety of choices that lead to different methods of theft, each resulting in unique outcomes, including both successful heists and comedic failures. With its engaging gameplay, clever humor, and multiple paths to explore, players are encouraged to replay the game to discover all the possible scenarios. The game continues the series\' charm and creativity, making it a favorite among fans.'
+    },
+    {
+        name: 'Punch the Trump',
+        image: 'https://th.bing.com/th/id/OIP.LzpISyM_HSAqU-_nTOskUgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://script.google.com/macros/s/AKfycbz-qtCKHD1hwfzdLSb260KaclmwrRz3-AkJhVBBmd2tDNhullUXwE3gJ9_jPGrg8HzasA/exec',
+        description: 'Punch the Trump is a satirical flash game that allows players to engage in a humorous and exaggerated scenario where they can "punch" a character resembling Donald Trump. The game features simple mechanics where players can click or tap to deliver punches, with the goal of achieving the highest score possible. It is designed as a lighthearted and comedic take on political commentary, reflecting the sentiments of some players during Trump\'s presidency. The game is part of a broader genre of political parody games that use humor to express opinions on current events and figures.'
+    },
+    {
+        name: 'WAWWB',
+        image: 'https://th.bing.com/th/id/OIP.3jMMmPgjFiMM-ttWxplCiwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/wbwwb/index.html',
+        description: 'We Are What We Behold is a short, thought-provoking game created by Pippin Barr. In this game, players observe and interact with a series of scenes that reflect societal behaviors and media influence. The gameplay revolves around capturing images of characters and their actions, which then influence the behavior of other characters in the game world. As players progress, they witness how perceptions and stereotypes can shape society, ultimately leading to a commentary on the nature of media consumption and the impact of negativity. The game is notable for its minimalist art style and its exploration of themes related to social dynamics and the consequences of our collective focus.'
+    },
+    {
+        name: 'Candy Jump',
+        image: 'https://th.bing.com/th/id/OIP.ccud6YwLz4UvMeAjoTACxAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://candy-jump.github.io/file/',
+        description: 'Candy Jump is a casual mobile game where players control a character that jumps between platforms made of candy. The objective is to navigate through a colorful, sweet-themed environment while avoiding obstacles and collecting items to score points. The gameplay typically involves tapping the screen to make the character jump, with the challenge increasing as players progress through levels. With its vibrant graphics and simple mechanics, "Candy Jump" is designed to be fun and addictive, appealing to players of all ages who enjoy lighthearted, arcade-style games.'
+    },
+    {
+        name: 'SUPERHOT',
+        image: 'https://bunnyboyibarra.github.io/nativegames.net/images/superhot.jpg',
+        link: 'https://bunnyboyibarra.github.io/nativegames.net/superhot/',
+        description: 'SUPERHOT is a unique first-person shooter game that features a distinctive time-manipulation mechanic: time only moves when the player moves. This allows players to strategize their actions in a slow-motion environment, making each encounter feel like a carefully choreographed sequence. The game’s minimalist aesthetic, combined with its engaging gameplay, creates a compelling experience as players dodge bullets, plan their attacks, and eliminate enemies in a series of increasingly challenging levels. With its innovative mechanics and thought-provoking narrative about the nature of time and choice, SUPERHOT has received critical acclaim and has become a standout title in the indie game scene.'
+    },
+    {
+        name: 'Monster Tracks',
+        image: 'https://khanacademyclonebut-itspossible.pagostepeapulco.gob.mx/assets/images/monstertracks.png',
+        link: 'https://khanacademyclonebut-itspossible.pagostepeapulco.gob.mx/assets/games/monster-tracks/',
+        description: 'Monster Tracks is an exhilarating racing game that pits players against each other in a high-octane competition featuring customizable monster trucks. Navigate through challenging terrains, unleash powerful boosts, and perform gravity-defying stunts as you race to the finish line. With vibrant graphics and dynamic environments, players can experience the thrill of off-road racing like never before!'
+    },
+    {
+        name: 'Fly Pieter',
+        image: 'https://th.bing.com/th/id/OIP.eVhlIgH54as3-9cz7cWv-AHaGu?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://fly.pieter.com/',
+        description: 'Fly Pieter is a browser-based, multiplayer flight simulator that allows players to fly low-poly planes and engage in dogfights with friends online. Created by Dutch entrepreneur Pieter Levels, it combines simple controls with an addictive gameplay experience, all while being free-to-play.'
+    },
+    {
+        name: 'Crazy Tunnel 3D',
+        image: 'https://netflixa.blacknapkins.org/semag/crazy/cover.png',
+        link: 'https://netflixa.blacknapkins.org/semag/crazy/index.html',
+        description: 'Crazy Tunnel 3D is an adrenaline-pumping endless runner game that takes players on a wild ride through a vibrant, twisting tunnel filled with obstacles and challenges. Navigate at high speeds while dodging barriers, collecting power-ups, and unlocking new characters as you strive for the highest score. With its immersive 3D graphics and fast-paced gameplay, Crazy Tunnel 3D offers an exhilarating experience that keeps players on the edge of their seats!'
+    },
+    {
+        name: 'Mine Blocks',
+        image: 'https://netflixa.blacknapkins.org/semag/minors/cover.png',
+        link: 'https://netflixa.blacknapkins.org/semag/minors/index.html',
+        description: 'Mineblocks is a creative sandbox game that combines elements of mining, building, and exploration in a blocky, pixelated world. Players can gather resources, craft tools, and construct elaborate structures while navigating through various biomes and encountering unique creatures. With its engaging gameplay and endless possibilities for creativity, Mineblocks invites players to unleash their imagination and build their own adventures!'
+    },
+    {
+        name: '3 Lines',
+        image: 'https://netflixa.blacknapkins.org/semag/3line/cover.png',
+        link: 'https://netflixa.blacknapkins.org/semag/3line/index.html',
+        description: '"3 Lines" is a creative writing game that challenges players to convey a story, idea, or concept using only three lines. The objective is to be concise while still capturing the essence of the narrative, encouraging players to think critically about word choice and structure. This game can be played individually or in groups, making it a fun exercise for writers, storytellers, and anyone looking to enhance their creative skills.'
     }
 
 ];
@@ -2746,7 +2815,7 @@ function home() {
     update_button.style.textAlign = 'center'; 
     update_button.style.color = 'white';
     update_button.style.backgroundColor = 'rgba(0, 128, 0, 0.8)';
-    update_button.style.border = '2px solid lime';
+    update_button.style.border = '2px solid white';
     update_button.style.borderRadius = '10px';
     update_button.style.fontSize = '22px';
     update_button.style.padding = '15px 30px';
@@ -2756,7 +2825,7 @@ function home() {
     update_button.textContent = 'Click here to go to our Google Slides';
     update_button.setAttribute('target', '_blank'); 
     update_button.onmouseover = () => {
-        update_button.style.backgroundColor = 'lime';
+        update_button.style.backgroundColor = 'white';
         update_button.style.transform = 'scale(1.05)';
     };
     update_button.onmouseout = () => {
@@ -2935,8 +3004,8 @@ const app_list = [
     },
     {
         name: 'Windows 11',
-        link: 'https://138.pr.blueedge.me/',
-        image: 'https://th.bing.com/th/id/R.b245ecd816b2764fca437ebb8fa4112a?rik=YhxSrNXntVoYvA&pid=ImgRaw&r=0&adlt=strict',
+        link: 'https://scratch.mit.edu/projects/929570102/embed',
+        image: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/abfa1d55-5135-4daf-850c-7806f8161fe0/dgc7kbn-2b5add77-4bfa-48dd-b981-9ec9485f5d38.png/v1/fill/w_894,h_894/windows_11_logo_by_usertz_dgc7kbn-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAyNCIsInBhdGgiOiJcL2ZcL2FiZmExZDU1LTUxMzUtNGRhZi04NTBjLTc4MDZmODE2MWZlMFwvZGdjN2tibi0yYjVhZGQ3Ny00YmZhLTQ4ZGQtYjk4MS05ZWM5NDg1ZjVkMzgucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.ByWLL_W4JAcAAKPrOjaR1380Lpm9rfkbUqdTSmil4pA',
         description: 'Windows 11 is the latest operating system from Microsoft, featuring a redesigned interface, improved performance, and enhanced security. It introduces new functionalities such as Snap Layouts for better multitasking, integrated Microsoft Teams for seamless communication, and advanced gaming features like DirectStorage. To run Windows 11, devices must meet specific system requirements, including a compatible 64-bit processor, 4 GB of RAM, and TPM 2.0. The operating system aims to provide a more streamlined and user-friendly experience for both personal and professional use.'
     },
     {
@@ -3105,7 +3174,7 @@ function settings() {
 
     let updateButton = document.createElement('button');
     updateButton.style.color = 'white';
-    updateButton.style.border = '2px lime solid'
+    updateButton.style.border = '2px white solid'
     updateButton.style.borderRadius = '3px'
     updateButton.textContent = 'Update';
     updateButton.onclick = function() {
@@ -3139,6 +3208,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v2.3 (4/24/2025):', content: ['Working on proxy', 'Fixed some games', 'Changed up the styles a little bit', 'Added "Mostly Fullscreen" button', 'Added 10 games'] },
         { version: 'version v2.2 (4/2/2025):', content: ['Removed Game Note', 'Removed Theater Mode (useless feature)', 'Added Ads', 'Exploits coming soon!', 'Fixed broken/blocked games', 'Various bug fixes', 'Added 1 app', 'Added 20 games'] },
         { version: 'version v2.1 (3/26/2025):', content: ['Fixed some broken games', 'Added latest website version injector (no more issue when dealing with outdated versions!)'] },
         { version: 'version v2.0 (3/20/2025):', content: ['Movies & TV tab erased', 'Added Report Blocked or Not Working button', 'Added 10 games', 'Fixed some broken games'] },
@@ -3187,27 +3257,22 @@ function changelog() {
     });
 }
 
-function proxyLoad(url, frame, loadingOverlay) {
-    const load = async (input) => {
+function proxyLoad(url, frame) {
+    const load = async (input, attempts = 15) => {
         try {
-            loadingOverlay.style.display = 'flex'; 
-            let urlToLoad = input;
-            if (!/^https?:\/\//i.test(urlToLoad)) {
-                urlToLoad = urlToLoad.includes('.') ? `https://${urlToLoad}` : `https://www.google.com/search?q=${encodeURIComponent(urlToLoad)}`;
-            }
-
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(urlToLoad)}`;
+            const urlToLoad = input.includes('.') 
+                ? `https://${input}` 
+                : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+                                                    
+            const proxyUrl = `https://toothpaste-proxy.onrender.com/proxy?url=${encodeURIComponent(urlToLoad)}`;
             const response = await fetch(proxyUrl);
             if (!response.ok) throw new Error('Network response was not ok');
-            const data = await response.json();
-            
-            const html = data.contents; 
-            const baseUrl = new URL(urlToLoad).origin; 
+            const html = await response.text();
+
+            const baseUrl = new URL(urlToLoad).origin;
             const processed = html
                 .replace(/<head>/, '<head><base href="' + baseUrl + '">')
                 .replace(/<body>/, '<body style="margin:0;">');
-
-            console.log(html)
 
             frame.srcdoc = processed;
 
@@ -3215,22 +3280,25 @@ function proxyLoad(url, frame, loadingOverlay) {
                 const links = frame.contentWindow.document.querySelectorAll('a');
                 links.forEach(link => {
                     link.addEventListener('click', (e) => {
-                        e.preventDefault(); 
-                        const newUrl = link.href; 
-                        load(newUrl); 
+                        e.preventDefault();
+                        const newUrl = link.href;
+                        load(newUrl);
                     });
                 });
             };
         } catch (error) {
-            console.error('Error loading content:', error);
-            frame.srcdoc = '<div style="color:white;text-align:center">Error loading content</div>';
-        } finally {
-            loadingOverlay.style.display = 'none'; 
+            if (attempts > 1) {
+                frame.srcdoc = `<div style="color:white;text-align:center;font-size:24px;font-family:Arial,sans-serif;background-color:black;height:100vh;display:flex;align-items:center;justify-content:center;">Loading... (proxy retrying)<br>Attempts left: ${attempts - 1}</div>`;
+                load(input, attempts - 1);
+            } else {
+                frame.srcdoc = `<div style="color:white;text-align:center;font-size:24px;font-family:Arial,sans-serif;background-color:black;height:100vh;display:flex;align-items:center;justify-content:center;">Error loading content. Please try again later.</div>`;
+            }
         }
     };
 
     load(url);
 }
+
 
 function proxy() {
     const existingProxy = document.querySelector('.proxy-container');
@@ -3591,10 +3659,12 @@ function proxy() {
 
         goButton.addEventListener('click', () => {
             proxyLoad(urlInput.value, frame, loadingOverlay);
+            title.textContent = urlInput.value
         });
         urlInput.addEventListener('keypress', e => {
             if (e.key === 'Enter') {
                 proxyLoad(urlInput.value, frame, loadingOverlay);
+                title.textContent = urlInput.value
             }
         });
 
@@ -3626,58 +3696,123 @@ function proxy() {
     }
 
     function toggleDevOptions() {
-        const devOptionsContainer = document.querySelector('.dev-options-container');
-        if (devOptionsContainer) {
-            devOptionsContainer.remove();
-        } else {
-            const devOptions = document.createElement('div');
-            devOptions.className = 'dev-options-container';
-            devOptions.style.position = 'absolute';
-            devOptions.style.top = '0';
-            devOptions.style.right = '0';
-            devOptions.style.width = '300px';
-            devOptions.style.height = '100%';
-            devOptions.style.backgroundColor = '#222';
-            devOptions.style.color = '#fff';
-            devOptions.style.padding = '10px';
-            devOptions.style.overflowY = 'auto';
-            devOptions.style.zIndex = '1000';
+        const existing = document.querySelector('.dev-options-container');
+        if (existing) return existing.remove();
 
-            const htmlEditor = document.createElement('textarea');
-            htmlEditor.style.width = '100%';
-            htmlEditor.style.height = '200px';
-            htmlEditor.style.backgroundColor = '#111';
-            htmlEditor.style.color = '#fff';
-            htmlEditor.style.border = '1px solid #444';
-            htmlEditor.style.borderRadius = '5px';
-            htmlEditor.placeholder = 'Edit HTML here...';
+        const container = Object.assign(document.createElement('div'), {
+            className: 'dev-options-container',
+            style: `
+                position: fixed;
+                top: 50px; right: 50px;
+                width: 320px;
+                height: auto;
+                background: #1a1a1a;
+                color: #eee;
+                padding: 0;
+                overflow: hidden;
+                z-index: 10000;
+                font-family: monospace;
+                border: 1px solid #333;
+                border-radius: 6px;
+            `
+        });
 
-            const frame = currentTab.content.querySelector('iframe');
-            if (frame) {
-                htmlEditor.value = frame.srcdoc || ''; 
-            }
+        const header = Object.assign(document.createElement('div'), {
+            textContent: 'Developer Tools',
+            style: `
+                padding: 8px;
+                background: #333;
+                cursor: move;
+                user-select: none;
+                font-weight: bold;
+            `
+        });
 
-            const updateButton = document.createElement('button');
-            updateButton.textContent = 'Update HTML';
-            updateButton.style.marginTop = '10px';
-            updateButton.style.padding = '5px 10px';
-            updateButton.style.borderRadius = '5px';
-            updateButton.style.cursor = 'pointer';
-            updateButton.style.backgroundColor = '#fff';
-            updateButton.style.color = '#000';
+        const body = Object.assign(document.createElement('div'), {
+            style: 'padding: 12px;'
+        });
 
-            updateButton.addEventListener('click', () => {
-                const newHtml = htmlEditor.value;
-                const frame = currentTab.content.querySelector('iframe');
-                if (frame) {
-                    frame.srcdoc = newHtml;
-                }
-            });
+        const label = Object.assign(document.createElement('div'), {
+            textContent: 'HTML Editor',
+            style: 'margin-bottom: 8px; font-weight: bold; font-size: 14px;'
+        });
 
-            devOptions.append(htmlEditor, updateButton);
-            document.body.appendChild(devOptions);
-        }
+        const editor = Object.assign(document.createElement('textarea'), {
+            style: `
+                width: 100%;
+                height: 240px;
+                background: #0d0d0d;
+                color: #0f0;
+                border: 1px solid #333;
+                border-radius: 6px;
+                padding: 8px;
+                resize: vertical;
+            `,
+            placeholder: 'Edit iframe HTML...'
+        });
+
+        const frame = currentTab?.content?.querySelector('iframe');
+        if (frame) editor.value = frame.srcdoc || '';
+
+        const controls = Object.assign(document.createElement('div'), {
+            style: 'margin-top: 12px; display: flex; gap: 8px;'
+        });
+
+        const updateBtn = Object.assign(document.createElement('button'), {
+            textContent: 'Apply',
+            style: `
+                flex: 1;
+                background: #00ff00;
+                color: #000;
+                border: none;
+                padding: 6px;
+                border-radius: 4px;
+                cursor: pointer;
+            `
+        });
+
+        const closeBtn = Object.assign(document.createElement('button'), {
+            textContent: 'Close',
+            style: `
+                flex: 1;
+                background: #ff0000;
+                color: #000;
+                border: none;
+                padding: 6px;
+                border-radius: 4px;
+                cursor: pointer;
+            `
+        });
+
+        updateBtn.onclick = () => frame && (frame.srcdoc = editor.value);
+        closeBtn.onclick = () => container.remove();
+
+        controls.append(updateBtn, closeBtn);
+        body.append(label, editor, controls);
+        container.append(header, body);
+        document.body.appendChild(container);
+
+        let isDragging = false, offsetX = 0, offsetY = 0;
+
+        header.addEventListener('mousedown', e => {
+            isDragging = true;
+            offsetX = e.clientX - container.offsetLeft;
+            offsetY = e.clientY - container.offsetTop;
+            document.body.style.userSelect = 'none';
+        });
+
+        window.addEventListener('mousemove', e => {
+            if (!isDragging) return;
+            container.style.left = `${e.clientX - offsetX}px`;
+            container.style.top = `${e.clientY - offsetY}px`;
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.body.style.userSelect = '';
+        });
     }
+
 
     switchTab(currentTab);
 }
