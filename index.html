@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TOOTHPASTE NETWORK / UNBLOCKED -->
+    <!-- TOOTHPASTE NETWORK / UNBL0CKE3 -->
     <!-- FEEL FREE TO MODIFY AND DISTRIBUTE THIS COPY OF TOOTHPASTE NETWORK -->
     <title>Home</title>
     <link rel="icon" href="https://www.gstatic.com/classroom/ic_product_classroom_144.png" sizes="144x144">
@@ -400,7 +400,7 @@
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.3</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
+    <p class="version"><b>WEBSITE VERSION:</b> v2.4</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
     <script> document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
     const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
     if (!versionMatch) return;
@@ -476,13 +476,11 @@
         }
     </script>
 
-    <h1 class="proxyinfo" style="font-size: 36px; text-align: center;">PROXY IS CURRENTLY DOWN I AM MAKING A BETTER ONE</h1>
-
     <div class="tabs">
         <button class="tab" onclick="visit(home);">Home</button>
         <button class="tab" onclick="visit(games);">Games</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
-        <button disabled class="tab" onclick="visit(proxy)">Proxy</button>
+        <button class="tab" onclick="visit(proxy)">Proxy</button>
         <button disabled class="tab" onclick="'coming soon'">Exploits</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
         <button class="tab" onclick="visit(changelog)">Changelog</button>
@@ -511,7 +509,6 @@ function visit(launchRequest) {
             !element.classList.contains('centered-download') &&
             !element.classList.contains('update-status') && 
             !element.classList.contains('adCenter') &&
-            !element.classList.contains('proxyinfo') &&
             !element.classList.contains('version')) {
             element.remove();
         }
@@ -731,12 +728,12 @@ function websitePlayer(title, link, description) {
                 iframe.src = iframe.src;
             }
         },
-        // {
-        //     text: 'Play in Proxy',
-        //     onClick: () => {
-        //         proxyLoad(link.link, iframe, loadingOverlay);
-        //     }
-        // },
+        {
+            text: 'Play in Proxy',
+            onClick: () => {
+                proxyLoad(link.link, iframe);
+            }
+        },
         {
             text: 'Mostly Fullscreen',
             onClick: () => {
@@ -793,25 +790,25 @@ const unsortedGameLinks = [
     {
         name: '2048 Legends',
         image: 'https://th.bing.com/th/id/R.cf043591af220be191d8aa4c29f81f67?rik=FzzjtaF%2fZAymSA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://35902478-644598845814386463.preview.editmysite.com/uploads/b/147685986-949430254192321787/files/2l.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzbZssyAtjMWY1j2C76xHryiswAJgxLWh6C5c7XS6cofZZrq7qvFuDURSchkl24315F/exec',
         description: '2048 Legends is an engaging twist on the classic 2048 puzzle game, incorporating RPG elements and character progression. Players combine numbered tiles to create higher values while also unlocking and upgrading unique heroes, each with special abilities that enhance gameplay. The game adds a layer of strategy and excitement, as players aim to reach the ultimate tile while managing their heroes\' skills and attributes.',
     },
     {
         name: '2048 Multiplayer',
         image: 'https://th.bing.com/th/id/OIP.uKw7-779rBDNzIjhU18KYgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/IoC-framework@b78b024024e74cc2ff64074beaace5045d805d56/ProjectSettings/2048-m.xml&container=ig',
+        link: 'https://guillaumepotier.github.io/2048-multiplayer/',
         description: '2048 Multiplayer is an online adaptation of the classic 2048 puzzle game that allows players to compete against each other in real-time. In this version, participants can challenge friends or random opponents to see who can reach the highest score or achieve specific goals first. The game retains the original mechanics of sliding and merging numbered tiles while adding a competitive twist that enhances the overall experience.',
     },
     {
         name: '2048 Shoot',
         image: 'https://th.bing.com/th/id/OIP.9iZryKJ0Nw7ilsWhavqyRQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/UnityExplorer@560c65d6d599514642c9a1638e082c91bd40d194/Hooks/2048s.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbw83uxYRr534DXrzIHS5T6Q5AeQtQnMdkk8Dxxo3i732YYOm6pr6LqO730wHogB7sI/exec',
         description: '2048 Shoot is a unique variation of the classic 2048 puzzle game that combines tile merging mechanics with shooting gameplay. Players control a character that shoots numbered tiles on a grid, aiming to combine them into higher values while avoiding obstacles and enemies. This dynamic twist adds an action-oriented layer to the traditional puzzle format, challenging players to think strategically while also honing their reflexes.',
     },
     {
         name: '99 Bricks',
         image: 'https://th.bing.com/th/id/R.57018c36f20ba69331677129a3d15262?rik=133Hj%2bm7PhJVmA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F99-bricks.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxKdnBIlyJ5BKbI4cNEiOr2p-8nUDfZE53CgMh6xbqZWiprREQPal2rirfpX0YXKVAS/exec',
         description: '99 Bricks is a physics-based puzzle game where players stack bricks to build the tallest tower possible while maintaining balance and stability. Using a limited number of bricks, players must strategically place each piece to avoid toppling the structure, all while contending with various challenges and environmental factors. The game combines elements of strategy and skill, encouraging creativity and precision in tower construction.',
     },
     {
@@ -853,13 +850,13 @@ const unsortedGameLinks = [
     {
         name: 'Blade Ball',
         image: 'https://th.bing.com/th/id/OIP.hCcYfcLdPYlBvwfDMZvJFwHaEK?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://paramount-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/9ecda005-11e9-4b52-ab9e-700b4d46d00f%2Fblb.xml&container=ig',
+        link: 'https://storage.googleapis.com/test-41376.appspot.com/blb.html',
         description: 'Bladeball is a fast-paced, multiplayer sports game that combines elements of soccer and combat, where players control characters equipped with blades to score goals. The objective is to kick a ball into the opposing team\'s goal while using various attacks and abilities to outmaneuver opponents and defend against their advances. With its unique blend of action and strategy, Bladeball offers an exciting and chaotic gaming experience that encourages teamwork and skillful play.',
     },
     {
         name: 'Only Up',
         image: 'https://th.bing.com/th/id/OIP.t_hWVC2wtVmi3uhqvx6UNwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://subscribetotryhxrdbacon-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/wergboy/Meteor@7e77300e074d9eb77fa119d640baa1fe1a318bfb/examples/react-in-blaze/lib/oup.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwMccc783yv5Ftx2nkZ6BpHDi66OYtby8TRsYzgDufHka0zzRHHcV19NgtnFJH0ltbEvQ/exec',
         description: 'Only Up is a challenging platformer game that focuses on vertical exploration and skillful navigation. Players must ascend a series of increasingly difficult levels filled with obstacles, traps, and puzzles, all while striving to reach the highest point possible. The game emphasizes precision and timing, offering a rewarding experience for those who enjoy overcoming obstacles and mastering platforming mechanics.',
     },
     {
@@ -871,7 +868,7 @@ const unsortedGameLinks = [
     {
         name: 'Hello Guys',
         image: 'https://th.bing.com/th/id/OIP.n5W-cljFGMbEqteNE8N-_gAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://paramount-opensocial.googleusercontent.com/gadgets/ifr?url=https://362963852-037591742967942863.preview.editmysite.com/uploads/b/139890129-842828255751613847/files/hegu.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzd6Qr_6VG7aZvC4moPj6UD7Z-QgOCouiM9h6DF5Wov-zozgaw04vM4F_VsQgdGxhcLHA/exec',
         description: 'Hello Guys is a fan-made game inspired by the popular multiplayer party game Fall Guys: Ultimate Knockout. In this colorful and chaotic platformer, players compete in a series of fun and wacky mini-games, navigating obstacle courses and challenges to be the last one standing. With its vibrant graphics and engaging gameplay, Hello Guys captures the essence of the original while offering a unique twist, allowing fans to enjoy a similar experience in a different setting.',
     },
     {
@@ -889,7 +886,7 @@ const unsortedGameLinks = [
     {
         name: 'The Final Earth 2',
         image: 'https://th.bing.com/th/id/OIP.1_3XVsV9Agfu_ebf1PfGawHaFj?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://jcnwysrdo76ukuytixqaym8i-opensocial.googleusercontent.com/gadgets/ifr?url=https://529473016-184630684593625815.preview.editmysite.com/uploads/b/139890129-811652923688457694/files/tfe2.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwPukuXlFUYp6rckvxxtA6R-hBdqPg5co9pvpC2y-FZUc3VcJSeXd6jP5CrB1l6u-k4bA/exec',
         description: 'The Final Earth 2 is a city-building and management simulation game set in a futuristic environment. Players are tasked with creating and developing a space colony on a new planet, managing resources, building structures, and ensuring the well-being of their inhabitants. The game features a variety of buildings, technologies, and challenges that require strategic planning and resource management. With its engaging gameplay and emphasis on exploration and expansion, The Final Earth 2 offers a captivating experience for fans of simulation and strategy games.',
     },
     {
@@ -943,31 +940,31 @@ const unsortedGameLinks = [
     {
         name: 'Gun Spin',
         image: 'https://th.bing.com/th/id/OIP.2FfF2nwxLX22ihYTBdOEMQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://7si4gz2mv75b-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/RobiFet/workflow@60b41ef8c9123ae41b86bf04c9b39e1a5713aaa9/bin/gs.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwHsn7X7mDgpugXiHqqAjQvQCgvg7zf-f1Z1o4rrHnrOmS6EGPVodCyAoNMdA90UXs/exec',
         description: 'Gunspin is a unique and addictive physics-based game that challenges players to spin a gun and navigate it through various obstacles. The objective is to achieve the highest score by skillfully launching the gun and keeping it airborne for as long as possible while avoiding hazards. With simple yet engaging mechanics, players can experiment with different angles and spins to master their technique. The game’s colorful graphics and increasingly difficult levels provide a fun and entertaining experience that keeps players coming back for more.'
     },
     {
         name: 'Ragdoll.io',
         image: 'https://th.bing.com/th/id/OIP.N8q-xaIW2v5CeYxZERNZZgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Kubeflow@93a57fae5af5600e3c11b8be57f04f78dfed630c/conformance/1.5/ragio.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxrcohnty6eZ9pRLd3O9NTBfaeZfD_45xKEbDZEc9cb5ThPg_GhxWUcPsHR5ESm_B_T/exec',
         description: 'Ragdoll.io is a multiplayer physics-based game where players control customizable ragdoll characters in chaotic, fast-paced battles. The objective is to knock opponents off the platform while avoiding being thrown off yourself. With a variety of weapons and power-ups, players can engage in thrilling combat and showcase their skills in a fun, interactive environment. The game\'s vibrant graphics and dynamic gameplay make it an exciting experience for players of all ages.'
     },
     {
         name: 'Gravity Soccer',
         image: 'https://th.bing.com/th/id/OIP.g82vrb0JJP5OXtpnIwvf5wAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fgravity-soccer.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbx8Jo_eLs_7e4Xa5ILQDP8DbYfmO3TONOh1LfaaBxmLMcndSSNd6WwWcbWJf5U-kSpm/exec',
         description: 'Gravity Soccer is an innovative twist on traditional soccer that introduces a unique gravitational mechanic, allowing players to manipulate the field\'s gravity to their advantage. In this fast-paced game, players control their characters as they navigate a dynamic arena, using gravity to perform incredible moves, dodge opponents, and score goals. The game features various modes and customizable teams, adding depth and strategy to the gameplay. With its engaging mechanics and vibrant visuals, Gravity Soccer offers a fresh and exciting take on the classic sport, perfect for both casual and competitive players.'
     },
     {
         name: 'Test Subject',
         image: 'https://th.bing.com/th/id/OIP.881SK-2WxrjXhdRdTTt2CAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2FTest_Subject_Complete.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxMcKdQylnJWMksvlHKFQV_YqT1nTW-zbLantgGrfBo-5U1XZnj12WmDnMSfbjydIz9/exec',
         description: 'Test Subject is a captivating puzzle-platformer that places players in the role of a test subject navigating through a series of challenging and often bizarre experiments. Set in a mysterious laboratory, players must solve intricate puzzles and overcome obstacles using a variety of unique abilities and mechanics. The game features a compelling narrative that unfolds as players progress, revealing the secrets behind the experiments and the facility. With its engaging gameplay, clever level design, and intriguing storyline, Test Subject offers a thought-provoking experience that keeps players on their toes.'
     },
     {
         name: 'Aqua Boy',
         image: 'https://th.bing.com/th/id/OIP.MRZS4i6dN_MNM9Fml0ve4wHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/8c491f21-7353-4f1f-b2a0-9544824c4d28%2Faquaboy.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbw6YTxxH23L0C1VxoEoMFiARUQrNiLIf6tEOjCxueU1-qt_I2riqdOM-d-BNy9IFcAJ/exec',
         description: 'Aqua Boy is a platformer game that follows the adventures of a young boy who explores underwater environments. Players navigate through various levels filled with obstacles, enemies, and puzzles, all while utilizing the boy\'s unique abilities to swim and interact with the aquatic world. The game often features vibrant graphics, engaging gameplay mechanics, and a charming storyline, making it an enjoyable experience for fans of platforming and adventure games. Players must overcome challenges and collect items to progress through the game, all set against a colorful underwater backdrop.',
     },
     {
@@ -1033,7 +1030,7 @@ const unsortedGameLinks = [
     {
         name: 'Cookie Clicker 2',
         image: 'https://th.bing.com/th/id/OIP.il78p-We6MQG1CkigcNESwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fcookie-clicker-2.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxQCeDyEmjXo_nZN58ELp1wM2g-68_cIP3xGR2G8zukdu54gmp5VAgGkigddb8CquPFfA/exec',
         description: 'Cookie Clicker 2 is a popular incremental game where players click on a giant cookie to produce more cookies and unlock various upgrades. As players accumulate cookies, they can purchase buildings and upgrades that automate cookie production, such as farms, factories, and grandmas. The game features a whimsical art style and a variety of achievements, making it engaging and addictive as players strive to maximize their cookie output. With its simple mechanics and endless progression, Cookie Clicker 2 offers a fun and satisfying experience for fans of idle games.'
     },
     {
@@ -1117,13 +1114,13 @@ const unsortedGameLinks = [
     {
         name: 'SkibidiToilet.io',
         image: 'https://th.bing.com/th/id/OIP.UUxfEWqWJiMGBXSDSen03gHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://147294106-271957305593713958.preview.editmysite.com/uploads/b/146211889-736862448591698921/files/stio.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzPpdXGhTUXl0-3tjIevKhtoEz5mRNlWaxfTie55tZB1w2Qc7Ahm31MBUQrVNlAJ-GjZQ/exec',
         description: 'SkibidiToilet.io is a quirky and entertaining multiplayer game where players control characters inspired by the viral Skibidi Toilet meme, engaging in chaotic battles in a whimsical arena. Compete against others to outmaneuver and outlast your opponents while utilizing unique abilities and power-ups. With its humorous premise and fast-paced gameplay, SkibidiToilet.io promises a fun and lighthearted experience for players looking to join the meme-inspired madness!',
     },
     {
         name: 'There Is No Game',
         image: 'https://th.bing.com/th/id/OIP.m1K0QOGn65UAxgKinYo8rAHaEK?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://590384729-104728463944275026.preview.editmysite.com/uploads/b/139890129-446136497302390429/files/ting.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwfUFXy27bYwMfp4xHUVbpN9PSWWzB7bKs-qA01ZYJ7hgeZbvFZgkdjydsAYWrYGPQb/exec',
         description: '"There Is No Game" is a unique and humorous interactive experience that cleverly subverts traditional gaming conventions. Players are guided by a sarcastic narrator as they navigate through a series of puzzles and challenges, all while being told that there is, in fact, no game to play. With its witty dialogue, unexpected twists, and playful approach to storytelling, "There Is No Game" offers a delightful blend of comedy and creativity that keeps players engaged and entertained.',
     },
     {
@@ -1159,13 +1156,13 @@ const unsortedGameLinks = [
     {
         name: 'World\'s Hardest Game 3',
         image: 'https://th.bing.com/th/id/R.875d6ef42472f965e290aa1bb11b1cf0?rik=LP3PVJ0GQVpDTw&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fthe-world-s-hardest-game-3.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzkSDummp1Gt_sxcHQ1aB9CouQ3BAgIXt6Ha_A37qlusGaHg8CuDJlErhb1J5YkwunqnQ/exec',
         description: 'World\'s Hardest Game 3 is a challenging online puzzle-platformer that tests players\' reflexes and problem-solving skills. In this installment, players navigate a series of increasingly difficult levels filled with obstacles, moving enemies, and intricate mazes. The objective is to collect all the yellow squares while avoiding red squares, which represent hazards that can cause instant failure. With its simple yet addictive gameplay, precise controls, and a variety of levels that require strategic thinking and timing, World\'s Hardest Game 3 offers a thrilling experience for those seeking a true test of their gaming abilities. The game’s difficulty and clever design make it a favorite among players who enjoy a good challenge.'
     },
     {
         name: 'World\'s Hardest Game 4',
         image: 'https://th.bing.com/th/id/OIP.2xzr2TdUm9CHVGtIXTfx1gAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fthe-world-s-hardest-game-4.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwhZ8UArrc7PVzRXXs_N8GE11lmrE1gFASscoys_AclHvY2qGHsN2YMLP0XHpzCJRJyDQ/exec',
         description: 'World\'s Hardest Game 4 continues the legacy of its predecessors by offering an even more challenging and intricate gameplay experience. In this installment, players must navigate through a series of meticulously designed levels filled with new obstacles, moving enemies, and complex mazes that require quick reflexes and strategic thinking. The objective remains the same: collect all the yellow squares while avoiding the red squares, which can lead to instant failure. With enhanced graphics, smoother controls, and a variety of new mechanics, World\'s Hardest Game 4 pushes players to their limits, providing a thrilling and frustratingly fun experience for those who enjoy a true test of skill and perseverance. The game’s clever level design and escalating difficulty make it a must-try for fans of challenging platformers.'
     },
     {
@@ -1195,25 +1192,25 @@ const unsortedGameLinks = [
     {
         name: 'Awesome Planes',
         image: 'https://th.bing.com/th/id/OIP.HKqO1Rqv7haEOFiHI48laAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fawesome-planes.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzL6eC_I8rGu0wIhAF6pfpFOb3TS7ND_qRDSOgn2-mMyNo9EwH8x-wv_H5wUP8GxB61/exec',
         description: 'Awesome Planes is an action-packed arcade-style game where players take control of customizable planes to engage in thrilling aerial combat. Players can navigate through various levels, dodging enemy fire and obstacles while completing missions and collecting power-ups. With its vibrant graphics, engaging gameplay, and a variety of planes to choose from, Awesome Planes offers an exciting experience for fans of flight and action games alike!',
     },
     {
         name: 'Dead Zed 2',
         image: 'https://th.bing.com/th/id/R.0cea30955fc4f20331965c842145024c?rik=qePIW8kW%2bpsDsA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fdead-zed-2.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbytrkxOKlWFRCPzlWwoiLOn_-hG8Bh_SiFbOrfy2bH7PRlyefHTLQWpSzsT5F8k9OJCAQ/exec',
         description: 'Dead Zed 2 is a thrilling zombie survival game that challenges players to fend off waves of undead while managing resources and upgrading their defenses. Set in a post-apocalyptic world, players must strategically position themselves, use various weapons, and aim carefully to survive against relentless zombie attacks. The game features a variety of missions, customizable characters, and a range of weapons, providing an engaging and intense experience for fans of the zombie genre. With its immersive gameplay and challenging mechanics, Dead Zed 2 keeps players on the edge of their seats!'
     },
     {
         name: 'Run 1',
         image: 'https://th.bing.com/th/id/OIP.eoo4WJaDW9Mvy7QjofICIgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Frun1.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwhQbabxqsWUj8FVuMKX-JY3y-i2X6KPZaHJWlxsCahODzz6dEQ0kV9sVLgs2p--Fi0/exec',
         description: '"Run" is a popular online platformer game that challenges players to navigate through a series of increasingly difficult levels in a 3D environment. Players control a small character who must jump, dodge, and run through various obstacles while trying to avoid falling off the edges of platforms. The game features a simple control scheme, fast-paced gameplay, and a variety of levels, making it both addictive and fun. With its colorful graphics and engaging mechanics, "Run" offers a great way to test your reflexes and timing!',
     },
     {
         name: 'Run 2',
         image: 'https://th.bing.com/th/id/R.694e156403a3e2e6a8cfba9ac429b74c?rik=rvBl%2boo7UWSN1A&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Frun2.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxJi3JRh5IrDvZUBcgefHXE5WhxJ2Ed3wtbyKkvZtyTjnzmgm_LCvaXY_GFsnOsknQvxg/exec',
         description: 'Run 2 is a sequel to the popular online platformer game "Run." In this game, players continue to navigate through a series of challenging 3D levels filled with obstacles, gaps, and gravity-defying platforms. Players can choose between different characters, each with unique abilities, and must jump, run, and slide to avoid falling off the edges while collecting power-ups and completing levels. With its smooth controls, engaging gameplay, and a variety of environments, Run 2 offers an exciting experience for fans of platforming games and those looking to test their reflexes!'
     },
     {
@@ -1405,7 +1402,7 @@ const unsortedGameLinks = [
     {
         name: 'Tomb of the Mask',
         image: 'https://play-lh.googleusercontent.com/gTd127I81O2i2Q6kfCJoN-M0OSWmgsdjB47orUFpLwANW7VZLJYrOxMVt-OpilDXszg',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/element@9cccb2fafb569c963501a5d818472b561121cea6/totm.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxoVxYGN7Xdl_NzbwgubUu-7C8dH-1h8HPtboi7Y0Ha8X4_BAtvhIZOViyNR1x8ruNA/exec',
         description: 'Tomb of the Mask is an arcade-style action game that combines fast-paced gameplay with a retro aesthetic. Players navigate through a series of procedurally generated levels filled with traps, enemies, and treasures while controlling a character who can climb walls and avoid obstacles. The objective is to reach the top of each level while collecting masks that grant special abilities, enhancing the gameplay experience. With its simple controls and addictive mechanics, Tomb of the Mask offers an engaging challenge for players seeking quick, thrilling action.'
     },
     {
@@ -1417,7 +1414,7 @@ const unsortedGameLinks = [
     {
         name: 'Whack Your Ex',
         image: 'https://th.bing.com/th/id/OIP.X8iCTHG5ZTx2iV-svlPougAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fwhackyourex.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxq1Kc7Y-dXggcWUn5dO_bosGmWZ6bZVXAnFc6NkM5Tb2lfzkhXLvU3HtKZybhayzM/exec',
         description: 'Whack Your Ex is a comedic online game that allows players to express their frustrations with an ex-partner in a humorous and exaggerated manner. Similar to its predecessor, Whack Your Boss, the game features various interactive scenes where players can choose different objects and actions to "whack" their ex, resulting in funny animations and over-the-top outcomes. The game provides a lighthearted way to cope with breakups and offers a playful escape through its absurd and entertaining scenarios.'
     },
     {
@@ -1465,7 +1462,7 @@ const unsortedGameLinks = [
     {
         name: 'Room Clicker',
         image: 'https://th.bing.com/th/id/OIP.KPab1hG7u8EqaLn41QCW6gHaEJ?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://127273953-923798976368325781.preview.editmysite.com/uploads/b/7547235-650731928405927697/files/rocl.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbywOP2VVfJu-lDWSribNsfJBpYij-CROxYdh-scNHYtN7vpZRgsUvscj6g-T_iQ87GV/exec',
         description: 'Room Clicker is a casual idle clicker game where players manage and upgrade a virtual room or space. The gameplay typically involves clicking to earn currency, which can be used to purchase upgrades, decorations, and new items to enhance the room. As players progress, they can unlock new features and increase their earnings, creating a satisfying loop of growth and customization. With its simple mechanics and engaging visuals, Room Clicker offers a relaxing and addictive experience for fans of idle games.'
     },
     {
@@ -1495,37 +1492,37 @@ const unsortedGameLinks = [
     {
         name: 'Effing Worms',
         image: 'https://th.bing.com/th/id/OIP.5iVtg0EZgYtLen2wDnIl-wHaJ4?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Feffing-worms.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxTauKVReYtsImhWKzVTFh7GqX5s8SIEo_VOeG667gEH5Zbxb3uAWJlajD7IDkKrdUwMQ/exec',
         description: 'Effing Worms is a quirky and entertaining action game where players control a giant worm that burrows through the ground, devouring everything in its path, including humans, animals, and various objects. The gameplay involves navigating through a 2D environment, growing larger as you consume more, and avoiding obstacles. As players progress, they can unlock upgrades and abilities to enhance their worm\'s destructive capabilities. The game is known for its humorous premise, simple controls, and addictive gameplay, making it a fun choice for those looking for a lighthearted and chaotic gaming experience.'
     },
     {
         name: 'Effing Worms: X-MAS',
         image: 'https://th.bing.com/th/id/OIP.5i-SUEQanVsMc07zq9lzegAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Feffing-worms-xmas.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzsVuZvBGexGWU4dYw-15-7CXM71HPagA8Z-QOEl7FZWb3CQu2x8dg1bACAAiIlg16NZw/exec',
         description: 'Effing Worms: X-Mas is a holiday-themed spin-off of the original Effing Worms game, where players control a giant worm in a snowy landscape. The objective is to consume festive treats and holiday-themed characters while avoiding obstacles, all while enjoying Christmas-themed graphics and music. The game retains the chaotic and addictive gameplay of the original, adding a fun twist for the holiday season.'
     },
     {
         name: 'Effing Hail',
         image: 'https://th.bing.com/th/id/R.8f5883150ea03727c4d0e6c188f23f9d?rik=YUNtNiNflb9jYA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Feffing-hail.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbw_RihZBJZwuVvMpNO7YKrjbijTMtLy802DGOdtnwALSs_CYm1UlC8ACs62f6KRCL--DA/exec',
         description: 'Effing Hail is an arcade-style game where players control a destructive hailstorm, causing chaos and destruction in a city. The objective is to create as much damage as possible by dropping hailstones on buildings, vehicles, and pedestrians while avoiding obstacles and managing the storm\'s power. With its simple controls and humorous premise, the game offers a fun and engaging experience as players aim to achieve high scores through their destructive antics.'
     },
     {
         name: 'Effing Machines',
         image: 'https://th.bing.com/th/id/OIP.ZT8iqhGv6qKhtct98IbIMQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Feffing-machines.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwAjbq-FYYhB7rgdk6WPWYTy3VGTFmy89IWo-ZNjKWIqxqTbhWCg8T2BSX6BYqVvsmV/exec',
         description: 'Effing Machines is an action-packed game where players control a character armed with various weapons to battle against waves of robotic enemies. The gameplay involves shooting and destroying machines while dodging their attacks, with an emphasis on fast-paced action and strategic weapon use. Players can upgrade their character and weapons as they progress, making it an engaging experience filled with chaotic combat and challenging levels. The game combines humor and intense gameplay, appealing to fans of action and shooter genres.'
     },
     {
         name: 'Effing Zombies',
         image: 'https://th.bing.com/th/id/OIP.euw4KOTbXwj8ZGmjInCwhgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Feffing-zombies.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbx5UoeLRdMltjR86_kjFu6kiTWvvq1_oNLf_MhKeQcPhwvz0nq2iKowWfDmdtZ4AMiz/exec',
         description: 'Effing Zombies is an action-packed game where players take on the role of a character fighting against hordes of zombies. The gameplay involves using various weapons and abilities to fend off the undead while navigating through different levels filled with challenges and obstacles. Players can upgrade their weapons and skills as they progress, adding depth to the combat experience. With its humorous tone and chaotic gameplay, Effing Zombies offers a fun and engaging way to enjoy the zombie apocalypse theme.'
     },
     {
         name: 'Plants VS Zombies',
         image: 'https://th.bing.com/th/id/OIP.AxEnwdQsc_1Eq5_-pGEhLAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://7xuphbgdqbpx2uneimejfuyg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fplants-vs-zombies.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycby_ln3ql4aO56lxfeLUH_UziAcZvRzETmL9zqekK0neuz5OHISrr6getE8_-or9E_Tj/exec',
         description: 'Plants vs. Zombies is a popular tower defense video game developed by PopCap Games, where players strategically place various types of plants in their garden to defend against waves of invading zombies. Each plant has unique abilities, such as shooting projectiles, blocking paths, or producing sunlight, which is necessary for planting more defenses. The game features a whimsical art style, engaging gameplay, and a variety of levels and challenges, making it a beloved title among casual gamers. Its success has led to multiple sequels and spin-offs, expanding the franchise\'s universe.'
     },
     {
@@ -1537,43 +1534,43 @@ const unsortedGameLinks = [
     {
         name: '1001 Arabian Nights',
         image: 'https://th.bing.com/th/id/R.365653e0674b1570f3f1d09cdee50842?rik=DsLms4A81iKf4g&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/f107b843-3661-4036-9397-2b0c6414a369%2F1001_arabian_nights.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbz_t7Vm2oO4vmgNYZ4uZG87maDj8Lcg5SmpMVV9rGl3irskmuLBttgpaRhuq5E5gBwDBQ/exec',
         description: '1001 Arabian Nights is a classic puzzle game inspired by the tales from the famous collection of Middle Eastern folk stories. In the game, players typically engage in match-3 gameplay, where they swap and match colorful gems or tiles to progress through various levels. The narrative often revolves around the enchanting stories of Scheherazade, who tells tales to captivate her audience. With its vibrant graphics, captivating music, and engaging puzzles, 1001 Arabian Nights offers a magical gaming experience that immerses players in a world of adventure and intrigue.'
     },
     {
         name: '1 On 1 Basketball',
         image: 'https://th.bing.com/th/id/OIP.MeqTwQ9X7fASJyL7eamfUQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://p8euffcnzjuy91fl7g5p1nil-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F1-on-1-basketball.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwDVKSBVuNK4axJUnLuqHJHWh7EubO4icUJldVaUPoVqjsalm2SB9mCKg7x6f0rU7O6OA/exec',
         description: '1 on 1 Basketball is a simple and engaging sports game that allows players to compete in one-on-one basketball matches. The gameplay typically involves controlling a character to dribble, shoot, and defend against an opponent, aiming to score more points than the rival within a set time limit. With straightforward controls and fast-paced action, the game is accessible for players of all skill levels, making it a fun choice for basketball enthusiasts looking for quick matches. Its casual nature often leads to entertaining and competitive gameplay sessions.'
     },
     {
         name: '1 On 1 Football',
         image: 'https://th.bing.com/th/id/OIP.9cugxx5fL-p6JlXfh6zHGwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://prndgcg1s8s6n2rkob3jweti-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F1-on-1-football.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwDQPy94m3iDQqxeBLkyAH8rWoNeunk0TyuS7j5qE6hSk3o3j6eoU7z5uy_qhgsKeKn/exec',
         description: '1 on 1 Football is a competitive format where two players face off, focusing on individual skills like dribbling, passing, and defending to score goals against each other. The game emphasizes quick movements and decision-making in a small playing area, making it an exciting and skill-intensive experience. It\'s a great way to improve technical abilities and tactical awareness while enjoying the thrill of direct competition.'
     },
     {
         name: '1 On 1 Hockey',
         image: 'https://th.bing.com/th/id/OIP.6qaBjUo8wNDQxHFWdgaUgAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gavicine.github.io/hockey/',
+        link: 'https://script.google.com/macros/s/AKfycbyzYs6pQLcgMsjNZ1-YovjUPrruPQtfNcOjaOCMv0KpuRdjd05-u-2owQoardtV62a1/exec',
         description: '1 on 1 Hockey is a fast-paced, competitive format where two players face off against each other, focusing on individual skills such as puck handling, shooting, and defensive maneuvers. The objective is to score goals while preventing the opponent from doing the same, often played in a smaller rink or designated area to enhance the intensity of the match. This format allows players to improve their technical abilities and strategic thinking in a fun and engaging environment.'
     },
     {
         name: '1 On 1 Tennis',
         image: 'https://th.bing.com/th/id/R.7de128120e9a57cff27994a001fd67f4?rik=CazUn7xLEncVlA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://bps9gjwto0cxkep1sdmfz7pi-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F1-on-1-tennis.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwq66mQrL2jfU72rfIYu7h31dGJbSmmvbbkfEF21eOb0WX2UjJyZJq7QHiGEmAMBW2-rQ/exec',
         description: '1 on 1 Tennis is a competitive format where two players face off in singles matches, focusing on individual skills such as serving, volleying, and baseline play. The objective is to score points by hitting the ball over the net and into the opponent\'s court, aiming to outmaneuver them and win games. This format allows players to enhance their technical abilities, strategy, and fitness while enjoying the excitement of direct competition on the court.'
     },
     {
         name: '1 On 1 Soccer',
         image: 'https://th.bing.com/th/id/OIP.oO2if2qnnWsp2xZs_s4weQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/1on1soccer/index.html',
+        link: 'https://script.google.com/macros/s/AKfycbxJ3oet4bnNqQK_nqPo6KSwPlvIMR448__kEYKx_WN-QbncNc98PEc-qaFme7l2tbKH/exec',
         description: '1 on 1 Soccer is a competitive format where two players face off against each other, focusing on individual skills such as dribbling, shooting, and defending. The objective is to score goals while trying to outmaneuver the opponent, often played in a smaller area to increase the intensity and pace of the game. This format allows players to improve their technical abilities and tactical awareness while enjoying a fun and engaging soccer experience.'
     },
     {
         name: '1 On 1 Soccer Brazil',
         image: 'https://th.bing.com/th/id/OIP.dMsD7TI9iMgFWRz5Zdno3gAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://npys9sj2rxwdzzeo4kyr5oad-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/f107b843-3661-4036-9397-2b0c6414a369%2F1on1-soccer-brazil.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxswxjq_hbSYU7FWSj6zgU5GBHGCS_axxnAf6Xu-_yQj_zyINBaEY9HNhE-3N3sBJeO/exec',
         description: '1 on 1 Soccer Brazil is a dynamic and engaging variation of one-on-one soccer that emphasizes skillful play and individual flair, often inspired by the rich soccer culture of Brazil. In this format, two players compete against each other in a small area, showcasing their dribbling, shooting, and defensive skills while trying to score goals. The game encourages creativity and quick decision-making, allowing players to express their style and improve their technical abilities in a fun and competitive environment.'
     },
     {
@@ -1633,19 +1630,19 @@ const unsortedGameLinks = [
     {
         name: 'Go Up Dash',
         image: 'https://th.bing.com/th/id/OIP.VdQ15bggbmHk24qDL9HmpgHaFQ?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/yrgen73/GUD@fda4e0b57ecd5c5cc0f7abf6d1fbcebf4d00da49/gud.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxw2ej4i0IFvIO9S0HiURro3keUXTvgzlcGk7pX4RecLIhxXw4kw8zVtO8Fd5KgUkKTtQ/exec',
         description: 'Go Up Dash is a popular online game that combines elements of platforming and obstacle navigation. In this game, players control a character that must jump and dash through various levels filled with challenges, such as moving platforms, spikes, and other hazards. The objective is to reach the highest point possible while collecting items and avoiding obstacles. The game features simple controls, vibrant graphics, and increasingly difficult levels, making it engaging and addictive for players who enjoy fast-paced action and skill-based gameplay.'
     },
     {
         name: 'DoomZ.io',
         image: 'https://th.bing.com/th/id/OIP.AXUzPAOCqvGR-Wii6PlmbQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/learning-Python-3@b347df1dc6fafeff39add38f4ad330fd0a11d668/notebooks/beginner/data/doomz.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbybbE18xBTKPkl-0uhs-kR2ZMWZMClKkRyk8PVRnoa4Q3_W5EzZZdSJOmebGyTxwAF9qA/exec',
         description: 'DoomZ.io is a multiplayer online survival game that combines elements of battle royale and zombie survival genres. In the game, players start with minimal resources and must scavenge for weapons, supplies, and equipment while battling against zombies and other players. The objective is to survive as long as possible, either by eliminating opponents or avoiding confrontations while gathering resources. The game features a top-down perspective, simple controls, and a variety of maps, creating an engaging and competitive environment for players who enjoy fast-paced action and strategic gameplay.'
     },
     {
         name: 'Granny',
         image: 'https://th.bing.com/th/id/OIP.HIOW8_kZQsCQ0q1ADiCKbAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://hey-opensocial.googleusercontent.com/gadgets/ifr?url=https://groups.google.com/u/6/group/hornedo-middle-school/attach/18a50ff525789/godfgld46d46odfgldgoxxx-google-net-x46x46oxlssaawr467.xml?part=0.1&view=1&authuser=6&container=ig',
+        link: 'https://storage.googleapis.com/test-41376.appspot.com/gn.html',
         description: 'Granny is a horror-themed survival game where players find themselves trapped in a creepy house inhabited by a sinister old woman known as Granny. The objective is to escape the house within five days while avoiding detection. Players must solve puzzles, find items, and navigate the environment quietly, as Granny is always on the lookout for intruders. If she hears any noise, she will chase the player, adding to the game\'s tension. The game is known for its suspenseful atmosphere, jump scares, and strategic gameplay, making it popular among fans of the horror genre.'
     },
     {
@@ -1663,7 +1660,7 @@ const unsortedGameLinks = [
     {
         name: 'Traffic Run',
         image: 'https://th.bing.com/th/id/OIP.dw2zfaESZ46hKiEoV2B2IAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Toon-Shader-Unity@d8d19aa4d2d854534d4624ea8fa04b3373ee1370/Assets/run.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzb08Q_lsJKbGQz1iBNHZo1bZ_JYTa3yEuzjuf41pZ4dxKsdL_nq-SieZgAXkPvYnQeKg/exec',
         description: 'Traffic Run is an engaging mobile game where players control a car navigating through busy streets filled with traffic. The objective is to drive safely and avoid collisions while trying to reach the finish line. Players must time their movements carefully to maneuver through intersections, dodge other vehicles, and collect coins along the way. The game features simple controls, colorful graphics, and increasingly challenging levels, making it both fun and addictive for players who enjoy casual driving games.'
     },
     {
@@ -1795,25 +1792,25 @@ const unsortedGameLinks = [
     {
         name: 'Minecraft Parkour',
         image: 'https://th.bing.com/th/id/R.13f327b7e3ece837c39936c766469b1e?rik=Ho%2fKepPSfcS%2b0g&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/9ecda005-11e9-4b52-ab9e-700b4d46d00f%2Fminep.xml&container=ig',
+        link: 'https://storage.googleapis.com/test-41376.appspot.com/minep.html',
         description: 'Minecraft Parkour is a popular gameplay mode within the Minecraft community that focuses on navigating challenging obstacle courses using the game\'s mechanics. Players must jump, climb, and sprint through various levels filled with platforms, gaps, and traps, testing their agility and precision. These parkour maps can range from simple to highly complex, often featuring creative designs and themes. The objective is to complete the course as quickly as possible, making it a fun and competitive experience for players who enjoy honing their skills in Minecraft.'
     },
     {
         name: 'No Time to Explain',
         image: 'https://th.bing.com/th/id/OIP.YuIYnWorBbvVThbp3S_nvAHaKd?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/f107b843-3661-4036-9397-2b0c6414a369%2Fno-time-to-explain.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbyiI10sup0ewg08ZeRpAKHYgNhQaUbAJp-Bo3rZ5h_WYqN6uhVAs8mscxaMQz2twdFI/exec',
         description: 'No Time to Explain is a fast-paced platformer game that combines action and humor, where players control a character who must navigate through various levels while battling enemies and overcoming obstacles. The game features a unique mechanic where players can use a powerful gun that allows them to teleport and manipulate time, adding a layer of strategy to the gameplay. With its quirky storyline and engaging mechanics, players must race against time to uncover the mystery behind their predicament. The game is known for its vibrant art style and chaotic gameplay, making it a fun experience for fans of the platforming genre.'
     },
     {
         name: 'Jaywalking',
         image: 'https://th.bing.com/th/id/OIP.gsFIA1Y9Uj7g886ci5gQ_gAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fjaywalking.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwMHY101-vwNzUoVjpX4t2Qo9aJri6CG3YI9S2Zyxx-1chi-FbHgH4d0Sj_2PaiL70ttg/exec',
         description: 'Jaywalking is a casual multiplayer game where players control characters navigating through busy streets while avoiding traffic. The objective is to cross the road safely without getting hit by vehicles, all while competing against other players. The game features simple controls and a humorous art style, making it accessible and entertaining for players of all ages. With various levels and challenges, Jaywalking offers a fun and chaotic experience as players try to outsmart traffic and reach the finish line first.'
     },
     {
         name: 'Papa\'s Cupcakeria',
         image: 'https://th.bing.com/th/id/R.93cdc6bc2f581cc15e8af41e5b0985e1?rik=dOLklwmRBj3r8g&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%252Fpapa-s-cupcakeria.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwGrleo0tXLaCWS1og97Dnvak20WOuSvox2xEIJKg_ZBF7EhsZsavi1OtqR4lGIGh5tlw/exec',
         description: 'Papa\'s Cupcakeria is a popular time management and cooking simulation game in the "Papa Louie" series, where players take on the role of a cupcake shop owner. Players are tasked with baking, decorating, and serving a variety of cupcakes to customers with specific orders. The game features a range of ingredients and toppings, allowing for creative customization of cupcakes. As players progress, they can unlock new recipes, upgrade their shop, and manage customer satisfaction, making it a fun and engaging experience for fans of simulation and cooking games.'
     },
     {
@@ -1837,7 +1834,7 @@ const unsortedGameLinks = [
     {
         name: 'Papa\'s Hotdoggeria',
         image: 'https://th.bing.com/th/id/R.7950b8a44dac89758f1a3905b87b8262?rik=cNokAbVXHCR7zA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fpapa-s-hot-doggeria.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbyHkeAhJVESg5YPxUIRI-z6ojZ4V9grAc11HpSk6gYx5kK-7XwxeTL8UFHFTPq5F1re/exec',
         description: 'Papa\'s Hotdoggeria is a time management and cooking simulation game in the "Papa Louie" series, where players run a hot dog stand. In this game, players are tasked with preparing a variety of hot dogs, toppings, and sides to fulfill customer orders. The gameplay involves grilling hot dogs, selecting buns, and adding a wide range of toppings like sauces, vegetables, and condiments to create the perfect hot dog. Players must manage their time effectively to serve customers quickly and keep them satisfied. As they progress, they can unlock new recipes, upgrade their stand, and face increasingly challenging orders, making it a fun and engaging experience for fans of cooking and simulation games.'
     },
     {
@@ -1909,7 +1906,7 @@ const unsortedGameLinks = [
     {
         name: 'Blocky Snakes',
         image: 'https://th.bing.com/th/id/OIP.P67aBi9wiMVPhNZJP1PqeAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/element@d16a581fca7911cde19e71e5cc182ddd255e6295/bs.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwbxF4yhz4pKbn9JMSnoULKZLixwW04VBP9H6WdVPNapzQdjieCSPEXUnY3HWuJgFmg/exec',
         description: 'Blocky Snakes is a fun and engaging multiplayer game where players control a blocky snake and compete against others to grow as long as possible by consuming food and avoiding collisions with other snakes. The game features simple, colorful graphics and intuitive controls, making it accessible to players of all ages. As players navigate the arena, they can use strategic maneuvers to outsmart opponents and trap them, leading to exciting gameplay moments. With its competitive nature and fast-paced action, Blocky Snakes offers a thrilling experience for fans of snake games and multiplayer challenges.'
     },
     {
@@ -1927,7 +1924,7 @@ const unsortedGameLinks = [
     {
         name: 'Acid Rain',
         image: 'https://th.bing.com/th/id/OIP.QmkUcZ34nSTRlGrD142-GgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Facid-rain.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwaVYAatmuoFi6_bwXdFxMg5a_XCAkmSJUXIlttbMEkt2M0_FuFn2s_AuEB4N4G4bTZ/exec',
         description: 'Acid Rain is a survival game that immerses players in a post-apocalyptic world where they must navigate through hazardous environments affected by toxic rain. Players must gather resources, craft items, and build shelters to protect themselves from the elements and hostile creatures. The game features a day-night cycle and various challenges, including managing health and stamina while exploring the desolate landscape. With its atmospheric graphics and engaging gameplay mechanics, Acid Rain offers a thrilling experience for fans of survival and exploration games.'
     },
     {
@@ -2017,25 +2014,31 @@ const unsortedGameLinks = [
     {
         name: 'Dig to China',
         image: 'https://lh6.ggpht.com/dy2DENqTScBRlecR3S0h05CYPnFZ0ZJZUeynKmkfOyMJ1wMOFS4x37pEe5evv6Wsm8gR',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fdig-to-china.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbx7MEtbxM9ZlUT0kC5nfQA-x9-KT49crZXU6Lx66Hz1VvTyMA8bUuB--mqTNNhIYIL58Q/exec',
         description: 'Dig to China is a fun and addictive online game where players take on the role of a character digging through the earth in an attempt to reach China. The objective is to dig as deep as possible while collecting various treasures and avoiding obstacles such as rocks and underground creatures. Players can upgrade their tools and abilities to enhance their digging efficiency and progress further. With its simple mechanics and engaging gameplay, Dig to China offers a lighthearted experience that encourages exploration and strategy.'
     },
     {
         name: 'Bob the Robber',
         image: 'https://th.bing.com/th/id/OIP.ucrW4MdcEG154Jarg3ofLAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/f107b843-3661-4036-9397-2b0c6414a369%2Fbob-the-robber.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzcqtSozdkUSQ3cVU0jfCcHcfwTlBIw40vC8dF8khMP1lSrkrBSc8mpvi8u0X6g7ntvhQ/exec',
         description: 'Bob the Robber is an exciting stealth-based puzzle game where players take on the role of Bob, a clever thief on a mission to steal valuable items while avoiding detection. Players navigate through various levels, each filled with security guards, cameras, and traps, requiring strategic thinking and quick reflexes to successfully complete each heist. The game features a variety of upgrades and tools that players can use to enhance Bob\'s abilities, making it easier to bypass obstacles and escape undetected. With its engaging gameplay, charming graphics, and clever puzzles, Bob the Robber offers a thrilling experience for fans of stealth and strategy games.'
+    },
+    {
+        name: 'Bob the Robber 2',
+        image: 'https://th.bing.com/th/id/OIP.NxUIYANMHELVWnB9VZGewgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://script.google.com/macros/s/AKfycbzLRmiqbusYPJOSfAbDbebllxxLdCgtVl5u4oAco5mmrO2F7T82PsYBEhRXSTHGM1fk/exec',
+        description: '"Bob the Robber 2" is a stealth-based puzzle game where players take on the role of Bob, a skilled thief. The objective is to navigate through various levels, avoiding guards and security systems while collecting loot. Players must use strategy and timing to outsmart enemies and complete missions, all while enjoying a fun and engaging storyline.'
     },
     {
         name: 'Bob the Robber 5',
         image: 'https://th.bing.com/th/id/OIP._OH-HxOOU5eoWvGc7qVI2AHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gahaden/BTR5@23cd8bbc75561b010dae47b9d491bf01b0978624/btr5.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwT5Vd9N-AHqqhifEQ_a_NLjIlYz15m3tNpRzzDO11AaXeJ9chBc0FskXB2SKMQIM49/exec',
         description: 'Bob the Robber 5 is the latest installment in the popular stealth puzzle game series, where players once again step into the shoes of the crafty thief, Bob. In this version, Bob embarks on a new adventure filled with challenging heists across various locations, including banks, museums, and high-security buildings. Players must use their wits to navigate through each level, avoiding guards, cameras, and traps while collecting valuable loot. With improved graphics, new gadgets, and enhanced gameplay mechanics, Bob the Robber 5 offers an engaging experience that combines strategy, stealth, and puzzle-solving for both new and returning fans of the series.'
     },
     {
         name: 'Jelly Truck',
         image: 'https://th.bing.com/th/id/OIP.zvPsT9iFipQ_eqrdUkRqWQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/bobydob/JSEngine@32bf8bcf04d4935e382da1d5be96cebb84875700/build/j-tr/jt.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwsVtG9Hao11rweu4UZAyRkJYLyiyk0HVPPW3Sdfdmu1g0jeZLxd6f5eDb7Al9pEN5gSQ/exec',
         description: 'Jelly Truck is a fun and quirky physics-based driving game where players control a jelly-like truck as it navigates through various colorful and wobbly terrains. The objective is to transport jelly blocks from one point to another while overcoming obstacles such as hills, ramps, and gaps. Players must carefully balance the truck\'s movement to avoid tipping over or losing cargo, making for a challenging yet entertaining experience. With its charming graphics, simple controls, and engaging gameplay, Jelly Truck provides a delightful adventure for players of all ages who enjoy casual driving games.'
     },
     {
@@ -2071,7 +2074,7 @@ const unsortedGameLinks = [
     {
         name: 'Back to Riddle School',
         image: 'https://th.bing.com/th/id/OIP.tHp67NIgYVq4t_nANO1RHwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Freturn-to-riddle-school.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxGTLzH9HmL4MDdp03VOzb6wzmAtSWRw2oKtpy7B-SzN1zZOU38A5GEFiQtkpVRwueg/exec',
         description: 'Return to Riddle School brings players back to the whimsical world of Phil Eggtree, who is now on a new quest to revisit his old school and uncover more secrets. This installment features a mix of nostalgia and fresh challenges, as players solve puzzles and interact with both new and returning characters. The game retains the series\' signature humor and clever riddles while introducing new gameplay mechanics that enhance the experience. With its engaging storyline and charming visuals, Return to Riddle School offers fans a delightful return to Phil\'s quirky adventures.'
     },
     {
@@ -2161,25 +2164,25 @@ const unsortedGameLinks = [
     {
         name: 'Portal Flash 1',
         image: 'https://th.bing.com/th/id/OIP.NN-nAthyX2iLI40B0cZKIgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fportal.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzPrGfZw8RhHTtIvaXM7fbyOLZfrPPdNhyqu2xNYK9yLwzg48w3943MeP1Fvs_x0uGE/exec',
         description: 'Portal on Flash is a fan-made adaptation of the popular puzzle-platform game Portal, originally developed by Valve. This Flash version captures the essence of the original game, allowing players to solve puzzles using a unique mechanic: the ability to create portals that connect two different locations in the game world. Players must navigate through various levels, using their wits and the portal gun to overcome obstacles, avoid hazards, and reach the exit. With its clever level design, engaging puzzles, and a nod to the humor and style of the original Portal, this Flash adaptation offers a fun and challenging experience for fans of puzzle games and newcomers alike.'
     },
     {
         name: 'Portal Flash 2',
         image: 'https://th.bing.com/th/id/OIP.NN-nAthyX2iLI40B0cZKIgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fportal-2.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbx9sw2bzxFnZGsqpFnCIZfBMQK8No22EsPBeOpjm7vFsMQnA7_X_TcX8gRroMuhrOzV_w/exec',
         description: 'Portal: The Flash Version is a 2D fan-made game inspired by Valve\'s original Portal. It features over 40 challenging levels where players use the Portal Gun to solve puzzles, navigate obstacles, and interact with elements like turrets and energy balls, all while maintaining the humor and style of the original game.'
     },
     {
         name: 'Arcane Weapon',
         image: 'https://th.bing.com/th/id/OIP.kem8vFKSV3XNLoEmxLw3rQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/8c491f21-7353-4f1f-b2a0-9544824c4d28%2Farcane-weapon.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxgKONWf2n6cZ-MVxSCkpxHbdzuPN0bFN0CT2r-qX3Ox_bGSvD0C0AoGUjyZZWgtp-d/exec',
         description: 'Arcane Weapon is a fast-paced action game that immerses players in a retro-style arcade environment where they must battle waves of enemies using a variety of weapons. Players can choose from an arsenal of unique and powerful weapons, each with its own strengths and abilities, to defeat foes and progress through increasingly challenging levels. The game features vibrant pixel art graphics, catchy chiptune music, and addictive gameplay that keeps players engaged as they strive for high scores and unlock new weapons. With its combination of classic arcade elements and modern gameplay mechanics, Arcane Weapon offers a nostalgic yet fresh experience for fans of action and shooter games.'
     },
     {
         name: 'Blacksmith Lab',
-        image: 'https://th.bing.com/th/id/OIP.MbHpLy-xfxX_-VAHTEZJjQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fblacksmith_lab.xml&container=ig',
+        image: 'https://th.bing.com/th/id/OIP.Vj0HDsxMTK5AMB1JCquqMQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://script.google.com/macros/s/AKfycbwVD3oabap0elU5RWuUH7leBgJf23Ph-yShw7W2m7wlBBRv4PtxjY9vRmWqnEOi9CXHPA/exec',
         description: 'Blacksmith Lab is a simulation game that allows players to step into the shoes of a blacksmith, crafting and forging various weapons and tools in a medieval setting. Players can gather resources, such as ores and materials, and use them to create a wide range of items, from swords and shields to armor and tools. The game features an engaging crafting system where players must manage their resources wisely, choose the right techniques, and upgrade their equipment to improve their blacksmithing skills. With its detailed graphics, immersive gameplay, and a variety of challenges, Blacksmith Lab offers a unique experience for those interested in the art of blacksmithing and medieval craftsmanship. Players can also interact with customers, fulfill orders, and expand their workshop, adding depth to the gameplay and encouraging creativity.'
     },
     {
@@ -2203,49 +2206,49 @@ const unsortedGameLinks = [
     {
         name: 'Flood Runner',
         image: 'https://th.bing.com/th/id/OIP.kaekefk7YYYcuYGWQ9ISnwHaF4?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fflood-runner.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbyFdTOlW8s1H94GsjQUn26EqWVZwI9FecCgjNqe6uJ2z2JxH7eTHDTb1NqqBF0y3C1X/exec',
         description: 'Flood Runner is an exciting endless runner platformer where players must navigate through a constantly changing environment while avoiding rising water levels. Players control a character who runs, jumps, and glides across various terrains, collecting coins and power-ups while dodging obstacles and enemies. The game features colorful graphics and fast-paced gameplay, making it both engaging and challenging. As players progress, they can unlock new characters and abilities, striving for high scores and mastering their skills in this thrilling race against the flood.'
     },
     {
         name: 'Flood Runner 2',
         image: 'https://th.bing.com/th/id/OIP.Xl7mh33u8dYLc7_j2DQSQAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fflood_runner_2.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwFpJYUH9VSzWFYS7vf1vxTH1TfzEfUsyvLRwWAm0yBXGoybGD47zZRJd1YuSykBrQGyQ/exec',
         description: 'Flood Runner 2 is an exciting and fast-paced platformer that challenges players to navigate through a dynamic environment while avoiding rising water levels. Players control a character who must run, jump, and glide across various terrains, collecting coins and power-ups along the way. The game features vibrant graphics, smooth animations, and a variety of obstacles that require quick reflexes and strategic thinking. With its engaging gameplay and increasing difficulty, Flood Runner 2 offers a thrilling experience for fans of endless runner games, encouraging players to achieve high scores and unlock new characters as they progress.'
     },
     {
         name: 'Flood Runner 3',
         image: 'https://th.bing.com/th/id/OIP.hozYFH785weiWIX8UO9CKQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fflood-runner-3.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbylGdA_Hgnf-PoP4vs6J187itzh61z7YxcHZzPM_xdJ1gsUQDdW2tQ7929-mRvGzSCH7g/exec',
         description: 'Flood Runner 3 is the thrilling sequel to the popular platformer series, where players continue to navigate through a fast-paced, ever-changing environment while avoiding rising water levels. In this installment, players control a character who must run, jump, and glide across various landscapes, dodging obstacles and enemies while collecting coins and power-ups. The game features enhanced graphics, new environments, and improved mechanics, making the gameplay even more dynamic and engaging. With its addictive gameplay and increasing challenges, Flood Runner 3 offers an exciting experience for fans of the genre, encouraging players to achieve high scores and unlock new characters and abilities as they progress through the levels.'
     },
     {
         name: 'Flood Runner 4',
         image: 'https://th.bing.com/th/id/OIP.XheBoDiu4Xlg18PmreVFYQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fflood_runner_4.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwf7CnrqTKsJD0LI7OgAkODNC9MBDgQCdqK2kxkTvI8MLjcFivHM4tIdJthtAWXAU5g/exec',
         description: 'Flood Runner 4 is the latest installment in the popular platformer series, where players must once again navigate through a vibrant and perilous world while avoiding rising water levels. In this game, players control a character who runs, jumps, and glides through various terrains, facing new obstacles, enemies, and challenges. The game introduces enhanced graphics, new power-ups, and diverse environments, making the gameplay even more engaging and dynamic. With its fast-paced action and addictive mechanics, Flood Runner 4 encourages players to achieve high scores, unlock new characters, and master their skills as they race against the flood in an exhilarating adventure.'
     },
     {
         name: 'Earth was Taken',
         image: 'https://th.bing.com/th/id/OIP.VzTw0kf7IbQSndNAEk__ZAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fearth-taken.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbwWeGVdTpDc08Jrr0adeBRt55kduqF6rG4zMROmvDk3k3imW4bWqa8D5K59jf-DpNHvQw/exec',
         description: 'Earth Was Taken is a captivating indie game that combines elements of exploration, survival, and storytelling. Set in a post-apocalyptic world where Earth has been invaded by alien forces, players take on the role of a survivor navigating through desolate landscapes and abandoned cities. The game emphasizes resource management, allowing players to scavenge for supplies, craft items, and build shelters to survive against the odds. With its atmospheric graphics, immersive sound design, and engaging narrative, Earth Was Taken invites players to uncover the mysteries of the alien invasion while striving to survive in a harsh and unforgiving environment.'
     },
     {
         name: 'Earth was Taken 2',
         image: 'https://th.bing.com/th/id/R.f93e492996913157b5419165c0c6f60e?rik=qGnZMX4OdPfh4g&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fearth-taken-2.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbz7yk2hfHCf_WN7yLQbXHdC7BS9yPXx6GG-JDiWEV27Ws1pDxJTjpi4PvUb0HPkInoDqg/exec',
         description: 'Earth Was Taken is a captivating indie game that combines elements of exploration, survival, and storytelling. Set in a post-apocalyptic world where Earth has been invaded by alien forces, players take on the role of a survivor navigating through desolate landscapes and abandoned cities. The game emphasizes resource management, allowing players to scavenge for supplies, craft items, and build shelters to survive against the odds. With its atmospheric graphics, immersive sound design, and engaging narrative, Earth Was Taken invites players to uncover the mysteries of the alien invasion while striving to survive in a harsh and unforgiving environment.'
     },
     {
         name: 'Earth was Taken 3',
         image: 'https://th.bing.com/th/id/OIP.aQUDpogF2q8WDD9bwbsYggHaFk?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fearth-taken-3.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbyP_XesoeHNeYUCDgksNBTVyi8A0rQnTxHp0fDvX4TC5CevcjkRqWNClK6QpFE0sZP_jQ/exec',
         description: 'Earth Was Taken 3 is the latest installment in the indie survival game series that continues the story of humanity\'s struggle against alien invaders. In this sequel, players once again find themselves in a post-apocalyptic world, where they must navigate through new environments, face more formidable enemies, and uncover deeper layers of the narrative. The game enhances its predecessor\'s mechanics with improved graphics, expanded crafting systems, and more complex survival elements, allowing players to gather resources, build shelters, and develop strategies to fend off alien threats. With its immersive atmosphere and engaging gameplay, Earth Was Taken 3 offers an exciting experience for fans of survival and exploration games, challenging players to adapt and thrive in a world where Earth has been taken.'
     },
     {
         name: 'Fireblob',
         image: 'https://th.bing.com/th/id/OIP.U6nfG_1WGPIpB3GOb9Z2jwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://122426624-686462056379860212.preview.editmysite.com/uploads/b/4181373-387973923660980743/files/fb.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzcc7ftwznVL3ZRC1NDMyRHpRhMEqLkRxsK21vE5gK8nXi6yfULfL1JdlovixT1XL2tqg/exec',
         description: 'FireBlob is a charming and engaging platformer game that features a small, animated blob character with the ability to manipulate fire. Players control FireBlob as it navigates through various levels filled with obstacles, enemies, and puzzles. The game emphasizes exploration and creativity, allowing players to use FireBlob\'s fire abilities to solve challenges, light up dark areas, and defeat foes. With its colorful graphics, smooth animations, and whimsical soundtrack, FireBlob offers a delightful experience for players of all ages, encouraging them to think strategically while enjoying the adventure.'
     },
     {
@@ -2257,13 +2260,13 @@ const unsortedGameLinks = [
     {
         name: 'Wavy Trip',
         image: 'https://th.bing.com/th/id/OIP.kzpnVQfO9cFIuwUp2rYYjgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/UnityPy@878bb79c16986240dc6c220655dbd4b07868109c/tests/samples/Trip.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbzjhxPi-HfYlTk5M2E054xp3xb8XU_CZueAbN1wDCawZ8p5v3UnrUu8bdnnj_lou-I/exec',
         description: 'Wavy Trip is a vibrant and engaging rhythm-based game that combines elements of music and platforming. Players navigate through a colorful, wavy landscape while jumping and dodging obstacles in sync with the beat of the music. The game features a variety of levels, each with its own unique soundtrack and visual style, creating an immersive experience that challenges players\' timing and reflexes. With its catchy tunes, dynamic graphics, and fluid gameplay, Wavy Trip offers a fun and addictive adventure for fans of rhythm games and platformers alike.'
     },
     {
         name: 'Wonder Rocket',
         image: 'https://th.bing.com/th/id/OIP.82Z4PKbx-UGA1JwBwouPAgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fwonder-rocket.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycby0KX8nV0kRAqgfQqdVpqj6UiEoW6T67jIhxejhPmXdvFUPVc92q5IJS2tti2A_x3D66A/exec',
         description: 'Wonder Rocket is an entertaining and addictive arcade-style game where players control a rocket as it launches into space. The objective is to navigate through various obstacles, collect power-ups, and achieve the highest altitude possible. Players must manage fuel and avoid hazards while upgrading their rocket with new features and abilities. With its colorful graphics, engaging gameplay, and simple controls, Wonder Rocket provides a fun experience for players of all ages, encouraging them to improve their skills and reach new heights in their quest for space exploration.'
     },
     {
@@ -2287,25 +2290,25 @@ const unsortedGameLinks = [
     {
         name: 'Knights Arena',
         image: 'https://th.bing.com/th/id/OIP.Q8zeF7fu0SKViuclx6rPQgHaEQ?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://6l7w8wbe-opensocial.googleusercontent.com/gadgets/ifr?url=https://109590147-710160569417426676.preview.editmysite.com/uploads/b%252F152064395-245086053855494992/files/ka.xml&container=ig',
+        link: 'https://storage.googleapis.com/test-41376.appspot.com/ka.html',
         description: 'Knights Arena is a competitive multiplayer action game where players engage in intense, skill-based battles as medieval warriors in dynamic arena combat. Choose from a roster of unique knights, each with distinct abilities and playstyles, and team up or duel in fast-paced PvP modes like Capture the Flag, Team Deathmatch, or Survival. Customize your hero with gear, upgrades, and tactical loadouts to dominate the leaderboards. With its blend of strategic depth, visceral melee combat, and vibrant medieval-inspired visuals, Knights Arena delivers thrilling clashes for both casual brawlers and competitive gamers.'
     },
     {
         name: 'Neon Blaster',
         image: 'https://th.bing.com/th/id/OIP.sDR2WjVzDPZZHEVdQdsyFQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://gg-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/yrgen73/bblast@5fdd167b50a03b136f10f144d177b61ee2f2e19d/bb.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbyrD6eAAeG8uwUWVUyzAEk0oAHDWQZz0SW9hxUplVfcurspNtWSeoivayJW2ifs4lRj/exec',
         description: 'Neon Blaster is a retro-futuristic arcade shooter where players dive into a neon-soaked world to fend off waves of relentless enemies with dazzling laser fire and explosive power-ups. Maneuver your sleek, customizable spacecraft through chaotic bullet-hell scenarios, dodging attacks while racking up combos and high scores. With pulsating synth-wave beats, glowing visuals, and fast-paced action, the game offers endless modes, challenging boss battles, and unlockable upgrades to test your reflexes. Whether you’re chasing leaderboard glory or craving a nostalgic arcade rush, Neon Blaster lights up the screen with electrifying, adrenaline-pumping gameplay!'
     },
     {
         name: 'Noob Miner',
         image: 'https://th.bing.com/th/id/R.e5a955f6e466e77c0c4008363e965bcb?rik=IzjootVh2TOAuw&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://428048613-274630817493625816.preview.editmysite.com/uploads/b/139890129-289556751581345554/files/nm.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxkvPO4mEcWEk5a9TgEuR7qyiYZs7hL80XF5pwK8QMKHqmA7qUqxvIePB3PF9c3Bqc93w/exec',
         description: 'Noob Miner is a charming digging adventure where players take on the role of a rookie prospector, excavating caves, unearthing treasures, and upgrading gear to uncover ancient secrets. Navigate procedurally generated tunnels, dodge hazards like collapsing rocks and lurking creatures, and mine rare ores to craft better tools or sell for profit. With its quirky pixel-art visuals, lighthearted humor, and mix of exploration, resource management, and risk-reward gameplay, the title offers casual fun with a dash of challenge. Whether you’re casually digging for gems or obsessively hunting legendary artifacts, Noob Miner strikes gold with its addictive, pickaxe-swinging charm!'
     },
     {
         name: 'Mini Tooth',
         image: 'https://th.bing.com/th/id/OIP.BgHOw4P8T_ITNTarxT9acgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://130574936-153957225037498174.preview.editmysite.com/uploads/b/146211889-858561716159328862/files/mt.xml&container=ig',
+        link: 'https://script.google.com/macros/s/AKfycbxXgZKs33q_8UH3tSw54G9XFpJF_cn_UmlV0gcEAKLSVvfsNK3xPxYkxf4p2vBLz5Y2/exec',
         description: 'Mini Tooth is a whimsical, bite-sized adventure where players guide a tiny, brave tooth through a vibrant mouth-shaped world, battling sugary invaders, plaque monsters, and cavity-creating chaos. Swipe to dodge candy projectiles, collect minty power-ups, and team up with friendly floss and toothpaste allies to restore dental harmony across quirky levels. Unlock cute tooth costumes, upgrade your enamel armor, and tackle boss fights against gargantuan gum-dwelling foes. With its charming art style, lighthearted humor, and fast-paced gameplay, Mini Tooth serves up a cavity-free blast of fun for kids and casual gamers alike!'
     },
     {
@@ -2341,7 +2344,7 @@ const unsortedGameLinks = [
     {
         name: 'Territorial.io',
         image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/territorialio/territorialio.png',
-        link: 'https://j0n12.github.io/macvg/projects/territorial/game.html',
+        link: 'https://toothpaste.bekekes390.workers.dev/?url=https://territorial.io',
         description: 'Territorial.io is a multiplayer strategy game that focuses on territory control and conquest. Players start with a small piece of land and must expand their territory by strategically deploying units to conquer neighboring territories while managing resources effectively. The game features various modes, including free-for-all and team-based gameplay, allowing players to compete against others in real-time. With its simple mechanics, engaging gameplay, and the need for tactical planning, Territorial.io offers a fun and competitive experience for fans of strategy games. The game also includes a map editor, enabling players to create and share their own maps, adding to its replayability.',
     },
     {
@@ -2617,43 +2620,43 @@ const unsortedGameLinks = [
     {
         name: 'Hobo',
         image: 'https://th.bing.com/th/id/OIP.pyZgbfZg5JecwLZxlFrjZwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo.swf',
+        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo.swf',
         description: 'Hobo 1: The original game introduces players to Hobo\'s journey as he fights off various enemies in a city setting, using a combination of punches, kicks, and special moves.'
     },
     {
         name: 'Hobo 2',
         image: 'https://th.bing.com/th/id/OIP.PVNq4ZvGpgkZd2YOPkd52QHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo2.swf',
+        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo2.swf',
         description: 'Hobo 2: This sequel expands on the gameplay with new levels and enemies, introducing more complex combat mechanics and the ability to unlock new abilities.'
     },
     {
         name: 'Hobo 3',
         image: 'https://th.bing.com/th/id/OIP.bJ9MFjzvr2sQC4uCMES3yAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo3.swf',
+        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo3.swf',
         description: 'Hobo 3: In this installment, Hobo finds himself in a futuristic setting, facing off against robots and other sci-fi themed adversaries, while continuing to develop his combat skills.'
     },
     {
         name: 'Hobo 4',
         image: 'https://th.bing.com/th/id/OIP.1oi43EGGmHvZHZ6mi8Yl7AAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo4.swf',
+        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo4.swf',
         description: 'Hobo 4: Hobo is sent to prison in this version, where players must navigate through the prison environment, battling guards and other inmates while trying to escape.'
     },
     {
         name: 'Hobo 5',
         image: 'https://th.bing.com/th/id/OIP.ef0HCM9oWtuOOlyMrpKghwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo5.swf',
+        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo5.swf',
         description: 'Hobo 5: This game takes a more humorous approach, featuring Hobo battling against zombies and other supernatural foes, with an emphasis on over-the-top action.'
     },
     {
         name: 'Hobo 6',
         image: 'https://th.bing.com/th/id/OIP.65BJoCtS5Kpav9olkzZJjAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo6.swf',
+        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo6.swf',
         description: 'Hobo 6: In this installment, Hobo faces off against aliens, adding a sci-fi twist to the gameplay and introducing new abilities and challenges.'
     },
     {
         name: 'Hobo 7',
         image: 'https://th.bing.com/th/id/OIP.im57SdaOSSqes39KfQlD9QHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://terms.skill.asleepingturtle.com/gams/gfiles/flash/?swf=hobo7.swf',
+        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo7.swf',
         description: 'Hobo 7: The final game in the series brings Hobo\'s journey to a conclusion, featuring a mix of all previous elements and offering a variety of gameplay styles as players help Hobo confront his ultimate challenges.'
     },
     {
@@ -2757,6 +2760,60 @@ const unsortedGameLinks = [
         image: 'https://netflixa.blacknapkins.org/semag/3line/cover.png',
         link: 'https://netflixa.blacknapkins.org/semag/3line/index.html',
         description: '"3 Lines" is a creative writing game that challenges players to convey a story, idea, or concept using only three lines. The objective is to be concise while still capturing the essence of the narrative, encouraging players to think critically about word choice and structure. This game can be played individually or in groups, making it a fun exercise for writers, storytellers, and anyone looking to enhance their creative skills.'
+    },
+    {
+        name: 'Crazy Cattle 3D',
+        image: 'https://th.bing.com/th/id/OIF.UzcBPym53hSVOzUtHNQqKA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://rawcdn.githack.com/genizy/google-class/main/crazycattle3d/index.html',
+        description: '"Crazy Cattle 3D" is a fun and quirky simulation game where players take on the role of a farmer managing a herd of cattle. The objective is to guide the cows through various challenges and obstacles while ensuring they stay together and avoid dangers. With colorful graphics and engaging gameplay, players can enjoy a lighthearted experience as they navigate the ups and downs of farm life.'
+    },
+    {
+        name: 'Burrito Bison',
+        image: 'https://th.bing.com/th/id/OIP.Kr5UB8qQLj4zfGQ3DSlIwQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://burritobison.gitlab.io/file/',
+        description: '"Burrito Bison" is an action-packed, side-scrolling game where players control a luchador who transforms into a powerful burrito to escape from a candy-themed world. The objective is to launch Burrito Bison as far as possible while defeating gummy bears and collecting coins to upgrade abilities. With its vibrant graphics, humorous storyline, and addictive gameplay, the game offers a fun and entertaining experience for players of all ages.'
+    },
+    {
+        name: 'Gladihoppers',
+        image: 'https://th.bing.com/th/id/R.1d13f8668e7d3ac612b2e074721d1fb3?rik=dtlsmHFUWjqs0Q&pid=ImgRaw&r=0&adlt=strict',
+        link: 'https://gladihoppers.gitlab.io/file/',
+        description: '"Gladihoppers" is a multiplayer arena fighting game that combines elements of gladiatorial combat with quirky, cartoonish graphics. Players control customizable characters, known as Gladihoppers, and engage in fast-paced battles against friends or AI opponents. The game features various weapons, power-ups, and arenas, encouraging strategic gameplay and offering a fun, competitive experience for players looking to test their skills in a lighthearted setting.'
+    },
+    {
+        name: 'FNF Sonic.EXE Mod',
+        image: 'https://th.bing.com/th/id/OIP.KCMsbkSw1z6kBlNoe53TywHaGA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://twastinfg.github.io/FNF-Online-23/sonic-exe/',
+        description: 'The Friday Night Funkin\' Sonic.exe mod features a dark twist on the classic Sonic character, incorporating themes of horror, psychological tension, and intense rap battles. Players face off against Sonic.EXE, who is depicted with darker fur and unsettling characteristics, amidst a backdrop of blood and body horror.'
+    },
+    {
+        name: 'FNF Impostor Mod',
+        image: 'https://th.bing.com/th/id/OIP.bWD5hqPpgAEBp5eIxCdnbQHaEH?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://twastinfg.github.io/FNF-Online-23/impostor-v3/',
+        description: 'The Friday Night Funkin\' Impostor mod, created by Clowfoe and Loggo, features characters and songs inspired by the popular game Among Us. The mod includes revamped songs, updated sprites, and a variety of impostor characters, enhancing the gameplay experience with unique mechanics and visuals.'
+    },
+    {
+        name: 'FNF Trollface Mod',
+        image: 'https://th.bing.com/th/id/OIP.KVIUXycv51TAWr6dCPvecwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://memeee310.github.io/FNF-VS-Trollface-Web/',
+        description: 'The Friday Night Funkin\' Trollface mod, also known as Funkin Physics, features Boyfriend battling the iconic internet meme character, Trollface. This mod includes multiple songs and a storyline that revolves around Trollface\'s antics, providing a fun and engaging experience for players.'
+    },
+    {
+        name: 'FNF Steve Mod',
+        image: 'https://th.bing.com/th/id/OIP.Bo43ryE4RzEb4mB6rF2l_QAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://memeee310.github.io/FNF-VS-Steve-Web/',
+        description: 'The Friday Night Funkin\' Steve mod features Boyfriend battling against Steve from Minecraft, introducing a fun crossover between the two popular games. Players can enjoy new songs and unique gameplay mechanics while engaging with familiar characters like Steve and Alex. The mod also includes enhanced visuals and a revamped user interface, making for an immersive experience. With its creative blend of styles, it appeals to fans of both franchises.'
+    },
+    {
+        name: 'FNF Slender Mod',
+        image: 'https://th.bing.com/th/id/OIP.6oly1Df09K0bYeBtEGs9rwHaGf?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://twastinfg.github.io/FNF-Online-23/slenderman/',
+        description: 'The Friday Night Funkin\' Slender mod features Boyfriend battling against Slenderman, bringing a creepy twist to the rhythm-based gameplay. Players face off in intense rap battles set to new tracks, with enhanced visuals and effects that immerse them in the Slenderman lore. Created by Mr. Flamin, the mod offers a challenging experience that appeals to both FNF fans and horror enthusiasts. It\'s available on various platforms, allowing players to enjoy the spooky crossover.'
+    },
+    {
+        name: 'FNF Neo Mod',
+        image: 'https://th.bing.com/th/id/OIP.7flHmd62fBpoNwOhiqi7fwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://sonicisbest.github.io/fnf/new-week6/index.html',
+        description: 'Friday Night Funkin\': Neo is a vibrant mod that transforms the classic game with a futuristic, neon aesthetic. Created by JellyFishedm, it features completely overhauled visuals, custom songs, and new sound effects, enhancing the overall gameplay experience while immersing players in a stylish, high-energy environment.'
     }
 
 ];
@@ -2857,7 +2914,7 @@ function games() {
     searchInput.style.borderRadius = '5px';
     searchInput.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
     searchInput.style.color = 'white';
-    searchInput.style.width = '300px';
+    searchInput.style.width = '1000px';
     searchInput.style.transition = 'border-color 0.3s';
     
     searchInput.addEventListener('focus', () => {
@@ -3208,6 +3265,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v2.4 (4/29/2025):', content: ['Fixed a lot of games', 'Looooooong search bar (davis accidently made it better LMAO)', 'Proxy is back', 'Added 10 games'] },
         { version: 'version v2.3 (4/24/2025):', content: ['Working on proxy', 'Fixed some games', 'Changed up the styles a little bit', 'Added "Mostly Fullscreen" button', 'Added 10 games'] },
         { version: 'version v2.2 (4/2/2025):', content: ['Removed Game Note', 'Removed Theater Mode (useless feature)', 'Added Ads', 'Exploits coming soon!', 'Fixed broken/blocked games', 'Various bug fixes', 'Added 1 app', 'Added 20 games'] },
         { version: 'version v2.1 (3/26/2025):', content: ['Fixed some broken games', 'Added latest website version injector (no more issue when dealing with outdated versions!)'] },
@@ -3257,47 +3315,65 @@ function changelog() {
     });
 }
 
-function proxyLoad(url, frame) {
-    const load = async (input, attempts = 15) => {
-        try {
-            const urlToLoad = input.includes('.') 
-                ? `https://${input}` 
-                : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
-                                                    
-            const proxyUrl = `https://toothpaste-proxy.onrender.com/proxy?url=${encodeURIComponent(urlToLoad)}`;
-            const response = await fetch(proxyUrl);
-            if (!response.ok) throw new Error('Network response was not ok');
-            const html = await response.text();
+async function proxyLoad(url, frame) {
+    const urlToLoad = url.includes('.') 
+        ? `https://${url}` 
+        : `https://html.duckduckgo.com/html?q=${encodeURIComponent(url)}`;
 
-            const baseUrl = new URL(urlToLoad).origin;
-            const processed = html
-                .replace(/<head>/, '<head><base href="' + baseUrl + '">')
-                .replace(/<body>/, '<body style="margin:0;">');
+    const proxyBase = "https://toothpaste.bekekes390.workers.dev/?url=";
+    const proxyUrl = proxyBase + encodeURIComponent(urlToLoad);
 
-            frame.srcdoc = processed;
+    console.log('Proxy fetching:', proxyUrl);
 
-            frame.onload = () => {
-                const links = frame.contentWindow.document.querySelectorAll('a');
+    try {
+        const response = await fetch(proxyUrl);
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const html = await response.text();
+        const baseUrl = new URL(urlToLoad).origin;
+
+        const processed = html
+            .replace(/<head>/i, `<head><base href="${baseUrl}/">`)
+            .replace(/<body([^>]*)>/i, `<body$1 style="margin:0;">`);
+
+        const blob = new Blob([processed], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+
+        console.log('Blob URL ready:', blobUrl);
+
+        frame.src = blobUrl;
+
+        frame.onload = () => {
+            console.log('Frame loaded!');
+
+            // Check that the iframe really loaded
+            try {
+                const links = frame.contentDocument.querySelectorAll('a');
                 links.forEach(link => {
                     link.addEventListener('click', (e) => {
                         e.preventDefault();
                         const newUrl = link.href;
-                        load(newUrl);
+                        proxyLoad(newUrl, frame);
                     });
                 });
-            };
-        } catch (error) {
-            if (attempts > 1) {
-                frame.srcdoc = `<div style="color:white;text-align:center;font-size:24px;font-family:Arial,sans-serif;background-color:black;height:100vh;display:flex;align-items:center;justify-content:center;">Loading... (proxy retrying)<br>Attempts left: ${attempts - 1}</div>`;
-                load(input, attempts - 1);
-            } else {
-                frame.srcdoc = `<div style="color:white;text-align:center;font-size:24px;font-family:Arial,sans-serif;background-color:black;height:100vh;display:flex;align-items:center;justify-content:center;">Error loading content. Please try again later.</div>`;
+            } catch (e) {
+                console.warn('Frame access error:', e);
             }
-        }
-    };
+        };
 
-    load(url);
+    } catch (error) {
+        console.error('Proxy Load Error:', error);
+        frame.srcdoc = `
+            <div style="color:white;text-align:center;font-size:20px;font-family:sans-serif;padding:50px;">
+            Error loading content.<br>${error.message}</div>
+        `;
+    }
 }
+
+
+
+
+
 
 
 function proxy() {
@@ -3360,7 +3436,9 @@ function proxy() {
 
     refreshButton.addEventListener('click', () => {
         if (currentTab) {
-            currentTab.content.querySelector('iframe').contentWindow.location.reload();
+            let webframe = currentTab.content.querySelector('iframe')
+            webframe.style.display = 'block';
+            webframe.contentWindow.location.reload();
         }
     });
 
@@ -3513,7 +3591,7 @@ function proxy() {
             <div style="position: relative; margin: 0 auto; width: fit-content;">
                 <input type="text" 
                     id="searchBox" 
-                    placeholder="Search Google" 
+                    placeholder="Search DuckDuckGo" 
                     style="
                         padding: 18px 50px 18px 30px;
                         width: 600px;
@@ -3647,26 +3725,52 @@ function proxy() {
                             if (e.key === 'Enter') {
                                 const query = searchBox.value;
                                 const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                                proxyLoad(googleUrl, frame, loadingOverlay);
+                                proxyLoad(googleUrl, frame);
                             }
                         });
                     }
                 };
             } else {
-                proxyLoad(urlInput.value, frame, loadingOverlay);
+                proxyLoad(urlInput.value, frame);
             }
         };
 
         goButton.addEventListener('click', () => {
-            proxyLoad(urlInput.value, frame, loadingOverlay);
-            title.textContent = urlInput.value
+            const oldFrame = content.querySelector('iframe');
+            if (oldFrame) oldFrame.remove(); // ⬅️ Remove old frame (with dirty srcdoc)
+
+            const newFrame = document.createElement('iframe');
+            newFrame.style.width = '100%';
+            newFrame.style.height = 'calc(100% - 40px)';
+            newFrame.style.border = '1px solid #333';
+            newFrame.style.borderRadius = '10px';
+            newFrame.style.backgroundColor = '#000';
+
+            content.appendChild(newFrame); // ⬅️ Attach clean iframe
+
+            proxyLoad(urlInput.value, newFrame); // ⬅️ Load URL into fresh frame
+            title.textContent = urlInput.value;
         });
+
         urlInput.addEventListener('keypress', e => {
             if (e.key === 'Enter') {
-                proxyLoad(urlInput.value, frame, loadingOverlay);
-                title.textContent = urlInput.value
+                const oldFrame = content.querySelector('iframe');
+                if (oldFrame) oldFrame.remove();
+
+                const newFrame = document.createElement('iframe');
+                newFrame.style.width = '100%';
+                newFrame.style.height = 'calc(100% - 40px)';
+                newFrame.style.border = '1px solid #333';
+                newFrame.style.borderRadius = '10px';
+                newFrame.style.backgroundColor = '#000';
+
+                content.appendChild(newFrame);
+
+                proxyLoad(urlInput.value, newFrame);
+                title.textContent = urlInput.value;
             }
         });
+
 
         tab.addEventListener('click', () => switchTab({ element: tab, content }));
         closeButton.addEventListener('click', e => {
