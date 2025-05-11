@@ -400,7 +400,7 @@
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.4</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
+    <p class="version"><b>WEBSITE VERSION:</b> v2.5</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
     <script> document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
     const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
     if (!versionMatch) return;
@@ -481,7 +481,8 @@
         <button class="tab" onclick="visit(games);">Games</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
         <button class="tab" onclick="visit(proxy)">Proxy</button>
-        <button disabled class="tab" onclick="'coming soon'">Exploits</button>
+        <button class="tab" onclick="visit(exploits)">Exploits</button>
+        <button class="tab" onclick="visit(livetv)">Live TV</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
         <button class="tab" onclick="visit(changelog)">Changelog</button>
     </div>
@@ -688,13 +689,12 @@ function websitePlayer(title, link, description) {
     });
     iframe.id = 'game-iframe';
     iframe.src = link.link;
+    iframe.setAttribute('webkitallowfullscreen', 'webkitallowfullscreen');
+    iframe.setAttribute('mozallowfullscreen', 'mozallowfullscreen');
+    iframe.setAttribute('msallowfullscreen', 'true');
+    iframe.setAttribute('allowfullscreen', 'allowfullscreen');
+    iframe.setAttribute('scrolling', 'no');
     iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-pointer-lock allow-forms');
-
-    iframe.addEventListener('click', () => {
-        alert('Iframe clicked, focusing...');
-        iframe.contentWindow.focus();
-        iframe.contentWindow.document.body.requestPointerLock();
-    });
 
     gameContainer.append(gamePlayerDiv, iframe);
 
@@ -1072,20 +1072,38 @@ const unsortedGameLinks = [
     {
         name: 'Eaglercraft 1.12.2',
         image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://eaglercraft.com/mc/1.12.2/',
+        link: 'https://client.eaglercraft.win/eagler-files/1.12/Main/index.html',
+        description: 'Eaglercraft 1.12.2 is a browser-based version of Minecraft 1.12.2, allowing players to explore, build, and survive in a pixelated world without the need for downloads. Enjoy classic Minecraft gameplay with friends in multiplayer mode, complete with customizable profiles and various game modes. Dive into this accessible and nostalgic experience directly from your web browser!'
+    },
+    {
+        name: 'Eaglercraft 1.12.2 WASM',
+        image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://client.eaglercraft.win/eagler-files/wasm/1.12/Main/index.html',
         description: 'Eaglercraft 1.12.2 is a browser-based version of Minecraft 1.12.2, allowing players to explore, build, and survive in a pixelated world without the need for downloads. Enjoy classic Minecraft gameplay with friends in multiplayer mode, complete with customizable profiles and various game modes. Dive into this accessible and nostalgic experience directly from your web browser!'
     },
     {
         name: 'Eaglercraft 1.8.8',
         image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://eaglercraft.com/mc/1.8.8/',
+        link: 'https://client.eaglercraft.win/eagler-files/1.8/Main/index.html',
+        description: 'Eaglercraft 1.8.8 is a browser-based version of Minecraft 1.8.8, allowing players to explore, build, and survive in a pixelated world without the need for downloads. Enjoy classic Minecraft gameplay with friends in multiplayer mode, complete with customizable profiles and various game modes. Dive into this accessible and nostalgic experience directly from your web browser!',
+    },
+    {
+        name: 'Eaglercraft 1.8.8 WASM',
+        image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://client.eaglercraft.win/eagler-files/wasm/1.8/Main/index.html',
         description: 'Eaglercraft 1.8.8 is a browser-based version of Minecraft 1.8.8, allowing players to explore, build, and survive in a pixelated world without the need for downloads. Enjoy classic Minecraft gameplay with friends in multiplayer mode, complete with customizable profiles and various game modes. Dive into this accessible and nostalgic experience directly from your web browser!',
     },
     {
         name: 'Eaglercraft 1.5.2',
         image: 'https://th.bing.com/th/id/OIP.F-oEAcbGL3xm_C4GZ6WhJwHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://eaglercraft.com/mc/1.5.2/',
+        link: 'https://client.eaglercraft.win/eagler-files/1.5.2/main/index.html',
         description: 'Eaglercraft 1.5.2 is a browser-based version of Minecraft 1.5.2, allowing players to explore, build, and survive in a pixelated world without the need for downloads. Enjoy classic Minecraft gameplay with friends in multiplayer mode, complete with customizable profiles and various game modes. Dive into this accessible and nostalgic experience directly from your web browser!'
+    },
+    {
+        name: 'Eaglercraft Resent',
+        image: 'https://client.eaglercraft.win/eagler-files/1.8/resent4.0/favicon.png',
+        link: 'https://client.eaglercraft.win/eagler-files/1.8/resent4.0/index.html',
+        description: 'Eaglercraft Resent client is a client for the browser-based version of Minecraft, eaglercraft. Resent helps improve FPS, and has really cool settings.'
     },
     {
         name: 'Backrooms',
@@ -2620,43 +2638,43 @@ const unsortedGameLinks = [
     {
         name: 'Hobo',
         image: 'https://th.bing.com/th/id/OIP.pyZgbfZg5JecwLZxlFrjZwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo.swf',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/1hobo/index.html',
         description: 'Hobo 1: The original game introduces players to Hobo\'s journey as he fights off various enemies in a city setting, using a combination of punches, kicks, and special moves.'
     },
     {
         name: 'Hobo 2',
         image: 'https://th.bing.com/th/id/OIP.PVNq4ZvGpgkZd2YOPkd52QHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo2.swf',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/2hobo/index.html',
         description: 'Hobo 2: This sequel expands on the gameplay with new levels and enemies, introducing more complex combat mechanics and the ability to unlock new abilities.'
     },
     {
         name: 'Hobo 3',
         image: 'https://th.bing.com/th/id/OIP.bJ9MFjzvr2sQC4uCMES3yAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo3.swf',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/3hobo/index.html',
         description: 'Hobo 3: In this installment, Hobo finds himself in a futuristic setting, facing off against robots and other sci-fi themed adversaries, while continuing to develop his combat skills.'
     },
     {
         name: 'Hobo 4',
         image: 'https://th.bing.com/th/id/OIP.1oi43EGGmHvZHZ6mi8Yl7AAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo4.swf',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/4hobo/index.html',
         description: 'Hobo 4: Hobo is sent to prison in this version, where players must navigate through the prison environment, battling guards and other inmates while trying to escape.'
     },
     {
         name: 'Hobo 5',
         image: 'https://th.bing.com/th/id/OIP.ef0HCM9oWtuOOlyMrpKghwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo5.swf',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/5hobo/index.html',
         description: 'Hobo 5: This game takes a more humorous approach, featuring Hobo battling against zombies and other supernatural foes, with an emphasis on over-the-top action.'
     },
     {
         name: 'Hobo 6',
         image: 'https://th.bing.com/th/id/OIP.65BJoCtS5Kpav9olkzZJjAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo6.swf',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/6hobo/index.html',
         description: 'Hobo 6: In this installment, Hobo faces off against aliens, adding a sci-fi twist to the gameplay and introducing new abilities and challenges.'
     },
     {
         name: 'Hobo 7',
         image: 'https://th.bing.com/th/id/OIP.im57SdaOSSqes39KfQlD9QHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://stopbanningtoothpastelinks.kucazaodmor-uglesic.hr/gams/gfiles/flash/?swf=hobo7.swf',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/7hobo/index.html',
         description: 'Hobo 7: The final game in the series brings Hobo\'s journey to a conclusion, featuring a mix of all previous elements and offering a variety of gameplay styles as players help Hobo confront his ultimate challenges.'
     },
     {
@@ -2763,8 +2781,8 @@ const unsortedGameLinks = [
     },
     {
         name: 'Crazy Cattle 3D',
-        image: 'https://th.bing.com/th/id/OIF.UzcBPym53hSVOzUtHNQqKA?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://rawcdn.githack.com/genizy/google-class/main/crazycattle3d/index.html',
+        image: 'https://babyyellow.io/cache/data/image/game/crazy-cattle-3d-11-m174x170.png',
+        link: 'https://pub-e12a149a79814b0e8e4a228c84654751.r2.dev/exported_html_cc3d_augames_3/CrazyCattle3D2.html',
         description: '"Crazy Cattle 3D" is a fun and quirky simulation game where players take on the role of a farmer managing a herd of cattle. The objective is to guide the cows through various challenges and obstacles while ensuring they stay together and avoid dangers. With colorful graphics and engaging gameplay, players can enjoy a lighthearted experience as they navigate the ups and downs of farm life.'
     },
     {
@@ -2814,6 +2832,48 @@ const unsortedGameLinks = [
         image: 'https://th.bing.com/th/id/OIP.7flHmd62fBpoNwOhiqi7fwAAAA?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://sonicisbest.github.io/fnf/new-week6/index.html',
         description: 'Friday Night Funkin\': Neo is a vibrant mod that transforms the classic game with a futuristic, neon aesthetic. Created by JellyFishedm, it features completely overhauled visuals, custom songs, and new sound effects, enhancing the overall gameplay experience while immersing players in a stylish, high-energy environment.'
+    },
+    {
+        name: 'Escape Road 2',
+        image: 'https://escaperoad2.io/data/image/escape-road-2-game.png',
+        link: 'https://script.google.com/a/macros/fairhaven.edu/s/AKfycbykKJe1dCicuRYeS9FsOEjy7D4EhPM1BK0iLDmy4pwp3SWctliv85r1-L8CkPeYryryhg/exec',
+        description: 'Escape Road 2 is an exhilarating adventure game that challenges players to navigate through a series of treacherous landscapes while solving puzzles and avoiding obstacles. With its engaging storyline and dynamic gameplay, players must use their wits and reflexes to escape from perilous situations and uncover hidden secrets along the way. Prepare for an adrenaline-pumping experience as you race against time and test your skills in this thrilling sequel!'
+    },
+    {
+        name: 'Super Liquid Soccer',
+        image: 'https://th.bing.com/th/id/OIP.6Pt06mLhX2IKjaRMC809FQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://superliquidsoccer.gitlab.io/file/',
+        description: 'Super Liquid Soccer is a fast-paced, arcade-style soccer game that combines fluid physics with vibrant graphics for an exhilarating gaming experience. Players can control customizable teams and engage in dynamic matches filled with unique power-ups and special abilities, making every game unpredictable and exciting. With its intuitive controls and engaging multiplayer modes, Super Liquid Soccer offers endless fun for soccer enthusiasts and casual gamers alike!'
+    },
+    {
+        name: 'Pinball',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/pinball/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/pinball/index.html',
+        description: 'Pinball is a fast-paced arcade game where players launch a metal ball onto a sloped playfield filled with various obstacles, ramps, and targets. Using flippers to keep the ball in play, players aim to score points by hitting specific targets and completing challenging objectives while trying to achieve the highest possible score. With colorful graphics and dynamic sound effects, each game offers a unique experience filled with excitement and skill-based gameplay.'
+    },
+    {
+        name: '13 Days in Hell',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/13/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/13/index.html',
+        description: 'In "13 Days in Hell," players find themselves trapped in a nightmarish landscape where they must survive relentless waves of demonic foes and otherworldly challenges. Utilizing a variety of weapons and strategic gameplay, players must navigate through treacherous environments, solve puzzles, and uncover dark secrets to escape the infernal realm. With atmospheric visuals and intense action, every decision could mean the difference between salvation and eternal damnation.'
+    },
+    {
+        name: 'Age of War',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ageofwar/warofage.jpg',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/ageofwar/index.html',
+        description: 'In "Age of War," players guide a civilization through various epochs, evolving their units and technologies as they battle against waves of enemies. The game combines strategy and tactics, allowing players to upgrade their defenses and unleash powerful attacks while managing resources to conquer opposing armies. With a blend of traditional and modern warfare, players experience the full spectrum of humanity\'s military history in a dynamic and engaging way.'
+    },
+    {
+        name: 'Age of War 2',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/aow2/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/aow2/index.html',
+        description: 'Age of War 2 is an engaging strategy game where players guide their civilization through various ages, from the prehistoric era to the futuristic age. By strategically deploying units and managing resources, players must defend their base while launching attacks on enemy civilizations. With evolving technologies and unique units, players can experience the thrill of building an empire and rewriting history through tactical warfare.'
+    },
+    {
+        name: 'Donkey Kong',
+        image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/kong/cover.png',
+        link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/kong/index.html',
+        description: 'In "Donkey Kong," players take on the role of Mario, a determined carpenter on a mission to rescue his girlfriend, Pauline, from the clutches of the giant ape, Donkey Kong. Navigate a series of challenging platforms and obstacles, dodging barrels and enemies, as you climb your way to the top. With its iconic gameplay and vintage charm, "Donkey Kong" remains a classic in the world of arcade games.'
     }
 
 ];
@@ -3113,7 +3173,7 @@ function apps() {
     searchInput.style.borderRadius = '5px';
     searchInput.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
     searchInput.style.color = 'white';
-    searchInput.style.width = '300px';
+    searchInput.style.width = '1000px';
     searchInput.style.transition = 'border-color 0.3s';
     
     searchInput.addEventListener('focus', () => {
@@ -3265,6 +3325,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v2.5 (5/11/2025):', content: ['Exploits tab is here. Added 5 exploits', 'Small bug fixes (eagler works now)', 'Added LIVE TV (3 channels)', 'Fixed some games', 'Added 10 games'] },
         { version: 'version v2.4 (4/29/2025):', content: ['Fixed a lot of games', 'Looooooong search bar (davis accidently made it better LMAO)', 'Proxy is back', 'Added 10 games'] },
         { version: 'version v2.3 (4/24/2025):', content: ['Working on proxy', 'Fixed some games', 'Changed up the styles a little bit', 'Added "Mostly Fullscreen" button', 'Added 10 games'] },
         { version: 'version v2.2 (4/2/2025):', content: ['Removed Game Note', 'Removed Theater Mode (useless feature)', 'Added Ads', 'Exploits coming soon!', 'Fixed broken/blocked games', 'Various bug fixes', 'Added 1 app', 'Added 20 games'] },
@@ -3346,7 +3407,6 @@ async function proxyLoad(url, frame) {
         frame.onload = () => {
             console.log('Frame loaded!');
 
-            // Check that the iframe really loaded
             try {
                 const links = frame.contentDocument.querySelectorAll('a');
                 links.forEach(link => {
@@ -3737,7 +3797,7 @@ function proxy() {
 
         goButton.addEventListener('click', () => {
             const oldFrame = content.querySelector('iframe');
-            if (oldFrame) oldFrame.remove(); // ⬅️ Remove old frame (with dirty srcdoc)
+            if (oldFrame) oldFrame.remove(); 
 
             const newFrame = document.createElement('iframe');
             newFrame.style.width = '100%';
@@ -3746,9 +3806,9 @@ function proxy() {
             newFrame.style.borderRadius = '10px';
             newFrame.style.backgroundColor = '#000';
 
-            content.appendChild(newFrame); // ⬅️ Attach clean iframe
+            content.appendChild(newFrame); 
 
-            proxyLoad(urlInput.value, newFrame); // ⬅️ Load URL into fresh frame
+            proxyLoad(urlInput.value, newFrame); 
             title.textContent = urlInput.value;
         });
 
@@ -3919,6 +3979,348 @@ function proxy() {
 
 
     switchTab(currentTab);
+}
+
+const exploit_list = [
+    {
+        name: 'BR1CK',
+        image: 'https://br1ck.vercel.app/images/br1ck.png',
+        link: 'https://br1ck.vercel.app/'
+    },
+    {
+        name: 'ExtHang3r',
+        image: 'https://blobby-boi.github.io/BlobbypassXSS/favicon.png',
+        link: 'https://2369910.playcode.io/'
+    },
+    {
+        name: 'ExtPrint3r',
+        image: 'https://raw.githubusercontent.com/Blobby-Boi/ExtPrint3r/refs/heads/main/icon.png',
+        link: 'https://2369912.playcode.io/'
+    },
+    {
+        name: 'Dextensify',
+        image: 'https://pngimg.com/d/letter_d_PNG19.png',
+        link: 'https://2369914.playcode.io/'
+    },
+    {
+        name: 'Ingot',
+        image: 'https://i.pinimg.com/474x/65/d0/46/65d046fad09ddfb9601c2d9d8a07e80f.jpg',
+        link: 'https://2369921.playcode.io/'
+    }
+];
+
+function exploits() {
+    let title = document.createElement('h1');
+    title.textContent = 'Exploits';
+    title.style.color = 'white'; 
+    title.style.textAlign = 'center'; 
+    title.style.fontSize = '50px';
+    title.style.marginBottom = '20px'; 
+    document.body.appendChild(title);
+
+    const searchContainer = document.createElement('div');
+    searchContainer.className = 'searchbar';
+    searchContainer.style.textAlign = 'center';
+    const searchInput = document.createElement('input');
+    searchInput.type = 'text';
+    searchInput.placeholder = 'Search for an exploit...';
+    searchInput.style.padding = '10px';
+    searchInput.style.fontSize = '16px';
+    searchInput.style.marginBottom = '20px';
+    searchInput.style.border = '2px solid white';
+    searchInput.style.borderRadius = '5px';
+    searchInput.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+    searchInput.style.color = 'white';
+    searchInput.style.width = '1000px';
+    searchInput.style.transition = 'border-color 0.3s';
+    
+    searchInput.addEventListener('focus', () => {
+        searchInput.style.borderColor = 'lightblue';
+    });
+    
+    searchInput.addEventListener('blur', () => {
+        searchInput.style.borderColor = 'white';
+    });
+
+    searchContainer.appendChild(searchInput);
+
+    const exploitCount = document.createElement('p');
+    exploitCount.style.color = 'white';
+    exploitCount.style.textAlign = 'center';
+    exploitCount.style.margin = '10px 0';
+    searchContainer.appendChild(exploitCount);
+
+    document.body.appendChild(searchContainer);
+
+    const exploitRow = document.createElement('div');
+    exploitRow.style.display = 'flex';
+    exploitRow.style.justifyContent = 'center';
+    exploitRow.style.flexWrap = 'wrap';
+
+    const displayExploits = (exploit_list) => {
+        exploitRow.innerHTML = '';
+        for (const exploit of exploit_list) {
+            const exploitData = exploit;
+
+            const exploitContainer = document.createElement('div');
+            exploitContainer.className = 'select-button';
+            exploitContainer.style.textAlign = 'center';
+            exploitContainer.style.margin = '20px'; 
+            exploitContainer.style.color = 'white';
+
+            const exploitImage = document.createElement('img');
+            exploitImage.src = exploitData.image;
+            exploitImage.alt = exploitData.name;
+            exploitImage.style.width = '200px';
+            exploitImage.style.height = '200px'; 
+            exploitImage.style.border = '2px white solid';
+            exploitImage.style.cursor = 'pointer'; 
+
+            exploitImage.onclick = function() {
+                window.location.href = exploit.link;
+            };
+            exploitContainer.appendChild(exploitImage);
+
+            const exploitButton = document.createElement('button');
+            exploitButton.textContent = exploitData.name;
+            exploitButton.style.marginTop = '10px';
+            exploitButton.style.padding = '10px 20px'; 
+            exploitButton.style.fontSize = '14px';
+            exploitButton.style.fontWeight = 'bold'; 
+            exploitButton.style.cursor = 'pointer'; 
+            exploitButton.onclick = function() {
+                window.location.href = exploit.link;
+            };
+            exploitContainer.appendChild(exploitButton);
+
+            exploitRow.appendChild(exploitContainer);
+        }
+        exploitCount.textContent = `Showing ${exploit_list.length} of ${exploit_list.length} exploits`;
+    };
+
+    displayExploits(exploit_list);
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredExploits = exploit_list.filter(exploit => 
+            exploit.name.toLowerCase().includes(searchTerm)
+        );
+        displayExploits(filteredExploits);
+    });
+
+    document.body.appendChild(exploitRow);
+}
+
+const channel_list = [
+    { 
+        name: 'Nickelodean', 
+        video_list: [
+            ['https://drive.google.com/file/d/1yJbdgmU06Ri5aZiCmDiwheUFO3OmwN7k/view'], 
+            ['https://drive.google.com/file/d/1WFgX9d6y8zXW9KyMys-wm9kTLir9ItRq/view?t=1'], 
+            ['https://drive.google.com/file/d/1wVkSBuN7mKzC8-qgT_IDfhUgV3-3e_Ks/view'],
+            ['https://drive.google.com/file/d/1XcmJ1w3cjqVxDuoiyEZlizj98ROxX_-2/view?t=1'],
+            ['https://drive.google.com/file/d/1Knvr5NsVPYBA-GOd8BnVIQwSkEXCa13r/view?t=1'],
+            ['https://drive.google.com/file/d/1YdWsjNc14Nm4CP9LoyfO1fNsLaitWHK_/view?t=4'],
+            ['https://drive.google.com/file/d/1RHaMCknWFBOAv8ULLYmRrjhMe4wwHPxv/view?t=4'],
+            ['https://drive.google.com/file/d/1QC8SniCSrkKiNvJ_8zVx_4MH-VkAm73x/view?t=4'],
+            ['https://drive.google.com/file/d/1uvHqpbl4WfuSngN8ESwFvGPfcxlHmb27/view?t=2'],
+            ['https://drive.google.com/file/d/1i7Fdq8ZH1s5Re5RRY0ZGPBabQccp4Qe9/view'],
+            ['https://drive.google.com/file/d/1hU9zhDTBVo_TCtEEhS-bEI_FON7QCBRh/view?t=1'],
+            ['https://drive.google.com/file/d/1Qk-_EDgXWQ1TGv6oCqo0z56pE0dbhCju/view?t=1'],
+            ['https://drive.google.com/file/d/1NDzZ9ACU-_uc_Bj4qs1PScZRzXTH2Ief/view'],
+            ['https://drive.google.com/file/d/11mVla6Y3qLX4pplfnxMavSczJ200_8dl/view'],
+            ['https://drive.google.com/file/d/17fAM9sipu3BPElFpqFrG3ukYahbUEZQJ/view']
+        ]
+    },
+    { 
+        name: 'Disney', video_list: [
+            ['https://drive.google.com/file/d/1d9oOHmblAV1B39oQB86N91NZFqschhyh/view?t=5'],
+            ['https://drive.google.com/file/d/1QTTpUEs2AlSpZkBNr7_KtS9HJRO1DCVf/view?t=25'],
+            ['https://drive.google.com/file/d/1puXyyC1VB33QzFZujt59SsGdATkXQP1n/view?t=1'],
+            ['https://drive.google.com/file/d/1gR46JP8yL7-t0F--rGI3z7PmQ0YRCf1J/view?t=1'],
+            ['https://drive.google.com/file/d/1G9zeBbjyeQqrtWT9pbo7YnO8X_67Fctl/view'],
+            ['https://drive.google.com/file/d/1EyJPLj2ORxru-KStTpJluXQR2Fpq8BqH/view'],
+            ['https://drive.google.com/file/d/1YZCQMF-DvN1HG68sHGwd1zjaBJ7Ypvyg/view'],
+            ['https://drive.google.com/file/d/1GLxe2FsdL5cPPCALksmwSUA4lXMIkkrJ/view'],
+            ['https://drive.google.com/file/d/17jFeJVivZoKBcXvskGDlBBsbXEF0H1LC/view'],
+            ['https://drive.google.com/file/d/1cGlGCaw_ZohCosnrgP2Rl7fUfqyRFIqp/view'],
+            ['https://drive.google.com/file/d/11t4iIBE1NVWJkGJY71vxydeUWVIBQEr0/view?t=2'],
+            ['https://drive.google.com/file/d/1SVJArVFy0CESngzrpt2K1w4uhVNTijYv/view'],
+            ['https://drive.google.com/file/d/15b5oDAj-Y2_i_CqXpBw2fdcAYpWL4_65/view'],
+            ['https://drive.google.com/file/d/1_TGbxnWLug6Qi87YsvJKCUlmZQFTpLbY/view?t=1'],
+            ['https://drive.google.com/file/d/1X0Bm_RMDC6tG9TZCG5l0XKqw5_zZKlU9/view'],
+            ['https://drive.google.com/file/d/1bOj15wsnciNgTK84XPswWOK2lEaUJ9nh/view'],
+            ['https://drive.google.com/file/d/1-jy8kbPcYm38MHTirmuLZogRNQmQaHHV/view'],
+            ['https://drive.google.com/file/d/1Jt61oDMaWqvi2xn1mzBwEm1o15H62zd_/view'],
+            ['https://drive.google.com/file/d/1BlP3jLrDvxw__X3-kuqMY7GJr96M2pY3/view'],
+            ['https://drive.google.com/file/d/1DGrUG9FO7SPsKcOxpTweJXwj5z8PNOci/view?t=1']
+        ] 
+    },
+    { 
+        name: 'FOX News', video_list: [
+        ['https://www.youtube.com/watch?v=YDfiTGGPYCk']
+        ] 
+    },
+];
+
+function convertToEmbedUrl(url, startSeconds = 0) {
+  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+  if (ytMatch) {
+    return `https://www.youtube.com/embed/${ytMatch[1]}?start=${startSeconds}&autoplay=1&rel=0&modestbranding=1&controls=0`;
+  }
+  const driveMatch = url.match(/\/d\/([^/]+)\//);
+  if (driveMatch) {
+    return `https://drive.google.com/file/d/${driveMatch[1]}/preview#t=${startSeconds}s`;
+  }
+  return null;
+}
+
+function getCurrentSecondsSinceMidnight() {
+  const now = new Date();
+  return now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
+}
+
+function livetv() {
+  const SECONDS_PER_EPISODE = 660;
+  let container = document.createElement('div');
+  container.innerHTML = `
+    <style>
+      .channel-wrapper { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
+      .channel-button { font-size: 20px; padding: 10px 20px; border-radius: 10px; border: none; background-color: #333; color: white; cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
+      .channel-button:hover { background-color: #555; transform: scale(1.05); }
+      .channel-label { font-size: 18px; color: #ccc; min-width: 100px; text-align: right; }
+      .channel-status { font-size: 14px; color: #aaa; }
+      .livetv-video-frame { width: 100%; height: 80vh; position: relative; background: black; margin-top: 20px; }
+      .livetv-video-frame iframe { width: 100%; height: 100%; border: none; }
+      .livetv-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: auto; }
+      .livetv-start-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 5; }
+      .livetv-start-btn { font-size: 24px; background: limegreen; border: none; border-radius: 12px; padding: 20px 40px; color: black; cursor: pointer; }
+      .livetv-return-btn { position: fixed; top: 20px; left: 20px; background-color: #ff4444; color: white; border: none; border-radius: 8px; font-size: 16px; padding: 10px 20px; cursor: pointer; z-index: 1000; display: none; }
+    </style>
+    <h1 id="livetv-title" style="color:white;text-align:center;font-size:50px;margin-bottom:20px">Live TV</h1>
+    <h1 id="livetv-subtitle" style="color:cyan;font-size:25px;margin-bottom:20px">ToothTV / Watch LIVE TV in class or at home</h1>
+    <h1 id="livetv-menu-label" style="color:orange;font-size:25px;margin-bottom:20px">Channel Menu</h1>
+    <div id="channelContainer"></div>
+    <div id="videoContainer"></div>
+    <button id="returnButton" class="livetv-return-btn">Return to Menu</button>
+  `;
+  document.body.appendChild(container);
+
+  const channelContainer = container.querySelector('#channelContainer');
+  const videoContainer = container.querySelector('#videoContainer');
+  const returnButton = container.querySelector('#returnButton');
+  const title = container.querySelector('#livetv-title');
+  const subtitle = container.querySelector('#livetv-subtitle');
+  const menuLabel = container.querySelector('#livetv-menu-label');
+
+  returnButton.onclick = () => {
+    videoContainer.innerHTML = '';
+    videoContainer.style.display = 'none';
+    returnButton.style.display = 'none';
+    channelContainer.style.display = 'flex';
+    title.style.display = 'block';
+    subtitle.style.display = 'block';
+    menuLabel.style.display = 'block';
+  };
+
+  channelContainer.style.display = 'flex';
+  channelContainer.style.flexDirection = 'column';
+  channelContainer.style.alignItems = 'flex-start';
+  channelContainer.style.gap = '10px';
+
+  channel_list.forEach((channel, index) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'channel-wrapper';
+
+    const label = document.createElement('div');
+    label.className = 'channel-label';
+    label.textContent = `Channel ${index + 1}`;
+
+    const btn = document.createElement('button');
+    btn.className = 'channel-button';
+    btn.textContent = channel.name;
+
+    const nowSeconds = getCurrentSecondsSinceMidnight();
+    const epIndex = Math.floor(nowSeconds / SECONDS_PER_EPISODE) % channel.video_list.length;
+    const nowVideo = channel.video_list[epIndex]?.[0] || 'N/A';
+
+    const status = document.createElement('div');
+    status.className = 'channel-status';
+    status.textContent = `Now Playing: ${nowVideo}`;
+
+    btn.onclick = () => {
+      title.style.display = 'none';
+      subtitle.style.display = 'none';
+      menuLabel.style.display = 'none';
+      channelContainer.style.display = 'none';
+      returnButton.style.display = 'block';
+      videoContainer.style.display = 'block';
+
+      const episodeIndex = Math.floor(getCurrentSecondsSinceMidnight() / SECONDS_PER_EPISODE) % channel.video_list.length;
+      const mirrors = channel.video_list[episodeIndex];
+      let mirrorIndex = 0;
+
+      function loadMirror() {
+        videoContainer.innerHTML = `
+          <div class="livetv-video-frame">
+            <div class="livetv-start-overlay">
+              <button class="livetv-start-btn">Start Channel</button>
+            </div>
+          </div>
+        `;
+        const frameWrapper = videoContainer.querySelector('.livetv-video-frame');
+        const startOverlay = frameWrapper.querySelector('.livetv-start-overlay');
+        const startBtn = frameWrapper.querySelector('.livetv-start-btn');
+
+        startBtn.onclick = () => {
+          const now = getCurrentSecondsSinceMidnight();
+          const startOffset = now % SECONDS_PER_EPISODE;
+          const videoUrl = mirrors[mirrorIndex];
+          const embedUrl = convertToEmbedUrl(videoUrl, startOffset);
+          const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
+
+          startOverlay.remove();
+          frameWrapper.innerHTML = '';
+
+          const iframe = document.createElement('iframe');
+          iframe.src = embedUrl;
+          iframe.allow = 'autoplay; encrypted-media';
+          iframe.allowFullscreen = true;
+          frameWrapper.appendChild(iframe);
+
+          setTimeout(() => {
+            // If video hasn't loaded in ~3.5 seconds, assume failure
+            if (!iframe.contentWindow || iframe.contentWindow.length === 0) {
+              mirrorIndex++;
+              if (mirrorIndex < mirrors.length) {
+                loadMirror();
+              } else {
+                alert('The channel that you tried accessing is currently down. Please try again later.');
+              }
+              return;
+            }
+
+            const blocker = document.createElement('div');
+            blocker.className = 'livetv-overlay';
+            blocker.style.pointerEvents = 'auto';
+            blocker.style.cursor = 'none';
+            blocker.oncontextmenu = e => e.preventDefault();
+            blocker.onmousedown = e => e.preventDefault();
+            blocker.onkeydown = e => e.preventDefault();
+            frameWrapper.appendChild(blocker);
+
+          }, isYouTube ? 1000 : 3500);
+        };
+      }
+
+      loadMirror();
+    };
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(btn);
+    wrapper.appendChild(status);
+    channelContainer.appendChild(wrapper);
+  });
 }
 
 home();
