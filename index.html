@@ -264,7 +264,7 @@
         .select-button {
             position: relative;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
             color: white;
             background-color: transparent; 
@@ -394,13 +394,25 @@
         .pulse-animation {
             animation: pulse 1.5s infinite;
         }
+
+        channel-wrapper { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
+        .channel-button { font-size: 20px; padding: 10px 20px; border-radius: 10px; border: none; background-color: #333; color: white; cursor: pointer; }
+        .channel-button:hover { background-color: #555; }
+        .channel-label { font-size: 18px; color: #ccc; min-width: 100px; text-align: right; }
+        .channel-status { font-size: 14px; color: #aaa; }
+        .livetv-video-frame { width: 100%; height: 80vh; position: relative; background: black; margin-top: 20px; }
+        .livetv-video-frame iframe { width: 100%; height: 100%; border: none; }
+        .livetv-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: auto; }
+        .livetv-start-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 5; }
+        .livetv-start-btn { font-size: 24px; background: limegreen; border: none; border-radius: 12px; padding: 20px 40px; color: black; cursor: pointer; }
+        .livetv-return-btn { position: fixed; top: 20px; left: 20px; background-color: #ff4444; color: white; border: none; border-radius: 8px; font-size: 16px; padding: 10px 20px; cursor: pointer; z-index: 1000; display: none; }
     </style>
 </head>
 <body>
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.5</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
+    <p class="version"><b>WEBSITE VERSION:</b> v2.6</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
     <script> document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
     const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
     if (!versionMatch) return;
@@ -463,6 +475,7 @@
 
     <center class="centered-download">
         <a href="index.html" class="download-button" download="index.html">Download Website</a>
+        <h1 style="font-size: 48px; color: red; background-color: yellow;">PROXY AND LIVE TV ARE UNDER MAINTENANCE COMING BACK IN V2.7</h1>
     </center>
     
     <script>
@@ -480,9 +493,10 @@
         <button class="tab" onclick="visit(home);">Home</button>
         <button class="tab" onclick="visit(games);">Games</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
-        <button class="tab" onclick="visit(proxy)">Proxy</button>
+        <button disabled class="tab" onclick="visit(proxy)">Proxy</button>
         <button class="tab" onclick="visit(exploits)">Exploits</button>
-        <button class="tab" onclick="visit(livetv)">Live TV</button>
+        <button disabled class="tab" onclick="visit(livetv)">Live TV</button>
+        <button class="tab" onclick="visit(excuses)">Excuses</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
         <button class="tab" onclick="visit(changelog)">Changelog</button>
     </div>
@@ -586,7 +600,6 @@ function websitePlayer(title, link, description) {
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent'
     });
-
 
     const gamePlayerDescription = document.createElement('p');
     gamePlayerDescription.textContent = description;
@@ -693,7 +706,6 @@ function websitePlayer(title, link, description) {
     iframe.setAttribute('mozallowfullscreen', 'mozallowfullscreen');
     iframe.setAttribute('msallowfullscreen', 'true');
     iframe.setAttribute('allowfullscreen', 'allowfullscreen');
-    iframe.setAttribute('scrolling', 'no');
     iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-pointer-lock allow-forms');
 
     gameContainer.append(gamePlayerDiv, iframe);
@@ -737,18 +749,24 @@ function websitePlayer(title, link, description) {
         {
             text: 'Mostly Fullscreen',
             onClick: () => {
-                document.body.innerHTML = '';
-                document.body.appendChild(iframe);
+                const allElements = document.body.children;
+                for (let i = 0; i < allElements.length; i++) {
+                    if (allElements[i] !== iframe) {
+                        allElements[i].style.display = 'none';
+                    }
+                }
+                
                 Object.assign(iframe.style, {
                     width: '100vw',
                     height: '100vh',
                     border: 'none',
                     borderRadius: '0',
                 });
+                
+                iframe.style.display = 'block';
             }
         }
-
-    ];
+            ];
 
     buttons.forEach(({ text, onClick }) => {
         const btn = document.createElement('button');
@@ -765,6 +783,7 @@ function websitePlayer(title, link, description) {
     const searchbarElement = document.querySelector('.searchbar');
     if (searchbarElement) searchbarElement.remove();
 }
+
 
 
 function deleteSelectButtons() {
@@ -893,7 +912,7 @@ const unsortedGameLinks = [
         name: 'Poly Track',
         image: 'https://th.bing.com/th/id/OIP.lUMJvNYW2YDWplM6Tkp27gHaEK?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://diddyyyyyytttttt.centrodiagnosticogenetico.com/assets/games/poly-track/',
-        description: 'Poly Track is a racing game that features a unique, stylized aesthetic with polygonal graphics. Players navigate through various tracks, often set in vibrant and colorful environments, while competing against others or the clock. The gameplay typically involves controlling a vehicle, drifting around corners, and avoiding obstacles to achieve the best time or finish position. With its simple controls and engaging mechanics, Poly Track provides a fun and accessible racing experience for players of all skill levels.',
+        description: 'Polytrack is a racing game that features a unique, stylized aesthetic with polygonal graphics. Players navigate through various tracks, often set in vibrant and colorful environments, while competing against others or the clock. The gameplay typically involves controlling a vehicle, drifting around corners, and avoiding obstacles to achieve the best time or finish position. With its simple controls and engaging mechanics, Poly Track provides a fun and accessible racing experience for players of all skill levels.',
     },
     {
         name: 'Slope',
@@ -975,7 +994,7 @@ const unsortedGameLinks = [
     },
     {
         name: 'Moto X3M',
-        image: 'https://th.bing.com/th/id/OIP.jbtRNX7Z9tvdQ8D1uK8bbQHaHW?rs=1&pid=ImgDetMain&adlt=strict',
+        image: 'https://th.bing.com/th/id/R.a7583f44b320fe9ef5210538bfd37c64?rik=QUZD1DH5zT%2bvFw&pid=ImgRaw&r=0&adlt=strict',
         link: 'https://unblockedgamesfree.github.io/moto-x3m/',
         description: 'Moto X3M is an exciting online motorcycle racing game that features a series of challenging obstacle courses. Players control a motocross rider as they navigate through various levels filled with ramps, jumps, and hazards. The objective is to complete each course as quickly as possible while performing stunts and avoiding crashes. The game features smooth controls, vibrant graphics, and a variety of levels that increase in difficulty, making it a fun and addictive experience for fans of racing and platforming games. Players can also unlock new bikes and customize their rider as they progress through the game.',
     },
@@ -1120,7 +1139,7 @@ const unsortedGameLinks = [
     {
         name: 'Bitlife',
         image: 'https://th.bing.com/th/id/R.bad0ae1ff1f155b4529bc72393e71cbc?rik=O1dK33%2brwMc8nA&pid=ImgRaw&r=0&adlt=strict',
-        link: 'https://mgalternative.github.io/ecb12c82-7c99-4a9a-b30c-7be773c73786/content/ubg365.github.io/games/bitlife-life-simulator/index.html',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/bitlife/index.html',
         description: 'BitLife is a life simulation game that allows players to experience the ups and downs of virtual life, making choices that shape their character\'s journey from birth to death. Players can pursue various paths, such as education, career, relationships, and even crime, all while navigating the consequences of their decisions. With its engaging text-based gameplay and humorous scenarios, BitLife offers a unique and entertaining way to explore the complexities of life choices!',
     },
     {
@@ -1209,7 +1228,7 @@ const unsortedGameLinks = [
     },
     {
         name: 'Awesome Planes',
-        image: 'https://th.bing.com/th/id/OIP.HKqO1Rqv7haEOFiHI48laAAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        image: 'https://th.bing.com/th/id/OIP.uqvr6mT6BRSKYAS4D50y_gAAAA?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://script.google.com/macros/s/AKfycbzL6eC_I8rGu0wIhAF6pfpFOb3TS7ND_qRDSOgn2-mMyNo9EwH8x-wv_H5wUP8GxB61/exec',
         description: 'Awesome Planes is an action-packed arcade-style game where players take control of customizable planes to engage in thrilling aerial combat. Players can navigate through various levels, dodging enemy fire and obstacles while completing missions and collecting power-ups. With its vibrant graphics, engaging gameplay, and a variety of planes to choose from, Awesome Planes offers an exciting experience for fans of flight and action games alike!',
     },
@@ -1587,7 +1606,7 @@ const unsortedGameLinks = [
     },
     {
         name: '1 On 1 Soccer Brazil',
-        image: 'https://th.bing.com/th/id/OIP.dMsD7TI9iMgFWRz5Zdno3gAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        image: 'https://flashmuseum.org/wp-content/uploads/2023/05/1-on-1-Soccer-Brazil_logo.png',
         link: 'https://script.google.com/macros/s/AKfycbxswxjq_hbSYU7FWSj6zgU5GBHGCS_axxnAf6Xu-_yQj_zyINBaEY9HNhE-3N3sBJeO/exec',
         description: '1 on 1 Soccer Brazil is a dynamic and engaging variation of one-on-one soccer that emphasizes skillful play and individual flair, often inspired by the rich soccer culture of Brazil. In this format, two players compete against each other in a small area, showcasing their dribbling, shooting, and defensive skills while trying to score goals. The game encourages creativity and quick decision-making, allowing players to express their style and improve their technical abilities in a fun and competitive environment.'
     },
@@ -1618,7 +1637,7 @@ const unsortedGameLinks = [
     {
         name: 'FNAF 2',
         image: 'https://th.bing.com/th/id/OIP.jWrvSjLequvtiHGVwPk9VQHaHa?rs=1&pid=ImgDetMain&adlt=strict',
-        link: 'https://mod.fnfhub.net/25560',
+        link: 'https://scratch.mit.edu/projects/918751856/embed/',
         description: 'Five Nights at Freddy\'s 2 is a prequel to the original game, where players take on the role of night guard Jeremy Fitzgerald at a revamped Freddy Fazbear\'s Pizza. The game introduces new animatronics, including Toy characters, and features mechanics like using a Freddy mask to deceive them and a flashlight to fend off threats. Players must survive from 12 AM to 6 AM while managing limited resources and monitoring security cameras to track the animatronics\' movements.'
     },
     {
@@ -1785,7 +1804,7 @@ const unsortedGameLinks = [
     },
     {
         name: 'Boxing Random',
-        image: 'https://th.bing.com/th/id/OIP._0NoGOX_lW-arl4MkMEmUgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        image: 'https://th.bing.com/th/id/OIP.A394gSZWKYDTmz_Arth4JgAAAA?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://bigbackjollysanta.cissp.or.id/semag/boxingrandom/index.html',
         description: 'Boxing Random is a fun and chaotic online multiplayer game that simulates boxing matches with a twist. Players control quirky characters in a ring, where they engage in fast-paced, unpredictable fights. The game features random power-ups, unique abilities, and humorous animations, making each match entertaining and different from the last. With simple controls and a lighthearted approach to boxing, it’s an enjoyable experience for players looking for casual, competitive fun with friends or online opponents.'
     },
@@ -2874,6 +2893,66 @@ const unsortedGameLinks = [
         image: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/kong/cover.png',
         link: 'https://do.your.work.metropolitanstaffingsolutions.com/semag/kong/index.html',
         description: 'In "Donkey Kong," players take on the role of Mario, a determined carpenter on a mission to rescue his girlfriend, Pauline, from the clutches of the giant ape, Donkey Kong. Navigate a series of challenging platforms and obstacles, dodging barrels and enemies, as you climb your way to the top. With its iconic gameplay and vintage charm, "Donkey Kong" remains a classic in the world of arcade games.'
+    },
+    {
+        name: 'Donkey Kong 64',
+        image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/donkeykong64/donkeykong64.png',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/donkeykong64/index.html',
+        description: 'Donkey Kong 64 is a classic 3D platformer developed by Rare for the Nintendo 64, featuring the beloved character Donkey Kong and his friends as they embark on a quest to save their home from the villainous King K. Rool. Players navigate through expansive worlds filled with puzzles, collectibles, and unique abilities for each character, offering a rich gameplay experience. With its vibrant graphics, engaging multiplayer modes, and memorable soundtrack, Donkey Kong 64 remains a nostalgic favorite among gamers.'
+    },
+    {
+        name: 'Black Jack',
+        image: 'https://pics.craiyon.com/2023-12-05/SUuJycN_QRWDeAUJpp3l-A.webp',
+        link: 'https://lasvegasdirect.com/blackjack',
+        description: 'Blackjack is a popular card game played between one or more players and a dealer, where the objective is to achieve a hand value as close to 21 as possible without exceeding it. Players are dealt two cards and can choose to "hit" for additional cards or "stand" to keep their current total, while the dealer must follow specific rules for drawing cards. The game combines elements of skill and chance, making it a favorite in casinos worldwide.'
+    },
+    {
+        name: '2D Rocket League',
+        image: 'https://skys.follobusiness.com/semag/2drocketleague/unnamed.png',
+        link: 'https://skys.follobusiness.com/semag/2drocketleague/index.html',
+        description: 'Rocket League 2D is an exciting multiplayer game that combines the fast-paced action of soccer with the thrilling mechanics of rocket-powered cars, all set in a vibrant 2D environment. Players can team up or compete against each other to score goals while performing acrobatic maneuvers and utilizing power-ups, creating a unique blend of strategy and skill. With its intuitive controls and engaging gameplay, Rocket League 2D offers a fresh take on the beloved franchise, perfect for both casual and competitive gamers.'
+    },
+    {
+        name: 'Rocket League',
+        image: 'https://skys.follobusiness.com/semag/rocketleague/splash.webp',
+        link: 'https://skys.follobusiness.com/semag/rocketleague/index.html',
+        description: 'Rocket League is an exhilarating game that combines soccer with rocket-powered cars, allowing players to score goals through acrobatic maneuvers and teamwork. With its fast-paced gameplay and customizable vehicles, it offers a unique blend of strategy and skill, appealing to both casual and competitive gamers. The game features various modes and a vibrant esports scene, making it a popular choice among players worldwide.'
+    },
+    {
+        name: 'Tiny Fishing',
+        image: 'https://th.bing.com/th/id/OIP.cJPeo29x-BbnKprDkAWCkQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://script.google.com/macros/s/AKfycbxLcEhIHAKNQ9_0zcGLCEvGOlsfzpoAYEPR7srdycjXI2cqcJ8sxYbh7q4CM28kC9Nf/exec',
+        description: 'Tiny Fishing is a charming and addictive idle fishing game where players cast their lines into various bodies of water to catch a wide array of fish. As players progress, they can upgrade their fishing gear, unlock new locations, and discover rare species, all while enjoying a relaxing and colorful art style. With simple mechanics and engaging gameplay, Tiny Fishing offers a delightful experience for both casual gamers and fishing enthusiasts alike.'
+    },
+    {
+        name: 'CircloO',
+        image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/circloo/icon.png',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/circloo/index.html',
+        description: 'CircloO is a minimalist puzzle game where players rotate and connect various circular elements to form continuous loops. With simple controls and increasingly challenging levels, it offers a relaxing yet engaging experience that tests your spatial reasoning and problem-solving skills. The clean design and soothing soundtrack make CircloO a perfect game to unwind and stimulate the mind.'
+    },
+    {
+        name: 'Funny Shooter 2',
+        image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/funnyshooter2/894abba63a6b23fed823f404831f444f.jpeg',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/funnyshooter2/index.html',
+        description: 'Funny Shooter 2 is a lighthearted and fast-paced shooting game where players take on goofy enemies using an array of quirky weapons and hilarious power-ups. With its colorful graphics, humorous animations, and simple controls, the game delivers endless fun and chaotic action for players of all ages. Its entertaining gameplay loops keep players coming back for more laughter-packed shooting challenges.'
+    },
+    {
+        name: 'Funny Mad Racing',
+        image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/funnymadracing/logo.webp',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/funnymadracing/index.html',
+        description: 'Funny Mad Racing is a zany and fast-paced racing game packed with quirky characters, wild tracks, and hilarious power-ups. Players compete in chaotic races filled with unexpected twists, making every race a fun and unpredictable thrill ride. With its colorful graphics and lighthearted gameplay, Funny Mad Racing offers a joyful experience for casual and competitive players alike.'
+    },
+    {
+        name: 'Yohoho.io',
+        image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/yohoho/cover.png',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/yohoho/index.html',
+        description: 'Yohoho.io is a multiplayer pirate-themed battle game where players control ships to compete against others in fast-paced naval combat. Collect loot, upgrade your ship’s weapons and defenses, and strategically outmaneuver opponents to dominate the seas. With its simple controls and engaging battles, Yohoho.io offers an exciting and competitive experience for fans of io games.'
+    },
+    {
+        name: 'Two Ball 3D',
+        image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/two/cover.png',
+        link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/two/index.html',
+        description: 'Two Ball 3D is an engaging physics-based puzzle game where players control two balls simultaneously, navigating through challenging 3D environments filled with obstacles and traps. The game tests coordination and timing as players must maneuver both balls in sync to reach the goal. With its vibrant graphics and increasingly complex levels, Two Ball 3D offers a fun and brain-teasing experience.'
     }
 
 ];
@@ -2901,7 +2980,7 @@ const gameLinks = sortGameLinks(unsortedGameLinks);
 
 const newGameLink = {
     name: 'Request a game',
-    image: 'https://th.bing.com/th/id/R.80fb3f6638bc51582727b2fa94bd74e9?rik=SG57slcdYbvhNQ&pid=ImgRaw&r=0&adlt=strict',
+    image: 'https://th.bing.com/th/id/OIP.KiKVl0JQEKCFCBs04WjmDgHaHa?rs=1&pid=ImgDetMain&adlt=strict',
     link: 'https://forms.gle/jMRrgUUaAiCEtKRh6',
     description: ''
 };
@@ -3325,6 +3404,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v2.6 (5/26/2025):', content: ['Added Excuses', 'Live TV and proxy under maintenance', 'Slight style change (made buttons rounder)', 'Added 1 exploit', 'Added 10 games', 'Fixed some games'] },
         { version: 'version v2.5 (5/11/2025):', content: ['Exploits tab is here. Added 5 exploits', 'Small bug fixes (eagler works now)', 'Added LIVE TV (3 channels)', 'Fixed some games', 'Added 10 games'] },
         { version: 'version v2.4 (4/29/2025):', content: ['Fixed a lot of games', 'Looooooong search bar (davis accidently made it better LMAO)', 'Proxy is back', 'Added 10 games'] },
         { version: 'version v2.3 (4/24/2025):', content: ['Working on proxy', 'Fixed some games', 'Changed up the styles a little bit', 'Added "Mostly Fullscreen" button', 'Added 10 games'] },
@@ -3376,610 +3456,202 @@ function changelog() {
     });
 }
 
-async function proxyLoad(url, frame) {
-    const urlToLoad = url.includes('.') 
-        ? `https://${url}` 
-        : `https://html.duckduckgo.com/html?q=${encodeURIComponent(url)}`;
+function proxy() {
+  const proxyBase = "https://toothpaste.bekekes390.workers.dev/?url=";
+  const sessionMemory = {};
+  let tabIdCounter = 1;
+  let currentTab = null;
+  const tabs = {};
 
-    const proxyBase = "https://toothpaste.bekekes390.workers.dev/?url=";
-    const proxyUrl = proxyBase + encodeURIComponent(urlToLoad);
+  function proxyLoad(url, frame, tabId) {
+    const isSearch = !url.includes('.') || /\s/.test(url);
+    const finalUrl = isSearch
+      ? `https://www.startpage.com/sp/search?query=${encodeURIComponent(url)}`
+      : url.startsWith("http") ? url : `https://${url}`;
+    const proxyUrl = proxyBase + encodeURIComponent(finalUrl);
+    sessionMemory[tabId] = finalUrl;
 
-    console.log('Proxy fetching:', proxyUrl);
+    const tab = tabs[tabId];
+    if (tab) tab.title.textContent = "Loading...";
 
-    try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) throw new Error('Network response was not ok');
+    fetch(proxyUrl)
+      .then(r => r.text())
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, "text/html");
 
-        const html = await response.text();
-        const baseUrl = new URL(urlToLoad).origin;
+        doc.querySelectorAll("a[href]").forEach(link => {
+          link.addEventListener("click", e => {
+            e.preventDefault();
+            proxyLoad(link.href, frame, tabId);
+          });
+        });
 
-        const processed = html
-            .replace(/<head>/i, `<head><base href="${baseUrl}/">`)
-            .replace(/<body([^>]*)>/i, `<body$1 style="margin:0;">`);
+        doc.querySelectorAll("iframe[src]").forEach(iframe => {
+          const src = iframe.getAttribute("src");
+          try {
+            const abs = new URL(src, finalUrl).href;
+            iframe.setAttribute("src", proxyBase + encodeURIComponent(abs));
+          } catch {}
+        });
 
-        const blob = new Blob([processed], { type: 'text/html' });
+        const blob = new Blob([doc.documentElement.outerHTML], { type: 'text/html' });
         const blobUrl = URL.createObjectURL(blob);
-
-        console.log('Blob URL ready:', blobUrl);
-
         frame.src = blobUrl;
 
-        frame.onload = () => {
-            console.log('Frame loaded!');
+        const iconLink = doc.querySelector('link[rel~="icon"]');
+        const iconHref = iconLink?.href || "/favicon.ico";
+        const absoluteFavicon = new URL(iconHref, finalUrl).href;
 
-            try {
-                const links = frame.contentDocument.querySelectorAll('a');
-                links.forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const newUrl = link.href;
-                        proxyLoad(newUrl, frame);
-                    });
-                });
-            } catch (e) {
-                console.warn('Frame access error:', e);
-            }
-        };
-
-    } catch (error) {
-        console.error('Proxy Load Error:', error);
-        frame.srcdoc = `
-            <div style="color:white;text-align:center;font-size:20px;font-family:sans-serif;padding:50px;">
-            Error loading content.<br>${error.message}</div>
-        `;
-    }
-}
-
-
-
-
-
-
-
-function proxy() {
-    const existingProxy = document.querySelector('.proxy-container');
-    if (existingProxy) existingProxy.remove();
-
-    const container = document.createElement('div');
-    container.className = 'proxy-container';
-    container.style.marginTop = '20px';
-
-    const tabBar = document.createElement('div');
-    tabBar.style.display = 'flex';
-    tabBar.style.gap = '10px';
-    tabBar.style.marginBottom = '10px';
-
-    const refreshButton = document.createElement('button');
-    refreshButton.textContent = 'Refresh Page';
-    refreshButton.style.padding = '5px 10px';
-    refreshButton.style.borderRadius = '5px';
-    refreshButton.style.cursor = 'pointer';
-    refreshButton.style.backgroundColor = '#fff';
-    refreshButton.style.color = '#000';
-
-    const newTabButton = document.createElement('button');
-    newTabButton.textContent = 'New Tab';
-    newTabButton.style.padding = '5px 10px';
-    newTabButton.style.borderRadius = '5px';
-    newTabButton.style.cursor = 'pointer';
-    newTabButton.style.backgroundColor = '#fff';
-    newTabButton.style.color = '#000';
-
-    const devOptionsButton = document.createElement('button');
-    devOptionsButton.textContent = 'Developer Options';
-    devOptionsButton.style.padding = '5px 10px';
-    devOptionsButton.style.borderRadius = '5px';
-    devOptionsButton.style.cursor = 'pointer';
-    devOptionsButton.style.backgroundColor = '#fff';
-    devOptionsButton.style.color = '#000';
-
-    const tabList = document.createElement('div');
-    tabList.style.display = 'flex';
-    tabList.style.gap = '5px';
-    tabList.style.flexGrow = '1';
-    tabList.style.overflowX = 'auto';
-
-    const contentArea = document.createElement('div');
-    contentArea.style.position = 'relative';
-    contentArea.style.height = '500px';
-
-    let currentTab = createTab('tp://newtab');
-    tabList.appendChild(currentTab.element);
-    contentArea.appendChild(currentTab.content);
-
-    newTabButton.addEventListener('click', () => {
-        const newTab = createTab('tp://newtab');
-        tabList.appendChild(newTab.element);
-        contentArea.appendChild(newTab.content);
-        switchTab(newTab);
-    });
-
-    refreshButton.addEventListener('click', () => {
-        if (currentTab) {
-            let webframe = currentTab.content.querySelector('iframe')
-            webframe.style.display = 'block';
-            webframe.contentWindow.location.reload();
+        if (tab) {
+          tab.title.textContent = finalUrl;
+          let icon = tab.tab.querySelector("img");
+          if (!icon) {
+            icon = document.createElement("img");
+            icon.className = "tab-favicon";
+            icon.style.width = "16px";
+            icon.style.height = "16px";
+            tab.tab.insertBefore(icon, tab.tab.firstChild);
+          }
+          icon.src = absoluteFavicon;
         }
+      })
+      .catch(err => {
+        frame.srcdoc = `<pre style='color:white;padding:20px;'>Error: ${err.message}</pre>`;
+      });
+  }
+
+  function createTab(initialUrl = "") {
+    const tabId = `tab${tabIdCounter++}`;
+    const tab = document.createElement("div");
+    tab.className = "tab-rainbow";
+    tab.style.cssText = "border: 2px solid; border-image-slice: 1; border-image-source: linear-gradient(90deg,#00cfff,#00ffea); border-radius: 999px; display: flex; align-items: center; gap: 6px; padding: 4px 10px; margin-right: 4px; background: #2a2a2a; color: white; font-size: 14px; cursor: pointer;";
+    const title = document.createElement("span");
+    title.textContent = "New Tab";
+    const close = document.createElement("span");
+    close.textContent = "✕";
+    close.style.marginLeft = "4px";
+    close.onclick = e => {
+      e.stopPropagation();
+      tab.remove();
+      tabs[tabId].content.remove();
+      delete tabs[tabId];
+    };
+    tab.append(title, close);
+    tabBar.appendChild(tab);
+
+    const content = document.createElement("div");
+    content.style.cssText = "display:none;width:100%;height:100%;position:absolute;top:0;left:0;";
+    const urlBar = document.createElement("input");
+    urlBar.placeholder = "Enter URL or search...";
+    urlBar.style.cssText = "width:calc(100% - 60px);padding:8px;border:none;background:#1a1a1a;color:#fff;border-radius:6px 0 0 6px;font-size:14px;";
+    const navWrap = document.createElement("div");
+    navWrap.style.cssText = "display:flex;background:#000;";
+    const go = document.createElement("button");
+    go.textContent = "Go";
+    go.style.cssText = "background:#00cfff;color:#000;border:none;padding:8px 14px;border-radius:0 6px 6px 0;font-weight:bold;cursor:pointer;";
+    go.onclick = () => {
+      proxyLoad(urlBar.value, frame, tabId);
+      title.textContent = urlBar.value;
+    };
+    urlBar.addEventListener("keypress", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        go.click();
+      }
     });
+    navWrap.append(urlBar, go);
 
-    devOptionsButton.addEventListener('click', () => {
-        toggleDevOptions();
+    const frame = document.createElement("iframe");
+    frame.style.cssText = "width:100%;height:calc(100% - 32px);border:none;background:#000;";
+    frame.onload = () => {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+
+      doc.querySelectorAll("a[href]").forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          proxyLoad(link.href, frame, tabId);
+        });
+      });
+    };
+
+    content.append(navWrap, frame);
+    contentArea.appendChild(content);
+
+    tabs[tabId] = { tab, content, frame, title, urlBar };
+    tab.onclick = () => switchTab(tabId);
+    return tabId;
+  }
+
+  function switchTab(id) {
+    Object.values(tabs).forEach(t => {
+      t.content.style.display = "none";
+      t.tab.style.background = "#2a2a2a";
     });
+    tabs[id].content.style.display = "block";
+    tabs[id].tab.style.background = "#111";
+    currentTab = id;
+  }
 
-    tabBar.append(refreshButton, newTabButton, devOptionsButton, tabList);
-    container.append(tabBar, contentArea);
-    document.body.appendChild(container);
+  const tabBar = document.createElement("div");
+  tabBar.style.cssText = "display:flex;gap:5px;flex-wrap:wrap;padding:6px;background:#2d2d2d;border-bottom:1px solid #444;";
+  const contentArea = document.createElement("div");
+  contentArea.style.cssText = "position:relative;height:85vh;background:#121212;overflow:hidden;";
+  document.body.append(tabBar, contentArea);
 
-    function createTab(titleText) {
-        const tab = document.createElement('div');
-        tab.style.display = 'flex';
-        tab.style.alignItems = 'center';
-        tab.style.padding = '5px 15px';
-        tab.style.borderRadius = '5px 5px 0 0';
-        tab.style.cursor = 'pointer';
-        tab.style.backgroundColor = '#333';
-        tab.style.transition = 'background-color 0.3s ease, transform 0.3s ease';
-        tab.style.transform = 'translateX(-100%)';
+  const toolbar = document.createElement("div");
+  toolbar.style.cssText = "display:flex;align-items:center;gap:8px;background:#1e1e1e;padding:8px;border-bottom:1px solid #444;";
+  const newTabBtn = document.createElement("button");
+  newTabBtn.textContent = "+";
+  const refreshBtn = document.createElement("button");
+  refreshBtn.textContent = "⟳";
+  const devBtn = document.createElement("button");
+  devBtn.textContent = "🖥️";
+  newTabBtn.style.cssText = refreshBtn.style.cssText = devBtn.style.cssText = "background:#333;color:white;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;";
+  toolbar.append(newTabBtn, refreshBtn, devBtn);
+  document.body.insertBefore(toolbar, tabBar);
 
-        const title = document.createElement('span');
-        title.textContent = titleText === 'tp://newtab' ? 'New Tab' : titleText;
-        title.style.marginRight = '10px';
-        title.style.color = '#fff';
+  const devPanel = document.createElement("div");
+  devPanel.style.cssText = "display:none;position:fixed;right:0;top:0;width:400px;height:100vh;background:#111;color:#0f0;font-family:monospace;z-index:9999;display:flex;flex-direction:column;border-left:1px solid #333;";
+  devPanel.innerHTML = `
+    <div style="padding:10px;background:#222;color:white;">DevTools <button id="closeDev" style="float:right;background:#444;color:white;border:none;">✕</button></div>
+    <textarea style="flex:1;background:#000;color:#0f0;padding:10px;border:none;resize:none;"></textarea>
+    <div style="background:#000;padding:6px;"><input placeholder="Console..." style="width:100%;background:#111;color:#0af;border:none;padding:6px;font-family:monospace;"></div>`;
+  document.body.appendChild(devPanel);
 
-        const closeButton = document.createElement('button');
-        closeButton.textContent = '×';
-        closeButton.style.color = 'white';
-        closeButton.style.padding = '0 5px';
-        closeButton.style.borderRadius = '50%';
-        closeButton.style.cursor = 'pointer';
-
-        const content = document.createElement('div');
-        content.style.position = 'absolute';
-        content.style.width = '100%';
-        content.style.height = '100%';
-        content.style.display = 'none';
-
-        const addressBar = document.createElement('div');
-        addressBar.style.display = 'flex';
-        addressBar.style.gap = '10px';
-        addressBar.style.marginBottom = '10px';
-
-        const urlInput = document.createElement('input');
-        urlInput.placeholder = 'Enter URL or search';
-        urlInput.style.flexGrow = '1';
-        urlInput.style.padding = '8px';
-        urlInput.style.borderRadius = '15px';
-        urlInput.style.border = ' 1px solid #444';
-        urlInput.style.backgroundColor = '#111';
-        urlInput.style.color = '#fff';
-
-        const goButton = document.createElement('button');
-        goButton.textContent = 'Go';
-        goButton.style.color = 'black';
-        goButton.style.padding = '8px 16px';
-        goButton.style.borderRadius = '15px';
-        goButton.style.backgroundColor = 'white';
-        goButton.style.cursor = 'pointer';
-
-        const frame = document.createElement('iframe');
-        frame.style.width = '100%';
-        frame.style.height = 'calc(100% - 40px)';
-        frame.style.border = '1px solid #333';
-        frame.style.borderRadius = '10px';
-        frame.style.backgroundColor = '#000';
-
-        const loadingOverlay = document.createElement('div');
-        loadingOverlay.style.position = 'absolute';
-        loadingOverlay.style.top = '0';
-        loadingOverlay.style.left = '0';
-        loadingOverlay.style.width = '100%';
-        loadingOverlay.style.height = '100%';
-        loadingOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-        loadingOverlay.style.color = 'white';
-        loadingOverlay.style.display = 'flex';
-        loadingOverlay.style.alignItems = 'center';
-        loadingOverlay.style.justifyContent = 'center';
-        loadingOverlay.style.fontSize = '20px';
-        loadingOverlay.textContent = 'The proxy is in beta so this may not work / Loading...';
-        loadingOverlay.style.display = 'none'; 
-
-        addressBar.append(urlInput, goButton);
-        content.append(addressBar, frame, loadingOverlay);
-
-        const loadNewTabContent = () => {
-            if (titleText === 'tp://newtab') {
-                const newTabContent = `
-<div style="
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a1a, #000000);
-    overflow: hidden;
-    position: relative;
-    font-family: 'Poppins', sans-serif;
-">
-    <div style="
-        animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        transform-origin: center;
-        position: relative;
-        z-index: 2;
-    ">
-        <h1 style="
-            font-size: 60px;
-            font-weight: 800;
-            text-align: center;
-            background: linear-gradient(45deg, #00ffff, #70ffb8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 40px rgba(0, 255, 255, 0.7);
-            margin-bottom: 35px;
-            letter-spacing: -1.5px;
-            transition: transform 0.3s ease;
-            animation: float 4s ease-in-out infinite;
-        ">Toothpaste Internet</h1>
-
-        <div style="
-            position: relative;
-            margin: 2rem 0;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            animation: pulse 3s infinite;
-        ">
-            <h1 style="
-                font-size: 24px;
-                font-weight: 400;
-                text-align: center;
-                background: linear-gradient(45deg, #ff4444, #ffaa00);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-                text-shadow: 0 0 30px rgba(255, 68, 68, 0.5);
-                margin-bottom: 30px;
-                letter-spacing: -0.5px;
-                transition: transform 0.3s ease;
-                animation: pulseWarning 2s ease-in-out infinite;
-            ">⚠️ WARNING: Limited features in this proxy for now, better proxy service coming soon</h1>
-            
-            <div style="position: relative; margin: 0 auto; width: fit-content;">
-                <input type="text" 
-                    id="searchBox" 
-                    placeholder="Search DuckDuckGo" 
-                    style="
-                        padding: 18px 50px 18px 30px;
-                        width: 600px;
-                        border-radius: 50px;
-                        border: none;
-                        background: rgba(255,  255, 255, 0.1);
-                        color: #fff;
-                        font-size: 17px;
-                        backdrop-filter: blur(15px);
-                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-                        position: relative;
-                        z-index: 2;
-                    "
-                    onfocus="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.boxShadow='0 0 35px rgba(0, 255, 255, 0.5)'; this.style.transform='scale(1.02)'"
-                    onblur="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.boxShadow='0 4px 30px rgba(0, 0, 0, 0.5)'; this.style.transform='scale(1)'"
-                />
-                <svg style="
-                    position: absolute;
-                    right: 25px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    width: 24px;
-                    height: 24px;
-                    fill: rgba(255, 255, 255, 0.6);
-                    z-index: 3;
-                    pointer-events: none;
-                " viewBox="0 0 24 24">
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 5 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                </svg>
-            </div>
-
-            <h1 style="
-                font-size: 20px;
-                font-weight: 300;
-                text-align: center;
-                color: rgba(255, 255, 255, 0.7);
-                margin: 25px 0 0 0;
-                letter-spacing: 0.5px;
-            ">Private Search • Encrypted Connection • No Tracking</h1>
-        </div>
-    </div>
-
-    <div style="
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-    ">
-        <div style="
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(0 , 255, 255, 0.1) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: gradientPulse 8s infinite;
-        "></div>
-        <div style="
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            pointer-events: none;
-            animation: particleAnimation 10s linear infinite;
-        "></div>
-    </div>
-</div>
-
-<style>
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+  const devText = devPanel.querySelector("textarea");
+  const devInput = devPanel.querySelector("input");
+  devInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      try {
+        const result = tabs[currentTab].frame.contentWindow.eval(devInput.value);
+        devText.value += "\n> " + result;
+      } catch (err) {
+        devText.value += "\n! " + err.message;
+      }
+      devInput.value = "";
     }
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
+  });
+  devBtn.onclick = () => {
+    devPanel.style.display = devPanel.style.display === "none" ? "flex" : "none";
+    if (currentTab && tabs[currentTab]) {
+      const doc = tabs[currentTab].frame.contentDocument;
+      if (doc) devText.value = doc.documentElement.outerHTML;
     }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-        100% { transform: scale(1); }
-    }
-    @keyframes pulseWarning {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-    @keyframes gradientPulse {
-        0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-        50% { opacity: 0.1; transform: translate(-50%, -50%) scale(1.2); }
-        100% { opacity: 0.3; transform: translate(-50%, -50%) scale( 1); }
-    }
-    @keyframes particleAnimation {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 100% 100%; }
-    }
+  };
+  devPanel.querySelector("#closeDev").onclick = () => {
+    devPanel.style.display = "none";
+  };
 
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
-    
-    input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-        transition: all 0.3s ease;
-        letter-spacing: 0.5px;
-    }
-    
-    input:focus::placeholder {
-        transform: translateX(15px);
-        opacity: 0.2;
-    }
-
-    h1:hover {
-        transform: scale(1.02);
-    }
-
-    body {
-        margin: 0;
-        overflow-x: hidden;
-    }
-</style>
-`;
-                frame.srcdoc = newTabContent;
-
-                frame.onload = () => {
-                    const searchBox = frame.contentWindow.document.getElementById('searchBox');
-                    if (searchBox) {
-                        searchBox.addEventListener('keypress', e => {
-                            if (e.key === 'Enter') {
-                                const query = searchBox.value;
-                                const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                                proxyLoad(googleUrl, frame);
-                            }
-                        });
-                    }
-                };
-            } else {
-                proxyLoad(urlInput.value, frame);
-            }
-        };
-
-        goButton.addEventListener('click', () => {
-            const oldFrame = content.querySelector('iframe');
-            if (oldFrame) oldFrame.remove(); 
-
-            const newFrame = document.createElement('iframe');
-            newFrame.style.width = '100%';
-            newFrame.style.height = 'calc(100% - 40px)';
-            newFrame.style.border = '1px solid #333';
-            newFrame.style.borderRadius = '10px';
-            newFrame.style.backgroundColor = '#000';
-
-            content.appendChild(newFrame); 
-
-            proxyLoad(urlInput.value, newFrame); 
-            title.textContent = urlInput.value;
-        });
-
-        urlInput.addEventListener('keypress', e => {
-            if (e.key === 'Enter') {
-                const oldFrame = content.querySelector('iframe');
-                if (oldFrame) oldFrame.remove();
-
-                const newFrame = document.createElement('iframe');
-                newFrame.style.width = '100%';
-                newFrame.style.height = 'calc(100% - 40px)';
-                newFrame.style.border = '1px solid #333';
-                newFrame.style.borderRadius = '10px';
-                newFrame.style.backgroundColor = '#000';
-
-                content.appendChild(newFrame);
-
-                proxyLoad(urlInput.value, newFrame);
-                title.textContent = urlInput.value;
-            }
-        });
-
-
-        tab.addEventListener('click', () => switchTab({ element: tab, content }));
-        closeButton.addEventListener('click', e => {
-            e.stopPropagation();
-            tab.style.transition = 'transform 0.3s ease';
-            tab.style.transform = 'translateX(-100%)';
-            setTimeout(() => {
-                tab.remove();
-                content.remove();
-            }, 300);
-        });
-
-        tab.append(title, closeButton);
-        loadNewTabContent();
-
-        setTimeout(() => {
-            tab.style.transform = 'translateX(0)';
-        }, 0);
-
-        return { element: tab, content };
-    }
-
-    function switchTab(newTab) {
-        currentTab.content.style.display = 'none';
-        currentTab = newTab;
-        currentTab.content.style.display = 'block';
-    }
-
-    function toggleDevOptions() {
-        const existing = document.querySelector('.dev-options-container');
-        if (existing) return existing.remove();
-
-        const container = Object.assign(document.createElement('div'), {
-            className: 'dev-options-container',
-            style: `
-                position: fixed;
-                top: 50px; right: 50px;
-                width: 320px;
-                height: auto;
-                background: #1a1a1a;
-                color: #eee;
-                padding: 0;
-                overflow: hidden;
-                z-index: 10000;
-                font-family: monospace;
-                border: 1px solid #333;
-                border-radius: 6px;
-            `
-        });
-
-        const header = Object.assign(document.createElement('div'), {
-            textContent: 'Developer Tools',
-            style: `
-                padding: 8px;
-                background: #333;
-                cursor: move;
-                user-select: none;
-                font-weight: bold;
-            `
-        });
-
-        const body = Object.assign(document.createElement('div'), {
-            style: 'padding: 12px;'
-        });
-
-        const label = Object.assign(document.createElement('div'), {
-            textContent: 'HTML Editor',
-            style: 'margin-bottom: 8px; font-weight: bold; font-size: 14px;'
-        });
-
-        const editor = Object.assign(document.createElement('textarea'), {
-            style: `
-                width: 100%;
-                height: 240px;
-                background: #0d0d0d;
-                color: #0f0;
-                border: 1px solid #333;
-                border-radius: 6px;
-                padding: 8px;
-                resize: vertical;
-            `,
-            placeholder: 'Edit iframe HTML...'
-        });
-
-        const frame = currentTab?.content?.querySelector('iframe');
-        if (frame) editor.value = frame.srcdoc || '';
-
-        const controls = Object.assign(document.createElement('div'), {
-            style: 'margin-top: 12px; display: flex; gap: 8px;'
-        });
-
-        const updateBtn = Object.assign(document.createElement('button'), {
-            textContent: 'Apply',
-            style: `
-                flex: 1;
-                background: #00ff00;
-                color: #000;
-                border: none;
-                padding: 6px;
-                border-radius: 4px;
-                cursor: pointer;
-            `
-        });
-
-        const closeBtn = Object.assign(document.createElement('button'), {
-            textContent: 'Close',
-            style: `
-                flex: 1;
-                background: #ff0000;
-                color: #000;
-                border: none;
-                padding: 6px;
-                border-radius: 4px;
-                cursor: pointer;
-            `
-        });
-
-        updateBtn.onclick = () => frame && (frame.srcdoc = editor.value);
-        closeBtn.onclick = () => container.remove();
-
-        controls.append(updateBtn, closeBtn);
-        body.append(label, editor, controls);
-        container.append(header, body);
-        document.body.appendChild(container);
-
-        let isDragging = false, offsetX = 0, offsetY = 0;
-
-        header.addEventListener('mousedown', e => {
-            isDragging = true;
-            offsetX = e.clientX - container.offsetLeft;
-            offsetY = e.clientY - container.offsetTop;
-            document.body.style.userSelect = 'none';
-        });
-
-        window.addEventListener('mousemove', e => {
-            if (!isDragging) return;
-            container.style.left = `${e.clientX - offsetX}px`;
-            container.style.top = `${e.clientY - offsetY}px`;
-        });
-
-        window.addEventListener('mouseup', () => {
-            isDragging = false;
-            document.body.style.userSelect = '';
-        });
-    }
-
-
-    switchTab(currentTab);
+  const firstTab = createTab();
+  switchTab(firstTab);
+  newTabBtn.onclick = () => switchTab(createTab());
+  refreshBtn.onclick = () => {
+    const tab = tabs[currentTab];
+    if (tab && sessionMemory[currentTab]) proxyLoad(sessionMemory[currentTab], tab.frame, currentTab);
+  };
 }
+
 
 const exploit_list = [
     {
@@ -4006,6 +3678,11 @@ const exploit_list = [
         name: 'Ingot',
         image: 'https://i.pinimg.com/474x/65/d0/46/65d046fad09ddfb9601c2d9d8a07e80f.jpg',
         link: 'https://2369921.playcode.io/'
+    },
+    {
+        name: 'Mask3r',
+        image: 'https://th.bing.com/th/id/OIP.2qegWFHTndb8zTDGwsUMtAHaFj?cb=iwc2&rs=1&pid=ImgDetMain',
+        link: 'https://2391158.playcode.io/'
     }
 ];
 
@@ -4111,218 +3788,308 @@ function exploits() {
     document.body.appendChild(exploitRow);
 }
 
-const channel_list = [
-    { 
-        name: 'Nickelodean', 
-        video_list: [
-            ['https://drive.google.com/file/d/1yJbdgmU06Ri5aZiCmDiwheUFO3OmwN7k/view'], 
-            ['https://drive.google.com/file/d/1WFgX9d6y8zXW9KyMys-wm9kTLir9ItRq/view?t=1'], 
-            ['https://drive.google.com/file/d/1wVkSBuN7mKzC8-qgT_IDfhUgV3-3e_Ks/view'],
-            ['https://drive.google.com/file/d/1XcmJ1w3cjqVxDuoiyEZlizj98ROxX_-2/view?t=1'],
-            ['https://drive.google.com/file/d/1Knvr5NsVPYBA-GOd8BnVIQwSkEXCa13r/view?t=1'],
-            ['https://drive.google.com/file/d/1YdWsjNc14Nm4CP9LoyfO1fNsLaitWHK_/view?t=4'],
-            ['https://drive.google.com/file/d/1RHaMCknWFBOAv8ULLYmRrjhMe4wwHPxv/view?t=4'],
-            ['https://drive.google.com/file/d/1QC8SniCSrkKiNvJ_8zVx_4MH-VkAm73x/view?t=4'],
-            ['https://drive.google.com/file/d/1uvHqpbl4WfuSngN8ESwFvGPfcxlHmb27/view?t=2'],
-            ['https://drive.google.com/file/d/1i7Fdq8ZH1s5Re5RRY0ZGPBabQccp4Qe9/view'],
-            ['https://drive.google.com/file/d/1hU9zhDTBVo_TCtEEhS-bEI_FON7QCBRh/view?t=1'],
-            ['https://drive.google.com/file/d/1Qk-_EDgXWQ1TGv6oCqo0z56pE0dbhCju/view?t=1'],
-            ['https://drive.google.com/file/d/1NDzZ9ACU-_uc_Bj4qs1PScZRzXTH2Ief/view'],
-            ['https://drive.google.com/file/d/11mVla6Y3qLX4pplfnxMavSczJ200_8dl/view'],
-            ['https://drive.google.com/file/d/17fAM9sipu3BPElFpqFrG3ukYahbUEZQJ/view']
-        ]
-    },
-    { 
-        name: 'Disney', video_list: [
-            ['https://drive.google.com/file/d/1d9oOHmblAV1B39oQB86N91NZFqschhyh/view?t=5'],
-            ['https://drive.google.com/file/d/1QTTpUEs2AlSpZkBNr7_KtS9HJRO1DCVf/view?t=25'],
-            ['https://drive.google.com/file/d/1puXyyC1VB33QzFZujt59SsGdATkXQP1n/view?t=1'],
-            ['https://drive.google.com/file/d/1gR46JP8yL7-t0F--rGI3z7PmQ0YRCf1J/view?t=1'],
-            ['https://drive.google.com/file/d/1G9zeBbjyeQqrtWT9pbo7YnO8X_67Fctl/view'],
-            ['https://drive.google.com/file/d/1EyJPLj2ORxru-KStTpJluXQR2Fpq8BqH/view'],
-            ['https://drive.google.com/file/d/1YZCQMF-DvN1HG68sHGwd1zjaBJ7Ypvyg/view'],
-            ['https://drive.google.com/file/d/1GLxe2FsdL5cPPCALksmwSUA4lXMIkkrJ/view'],
-            ['https://drive.google.com/file/d/17jFeJVivZoKBcXvskGDlBBsbXEF0H1LC/view'],
-            ['https://drive.google.com/file/d/1cGlGCaw_ZohCosnrgP2Rl7fUfqyRFIqp/view'],
-            ['https://drive.google.com/file/d/11t4iIBE1NVWJkGJY71vxydeUWVIBQEr0/view?t=2'],
-            ['https://drive.google.com/file/d/1SVJArVFy0CESngzrpt2K1w4uhVNTijYv/view'],
-            ['https://drive.google.com/file/d/15b5oDAj-Y2_i_CqXpBw2fdcAYpWL4_65/view'],
-            ['https://drive.google.com/file/d/1_TGbxnWLug6Qi87YsvJKCUlmZQFTpLbY/view?t=1'],
-            ['https://drive.google.com/file/d/1X0Bm_RMDC6tG9TZCG5l0XKqw5_zZKlU9/view'],
-            ['https://drive.google.com/file/d/1bOj15wsnciNgTK84XPswWOK2lEaUJ9nh/view'],
-            ['https://drive.google.com/file/d/1-jy8kbPcYm38MHTirmuLZogRNQmQaHHV/view'],
-            ['https://drive.google.com/file/d/1Jt61oDMaWqvi2xn1mzBwEm1o15H62zd_/view'],
-            ['https://drive.google.com/file/d/1BlP3jLrDvxw__X3-kuqMY7GJr96M2pY3/view'],
-            ['https://drive.google.com/file/d/1DGrUG9FO7SPsKcOxpTweJXwj5z8PNOci/view?t=1']
-        ] 
-    },
-    { 
-        name: 'FOX News', video_list: [
-        ['https://www.youtube.com/watch?v=YDfiTGGPYCk']
-        ] 
-    },
-];
+function excuses() {
+    function createHeading(id, text, size) {
+        if (!document.getElementById(id)) {
+            const heading = document.createElement('h1');
+            heading.id = id;
+            heading.textContent = text;
+            heading.style.color = 'white';
+            heading.style.textAlign = 'center';
+            heading.style.fontSize = size + 'px';
+            heading.style.marginBottom = '20px';
+            document.body.appendChild(heading);
+        }
+    }
 
-function convertToEmbedUrl(url, startSeconds = 0) {
-  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
-  if (ytMatch) {
-    return `https://www.youtube.com/embed/${ytMatch[1]}?start=${startSeconds}&autoplay=1&rel=0&modestbranding=1&controls=0`;
-  }
-  const driveMatch = url.match(/\/d\/([^/]+)\//);
-  if (driveMatch) {
-    return `https://drive.google.com/file/d/${driveMatch[1]}/preview#t=${startSeconds}s`;
-  }
-  return null;
+    function createButton(text) {
+        const existingButton = Array.from(document.body.querySelectorAll('button')).find(
+            btn => btn.textContent === text
+        );
+        if (existingButton) {
+            return existingButton;
+        }
+
+        const button = document.createElement('button');
+        button.textContent = text;
+        button.style.background = 'linear-gradient(45deg, #6b59ff, #39a0ed)';
+        button.style.border = 'none';
+        button.style.borderRadius = '8px';
+        button.style.color = 'white';
+        button.style.padding = '12px 24px';
+        button.style.fontSize = '18px';
+        button.style.margin = '10px';
+        button.style.cursor = 'pointer';
+        button.style.boxShadow = '0 4px 10px rgba(57,160,237,0.5)';
+        button.style.transition = 'background 0.3s ease';
+
+        button.addEventListener('mouseenter', () => {
+            button.style.background = 'linear-gradient(45deg, #39a0ed, #6b59ff)';
+        });
+        button.addEventListener('mouseleave', () => {
+            button.style.background = 'linear-gradient(45deg, #6b59ff, #39a0ed)';
+        });
+
+        document.body.appendChild(button);
+        return button;
+    }
+
+    createHeading('excuses-main-heading', 'Excuses', 50);
+    createHeading('excuses-sub-heading', 'Excuses for class if you are late or caught chewing gum, etc.', 25);
+    createHeading('excuses-categories-heading', 'Categories', 40);
+
+    const buttonsData = [
+        {
+            text: 'Caught Chewing Gum',
+            excuse: "Not gum. It's a cough drop.\nI was biting my tongue because it was hurting.\nI don\'t have gum, I am biting the side of my mouth because it hurts."
+        },
+        {
+            text: 'Late to Class',
+            excuse: 'Sorry, I had to go to the bathroom before class. It was an emergency.\nI had to get water before class. I only had little water this morning.'
+        }
+    ];
+
+    let currentExcuseContainer = null;
+
+    function clearPreviousExcuse() {
+        if (currentExcuseContainer) {
+            currentExcuseContainer.remove();
+            currentExcuseContainer = null;
+        }
+    }
+
+    function showExcuses(text) {
+        const container = document.createElement('div');
+        container.style.marginTop = '20px';
+        container.style.color = 'white';
+
+        let excuseCounter = 1;
+
+        text.split('\n').forEach(line => {
+            const excuseLine = document.createElement('h1');
+            excuseLine.textContent = `EXCUSE ${excuseCounter}: ${line.trim()}`;
+            excuseLine.style.color = 'white';
+            excuseLine.style.textAlign = 'center';
+            excuseLine.style.fontSize = '30px';
+            excuseLine.style.margin = '6px 0';
+            container.appendChild(excuseLine);
+            excuseCounter++;
+        });
+
+        document.body.appendChild(container);
+        currentExcuseContainer = container;
+    }
+
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.style.textAlign = 'center';
+    document.body.appendChild(buttonsContainer);
+
+    buttonsData.forEach(({ text, excuse }) => {
+        const button = createButton(text);
+        buttonsContainer.appendChild(button);
+
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+
+        newButton.addEventListener('click', () => {
+            clearPreviousExcuse();
+            showExcuses(excuse);
+        });
+    });
 }
 
+// const channel_list = [
+//     { 
+//         name: 'Nickelodean', 
+//         video_list: [
+//             ['https://drive.google.com/file/d/1yJbdgmU06Ri5aZiCmDiwheUFO3OmwN7k/view'], // 3:05:05 = 11105 seconds 
+//             ['https://drive.google.com/file/d/1WFgX9d6y8zXW9KyMys-wm9kTLir9ItRq/view?t=1'], // 3:05:41 = 11141 seconds
+//             ['https://drive.google.com/file/d/1wVkSBuN7mKzC8-qgT_IDfhUgV3-3e_Ks/view'], // 3:08:08 = 11388 seconds
+//             ['https://drive.google.com/file/d/1XcmJ1w3cjqVxDuoiyEZlizj98ROxX_-2/view?t=1'], // 3:07:41 = 11261 seconds
+//             ['https://drive.google.com/file/d/1Knvr5NsVPYBA-GOd8BnVIQwSkEXCa13r/view?t=1'], // 2:51:00 = 10260 seconds
+//             ['https://drive.google.com/file/d/1YdWsjNc14Nm4CP9LoyfO1fNsLaitWHK_/view?t=4'], // 3:06:44 = 11404 seconds
+//             ['https://drive.google.com/file/d/1RHaMCknWFBOAv8ULLYmRrjhMe4wwHPxv/view?t=4'], // 3:07:03 = 11223 seconds
+//             ['https://drive.google.com/file/d/1QC8SniCSrkKiNvJ_8zVx_4MH-VkAm73x/view?t=4'], // 3:03:00 = 10980 seconds
+//             ['https://drive.google.com/file/d/1uvHqpbl4WfuSngN8ESwFvGPfcxlHmb27/view?t=2'], // 3:01:04 = 10864 seconds
+//             ['https://drive.google.com/file/d/1i7Fdq8ZH1s5Re5RRY0ZGPBabQccp4Qe9/view'], // 3:07:43 = 11263 seconds
+//             ['https://drive.google.com/file/d/1hU9zhDTBVo_TCtEEhS-bEI_FON7QCBRh/view?t=1'], // 3:04:16 = 11056 seconds
+//             ['https://drive.google.com/file/d/1Qk-_EDgXWQ1TGv6oCqo0z56pE0dbhCju/view?t=1'], // 2:19:17 = 8357 seconds
+//             ['https://drive.google.com/file/d/1NDzZ9ACU-_uc_Bj4qs1PScZRzXTH2Ief/view'], // 1:50:32 = 6632 seconds
+//             ['https://drive.google.com/file/d/11mVla6Y3qLX4pplfnxMavSczJ200_8dl/view'], // 1:27:13 = 5233 seconds
+//             ['https://drive.google.com/file/d/17fAM9sipu3BPElFpqFrG3ukYahbUEZQJ/view'] // 1:22:13 = 4933 seconds
+//         ]
+//     },
+//     { 
+//         name: 'Disney', video_list: [
+//             ['https://drive.google.com/file/d/1d9oOHmblAV1B39oQB86N91NZFqschhyh/view?t=5'], 
+//             ['https://drive.google.com/file/d/1QTTpUEs2AlSpZkBNr7_KtS9HJRO1DCVf/view?t=25'], 
+//             ['https://drive.google.com/file/d/1puXyyC1VB33QzFZujt59SsGdATkXQP1n/view?t=1'], 
+//             ['https://drive.google.com/file/d/1gR46JP8yL7-t0F--rGI3z7PmQ0YRCf1J/view?t=1'], 
+//             ['https://drive.google.com/file/d/1G9zeBbjyeQqrtWT9pbo7YnO8X_67Fctl/view'],
+//             ['https://drive.google.com/file/d/1cGlGCaw_ZohCosnrgP2Rl7fUfqyRFIqp/view'],
+//             ['https://drive.google.com/file/d/11t4iIBE1NVWJkGJY71vxydeUWVIBQEr0/view?t=2'],
+//             ['https://drive.google.com/file/d/1SVJArVFy0CESngzrpt2K1w4uhVNTijYv/view'],
+//             ['https://drive.google.com/file/d/15b5oDAj-Y2_i_CqXpBw2fdcAYpWL4_65/view'],
+//             ['https://drive.google.com/file/d/1_TGbxnWLug6Qi87YsvJKCUlmZQFTpLbY/view?t=1'],
+//             ['https://drive.google.com/file/d/1X0Bm_RMDC6tG9TZCG5l0XKqw5_zZKlU9/view'],
+//             ['https://drive.google.com/file/d/1bOj15wsnciNgTK84XPswWOK2lEaUJ9nh/view'],
+//             ['https://drive.google.com/file/d/1-jy8kbPcYm38MHTirmuLZogRNQmQaHHV/view'],
+//             ['https://drive.google.com/file/d/1Jt61oDMaWqvi2xn1mzBwEm1o15H62zd_/view'],
+//             ['https://drive.google.com/file/d/1BlP3jLrDvxw__X3-kuqMY7GJr96M2pY3/view'],
+//             ['https://drive.google.com/file/d/1DGrUG9FO7SPsKcOxpTweJXwj5z8PNOci/view?t=1'],
+//             ['https://drive.google.com/file/d/1iVJq1FsNG577gesP7CaTWPLgdqAtnaEg/view'],
+//         ] 
+//     },
+//     { 
+//         name: 'FOX News', video_list: [
+//         ['https://www.youtube.com/watch?v=YDfiTGGPYCk']
+//         ] 
+//     },
+//     {
+//         name: 'Top Movies', video_list: [
+//         ['https://drive.google.com/file/d/1BCjXSK36CUtORR-yS_pYeCGNBlzTsC0h/view?t=3'],
+//         ['https://drive.google.com/file/d/1TgEV9AykxchfLMZ4zB4jJhSKKW5f9xRL/view?t=3'],
+//         ['https://drive.google.com/file/d/1dDZWmuI8_dw_-XV5jBe3gBN-1uIGxyPn/view?t=1'],
+//         ['https://drive.google.com/file/d/1Uj5yjxE0rkI0dJjciYo1ddkd7sknUIHv/view?t=1'],
+//         ['https://drive.google.com/file/d/1lLZQm6W5z5QW3IBhbkMcENZfTOBQWtwa/view?t=3'],
+//         ['https://drive.google.com/file/d/1siki1wYP3LpfjFpUT8Z9lJuJzl7MdBhX/view?t=2'],
+//         ['https://drive.google.com/file/d/1OyO1OdhtfwR883Uvi0QPP5iooGcxTVSY/view']
+//         ]
+//     },
+//     {
+//         name: 'Boxing', video_list: [
+//             ['https://drive.google.com/file/d/1z_SQU-8-fE-GDUrOAjWZBEhVPlRE7Bra/view']
+//         ]
+//     }
+// ];
+
+const channel_list = [
+    {
+        name: 'Nickelodean',
+        video_list: [
+            ['https://drive.google.com/file/d/1yJbdgmU06Ri5aZiCmDiwheUFO3OmwN7k/view', 11105],
+            ['https://drive.google.com/file/d/1WFgX9d6y8zXW9KyMys-wm9kTLir9ItRq/view?t=1', 11141],
+            ['https://drive.google.com/file/d/1wVkSBuN7mKzC8-qgT_IDfhUgV3-3e_Ks/view', 11388],
+            ['https://drive.google.com/file/d/1XcmJ1w3cjqVxDuoiyEZlizj98ROxX_-2/view?t=1', 11261],
+            ['https://drive.google.com/file/d/1Knvr5NsVPYBA-GOd8BnVIQwSkEXCa13r/view?t=1', 10260],
+            ['https://drive.google.com/file/d/1YdWsjNc14Nm4CP9LoyfO1fNsLaitWHK_/view?t=4', 11404],
+            ['https://drive.google.com/file/d/1RHaMCknWFBOAv8ULLYmRrjhMe4wwHPxv/view?t=4', 11223],
+            ['https://drive.google.com/file/d/1QC8SniCSrkKiNvJ_8zVx_4MH-VkAm73x/view?t=4', 10980],
+            ['https://drive.google.com/file/d/1uvHqpbl4WfuSngN8ESwFvGPfcxlHmb27/view?t=2', 10864],
+            ['https://drive.google.com/file/d/1i7Fdq8ZH1s5Re5RRY0ZGPBabQccp4Qe9/view', 11263],
+            ['https://drive.google.com/file/d/1hU9zhDTBVo_TCtEEhS-bEI_FON7QCBRh/view?t=1', 11056],
+            ['https://drive.google.com/file/d/1Qk-_EDgXWQ1TGv6oCqo0z56pE0dbhCju/view?t=1', 8357],
+            ['https://drive.google.com/file/d/1NDzZ9ACU-_uc_Bj4qs1PScZRzXTH2Ief/view', 6632],
+            ['https://drive.google.com/file/d/11mVla6Y3qLX4pplfnxMavSczJ200_8dl/view', 5233],
+            ['https://drive.google.com/file/d/17fAM9sipu3BPElFpqFrG3ukYahbUEZQJ/view', 4933]
+        ]
+    }
+];
+
+
+
 function getCurrentSecondsSinceMidnight() {
-  const now = new Date();
-  return now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
+    const now = new Date();
+    return now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
+}
+
+function convertToEmbedUrl(url, startSeconds) {
+    const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+    if (ytMatch) {
+        return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&controls=0&disablekb=1&modestbranding=1&rel=0&enablejsapi=1&start=${startSeconds}`;
+    }
+    const driveMatch = url.match(/\/d\/([^/]+)\//);
+    if (driveMatch) {
+        return `https://drive.google.com/file/d/${driveMatch[1]}/preview#t=${startSeconds}s`;
+    }
+    return null;
 }
 
 function livetv() {
-  const SECONDS_PER_EPISODE = 660;
-  let container = document.createElement('div');
-  container.innerHTML = `
-    <style>
-      .channel-wrapper { display: flex; align-items: center; gap: 10px; margin-left: 20px; }
-      .channel-button { font-size: 20px; padding: 10px 20px; border-radius: 10px; border: none; background-color: #333; color: white; cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
-      .channel-button:hover { background-color: #555; transform: scale(1.05); }
-      .channel-label { font-size: 18px; color: #ccc; min-width: 100px; text-align: right; }
-      .channel-status { font-size: 14px; color: #aaa; }
-      .livetv-video-frame { width: 100%; height: 80vh; position: relative; background: black; margin-top: 20px; }
-      .livetv-video-frame iframe { width: 100%; height: 100%; border: none; }
-      .livetv-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: auto; }
-      .livetv-start-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 5; }
-      .livetv-start-btn { font-size: 24px; background: limegreen; border: none; border-radius: 12px; padding: 20px 40px; color: black; cursor: pointer; }
-      .livetv-return-btn { position: fixed; top: 20px; left: 20px; background-color: #ff4444; color: white; border: none; border-radius: 8px; font-size: 16px; padding: 10px 20px; cursor: pointer; z-index: 1000; display: none; }
-    </style>
-    <h1 id="livetv-title" style="color:white;text-align:center;font-size:50px;margin-bottom:20px">Live TV</h1>
-    <h1 id="livetv-subtitle" style="color:cyan;font-size:25px;margin-bottom:20px">ToothTV / Watch LIVE TV in class or at home</h1>
-    <h1 id="livetv-menu-label" style="color:orange;font-size:25px;margin-bottom:20px">Channel Menu</h1>
-    <div id="channelContainer"></div>
-    <div id="videoContainer"></div>
-    <button id="returnButton" class="livetv-return-btn">Return to Menu</button>
-  `;
-  document.body.appendChild(container);
+    const container = document.createElement('div');
+    container.innerHTML = `
+        <style>
+        .channel-button { padding: 10px; margin: 5px; font-size: 18px; cursor: pointer; background: #333; color: white; border-radius: 8px; border: none; }
+        .video-frame { width: 100%; height: 80vh; margin-top: 10px; position: relative; }
+        .video-frame iframe { width: 100%; height: 100%; border: none; }
+        .livetv-start-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); z-index: 2; }
+        .livetv-start-btn { font-size: 24px; background: limegreen; padding: 15px 30px; border-radius: 10px; border: none; cursor: pointer; }
+        </style>
+        <h1 style="text-align:center;color:white;font-size:48px;">Live TV</h1>
+        <div id="channelMenu"></div>
+        <div id="videoContainer"></div>
+    `;
+    document.body.appendChild(container);
 
-  const channelContainer = container.querySelector('#channelContainer');
-  const videoContainer = container.querySelector('#videoContainer');
-  const returnButton = container.querySelector('#returnButton');
-  const title = container.querySelector('#livetv-title');
-  const subtitle = container.querySelector('#livetv-subtitle');
-  const menuLabel = container.querySelector('#livetv-menu-label');
+    const channelMenu = container.querySelector('#channelMenu');
+    const videoContainer = container.querySelector('#videoContainer');
 
-  returnButton.onclick = () => {
-    videoContainer.innerHTML = '';
-    videoContainer.style.display = 'none';
-    returnButton.style.display = 'none';
-    channelContainer.style.display = 'flex';
-    title.style.display = 'block';
-    subtitle.style.display = 'block';
-    menuLabel.style.display = 'block';
-  };
-
-  channelContainer.style.display = 'flex';
-  channelContainer.style.flexDirection = 'column';
-  channelContainer.style.alignItems = 'flex-start';
-  channelContainer.style.gap = '10px';
-
-  channel_list.forEach((channel, index) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'channel-wrapper';
-
-    const label = document.createElement('div');
-    label.className = 'channel-label';
-    label.textContent = `Channel ${index + 1}`;
-
-    const btn = document.createElement('button');
-    btn.className = 'channel-button';
-    btn.textContent = channel.name;
-
-    const nowSeconds = getCurrentSecondsSinceMidnight();
-    const epIndex = Math.floor(nowSeconds / SECONDS_PER_EPISODE) % channel.video_list.length;
-    const nowVideo = channel.video_list[epIndex]?.[0] || 'N/A';
-
-    const status = document.createElement('div');
-    status.className = 'channel-status';
-    status.textContent = `Now Playing: ${nowVideo}`;
-
-    btn.onclick = () => {
-      title.style.display = 'none';
-      subtitle.style.display = 'none';
-      menuLabel.style.display = 'none';
-      channelContainer.style.display = 'none';
-      returnButton.style.display = 'block';
-      videoContainer.style.display = 'block';
-
-      const episodeIndex = Math.floor(getCurrentSecondsSinceMidnight() / SECONDS_PER_EPISODE) % channel.video_list.length;
-      const mirrors = channel.video_list[episodeIndex];
-      let mirrorIndex = 0;
-
-      function loadMirror() {
-        videoContainer.innerHTML = `
-          <div class="livetv-video-frame">
-            <div class="livetv-start-overlay">
-              <button class="livetv-start-btn">Start Channel</button>
-            </div>
-          </div>
-        `;
-        const frameWrapper = videoContainer.querySelector('.livetv-video-frame');
-        const startOverlay = frameWrapper.querySelector('.livetv-start-overlay');
-        const startBtn = frameWrapper.querySelector('.livetv-start-btn');
-
-        startBtn.onclick = () => {
-          const now = getCurrentSecondsSinceMidnight();
-          const startOffset = now % SECONDS_PER_EPISODE;
-          const videoUrl = mirrors[mirrorIndex];
-          const embedUrl = convertToEmbedUrl(videoUrl, startOffset);
-          const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
-
-          startOverlay.remove();
-          frameWrapper.innerHTML = '';
-
-          const iframe = document.createElement('iframe');
-          iframe.src = embedUrl;
-          iframe.allow = 'autoplay; encrypted-media';
-          iframe.allowFullscreen = true;
-          frameWrapper.appendChild(iframe);
-
-          setTimeout(() => {
-            // If video hasn't loaded in ~3.5 seconds, assume failure
-            if (!iframe.contentWindow || iframe.contentWindow.length === 0) {
-              mirrorIndex++;
-              if (mirrorIndex < mirrors.length) {
-                loadMirror();
-              } else {
-                alert('The channel that you tried accessing is currently down. Please try again later.');
-              }
-              return;
+    channel_list.forEach(channel => {
+        const btn = document.createElement('button');
+        btn.className = 'channel-button';
+        btn.textContent = channel.name;
+        btn.onclick = () => {
+            const totalTime = getCurrentSecondsSinceMidnight();
+            let accumulated = 0;
+            let videoIndex = 0;
+            for (let i = 0; i < channel.video_list.length; i++) {
+                const duration = channel.video_list[i][1];
+                if (accumulated + duration > totalTime) {
+                    videoIndex = i;
+                    break;
+                }
+                accumulated += duration;
             }
+            const [url, length] = channel.video_list[videoIndex];
+            const offset = totalTime - accumulated;
+            const embedUrl = convertToEmbedUrl(url, offset);
 
-            const blocker = document.createElement('div');
-            blocker.className = 'livetv-overlay';
-            blocker.style.pointerEvents = 'auto';
-            blocker.style.cursor = 'none';
-            blocker.oncontextmenu = e => e.preventDefault();
-            blocker.onmousedown = e => e.preventDefault();
-            blocker.onkeydown = e => e.preventDefault();
-            frameWrapper.appendChild(blocker);
+            videoContainer.innerHTML = `
+                <div class="video-frame">
+                    <div class="livetv-start-overlay">
+                        <button class="livetv-start-btn">Start Channel</button>
+                    </div>
+                </div>
+            `;
+            const frameWrapper = videoContainer.querySelector('.video-frame');
+            const startOverlay = frameWrapper.querySelector('.livetv-start-overlay');
+            const startBtn = startOverlay.querySelector('.livetv-start-btn');
 
-          }, isYouTube ? 1000 : 3500);
+            startBtn.onclick = () => {
+                startOverlay.remove();
+                frameWrapper.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                setTimeout(() => {
+                    const blocker = document.createElement('div');
+                    blocker.style.position = 'absolute';
+                    blocker.style.top = '0';
+                    blocker.style.left = '0';
+                    blocker.style.width = '100%';
+                    blocker.style.height = '100%';
+                    blocker.style.zIndex = '999';
+                    blocker.style.cursor = 'none';
+                    blocker.oncontextmenu = e => e.preventDefault();
+                    blocker.onmousedown = e => e.preventDefault();
+                    blocker.onmouseup = e => e.preventDefault();
+                    blocker.onkeydown = e => e.preventDefault();
+                    blocker.onpointerdown = e => e.preventDefault();
+                    frameWrapper.appendChild(blocker);
+                }, 2000);
+            };
         };
-      }
-
-      loadMirror();
-    };
-
-    wrapper.appendChild(label);
-    wrapper.appendChild(btn);
-    wrapper.appendChild(status);
-    channelContainer.appendChild(wrapper);
-  });
+        channelMenu.appendChild(btn);
+    });
 }
+
+
+
+
+
+
 
 home();
 </script>
 </html>
+
+
+
+
