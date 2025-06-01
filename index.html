@@ -412,7 +412,7 @@
     <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
     <h1 class="title">Toothpaste</h1>
     <h1 style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;" class="title">NETWORK</h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.6</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
+    <p class="version"><b>WEBSITE VERSION:</b> v2.7</p> <p class="update-status" style="color: white; text-align: center; margin: 10px 0;">Checking for updates...</p> 
     <script> document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
     const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
     if (!versionMatch) return;
@@ -475,9 +475,34 @@
 
     <center class="centered-download">
         <a href="index.html" class="download-button" download="index.html">Download Website</a>
-        <h1 style="font-size: 48px; color: red; background-color: yellow;">PROXY AND LIVE TV ARE UNDER MAINTENANCE COMING BACK IN V2.7</h1>
+        <h1 class="changingtext" style="font-size: 32px;">Loading...</h1>
     </center>
     
+    <script>
+        const text_list = [
+        'whos a good boy',
+        'brush your teeth lil bro',
+        'colgate or crest',
+        'now go play some games',
+        'yeahhhhh good boyy',
+        'john pork',
+        '🗿🗿🗿🗿',
+        'your teeth are yellow',
+        'somebodys watching me its my anxiety',
+        'please dont try with orange juice please'
+    ];
+    const changingTextElem = document.querySelector('h1.changingtext');
+    function changeText() {
+        let currentText = changingTextElem.textContent;
+        let nextText;
+        do {
+            nextText = text_list[Math.floor(Math.random() * text_list.length)];
+        } while(nextText === currentText && text_list.length > 1);
+        changingTextElem.textContent = nextText;
+    }
+    changingTextElem.textContent = text_list[Math.floor(Math.random() * text_list.length)];
+    setInterval(changeText, 3000);
+    </script>
     <script>
         let offline = false;
         if (window.location.href.includes("file")) {
@@ -493,9 +518,9 @@
         <button class="tab" onclick="visit(home);">Home</button>
         <button class="tab" onclick="visit(games);">Games</button>
         <button class="tab" onclick="visit(apps)">Apps</button>
-        <button disabled class="tab" onclick="visit(proxy)">Proxy</button>
+        <button class="tab" onclick="visit(proxy)">Proxy</button>
         <button class="tab" onclick="visit(exploits)">Exploits</button>
-        <button disabled class="tab" onclick="visit(livetv)">Live TV</button>
+        <button class="tab" onclick="visit(livetv)">Live TV</button>
         <button class="tab" onclick="visit(excuses)">Excuses</button>
         <button class="tab" onclick="visit(settings)">Settings</button>
         <button class="tab" onclick="visit(changelog)">Changelog</button>
@@ -541,7 +566,9 @@ function websitePlayer(title, link, description) {
         padding: '20px',
         fontFamily: 'Segoe UI, sans-serif',
         fontWeight: 'bolder',
-        color: '#fff'
+        color: '#fff',
+        height: '100vh',
+        boxSizing: 'border-box'
     });
     document.body.appendChild(containerDiv);
 
@@ -560,7 +587,8 @@ function websitePlayer(title, link, description) {
         fontWeight: 'bold',
         marginBottom: '20px',
         boxShadow: '0 3px 10px rgba(255, 0, 0, 0.4)',
-        transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+        flexShrink: '0'
     });
     reportButton.onmouseover = () => reportButton.style.transform = 'scale(1.05)';
     reportButton.onmouseout = () => reportButton.style.transform = 'scale(1)';
@@ -574,7 +602,10 @@ function websitePlayer(title, link, description) {
         justifyContent: 'center',
         flexWrap: 'wrap',
         gap: '30px',
-        width: '100%'
+        width: '100%',
+        flex: '1',
+        overflow: 'hidden',
+        boxSizing: 'border-box'
     });
     containerDiv.appendChild(gameContainer);
 
@@ -586,7 +617,10 @@ function websitePlayer(title, link, description) {
         padding: '20px',
         boxShadow: '0 0 20px rgba(0, 255, 0, 0.4)',
         width: '300px',
-        flexShrink: '0'
+        flexShrink: '0',
+        boxSizing: 'border-box',
+        overflow: 'auto',
+        maxHeight: 'calc(100vh - 40px)'
     });
 
     const gamePlayerName = document.createElement('h1');
@@ -596,7 +630,7 @@ function websitePlayer(title, link, description) {
         fontSize: '24px',
         marginBottom: '10px',
         fontWeight: 'bolder',
-        backgroundImage: 'linear-gradient(to right, #00BFFF, #00FF7F)', 
+        backgroundImage: 'linear-gradient(to right, #00BFFF, #00FF7F)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent'
     });
@@ -698,7 +732,9 @@ function websitePlayer(title, link, description) {
         height: '600px',
         border: '2px solid white',
         borderRadius: '15px',
-        minWidth: '400px'
+        minWidth: '400px',
+        boxSizing: 'border-box',
+        display: 'block'
     });
     iframe.id = 'game-iframe';
     iframe.src = link.link;
@@ -749,24 +785,38 @@ function websitePlayer(title, link, description) {
         {
             text: 'Mostly Fullscreen',
             onClick: () => {
-                const allElements = document.body.children;
-                for (let i = 0; i < allElements.length; i++) {
-                    if (allElements[i] !== iframe) {
-                        allElements[i].style.display = 'none';
+                Array.from(document.body.children).forEach(el => {
+                    if(el !== containerDiv){
+                        el.style.display = 'none';
                     }
-                }
-                
+                });
+                Object.assign(containerDiv.style, {
+                    width: '100vw',
+                    height: '100vh',
+                    padding: '0',
+                    margin: '0',
+                    overflow: 'hidden',
+                });
+                Object.assign(gameContainer.style, {
+                    flexWrap: 'nowrap',
+                    width: '100%',
+                    height: '100%',
+                    gap: '0',
+                    alignItems: 'stretch',
+                });
+                Object.assign(gamePlayerDiv.style, {
+                    display: 'none'
+                });
                 Object.assign(iframe.style, {
                     width: '100vw',
                     height: '100vh',
                     border: 'none',
                     borderRadius: '0',
+                    display: 'block'
                 });
-                
-                iframe.style.display = 'block';
             }
         }
-            ];
+    ];
 
     buttons.forEach(({ text, onClick }) => {
         const btn = document.createElement('button');
@@ -783,6 +833,8 @@ function websitePlayer(title, link, description) {
     const searchbarElement = document.querySelector('.searchbar');
     if (searchbarElement) searchbarElement.remove();
 }
+
+
 
 
 
@@ -1129,6 +1181,12 @@ const unsortedGameLinks = [
         image: 'https://th.bing.com/th/id/OIP.6MpQ2JYLe_l7AbF22nhNeQHaEK?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://script.google.com/macros/s/AKfycbwP_Yq-kbxfVFhZG15dwseK_MA98gs2wnOgrA4VPJNPbxOTOaLTCiztn-B0xrutwV7F7w/exec',
         description: 'The Backrooms is a chilling survival horror game where players find themselves trapped in an endless maze of eerie, liminal spaces filled with unsettling environments and lurking monsters. As you navigate through various levels, teamwork and strategy are essential to escape the haunting atmosphere and uncover the mysteries within. Prepare for a tense experience that plays on the fear of isolation and the unknown!',
+    },
+    {
+        name: 'Backrooms 2D',
+        image: 'https://selente.myclarevision.com/semag/2d/cover.png',
+        link: 'https://selente.myclarevision.com/semag/2d/index.html',
+        description: 'Backrooms 2D is a tense and atmospheric exploration game where players navigate endless, maze-like rooms filled with eerie ambiance and hidden dangers. With simple 2D graphics and minimalistic controls, the game focuses on survival and uncovering the mysteries of the unsettling Backrooms. Its haunting sound design and suspenseful gameplay create a chilling experience that keeps players on edge.'
     },
     {
         name: 'Hole.io',
@@ -2805,6 +2863,12 @@ const unsortedGameLinks = [
         description: '"Crazy Cattle 3D" is a fun and quirky simulation game where players take on the role of a farmer managing a herd of cattle. The objective is to guide the cows through various challenges and obstacles while ensuring they stay together and avoid dangers. With colorful graphics and engaging gameplay, players can enjoy a lighthearted experience as they navigate the ups and downs of farm life.'
     },
     {
+        name: 'Crazy Chicken 3D',
+        image: 'https://diddyyyyyytttttt.centrodiagnosticogenetico.com/assets/images/crazychicken3d.png',
+        link: 'https://diddyyyyyytttttt.centrodiagnosticogenetico.com/assets/games/crazy-chicken-3d/',
+        description: 'Crazy Chicken 3D is a fun and fast-paced arcade game where players control a quirky chicken navigating through vibrant 3D environments filled with obstacles and challenges. With simple controls and energetic gameplay, the goal is to dodge dangers and collect items while racing against the clock. Its colorful graphics and lively soundtrack make Crazy Chicken 3D an entertaining adventure for players of all ages.'
+    },
+    {
         name: 'Burrito Bison',
         image: 'https://th.bing.com/th/id/OIP.Kr5UB8qQLj4zfGQ3DSlIwQAAAA?rs=1&pid=ImgDetMain&adlt=strict',
         link: 'https://burritobison.gitlab.io/file/',
@@ -2903,7 +2967,7 @@ const unsortedGameLinks = [
     {
         name: 'Black Jack',
         image: 'https://pics.craiyon.com/2023-12-05/SUuJycN_QRWDeAUJpp3l-A.webp',
-        link: 'https://lasvegasdirect.com/blackjack',
+        link: 'https://vcjhwebdev.github.io/blackjack/',
         description: 'Blackjack is a popular card game played between one or more players and a dealer, where the objective is to achieve a hand value as close to 21 as possible without exceeding it. Players are dealt two cards and can choose to "hit" for additional cards or "stand" to keep their current total, while the dealer must follow specific rules for drawing cards. The game combines elements of skill and chance, making it a favorite in casinos worldwide.'
     },
     {
@@ -2953,6 +3017,54 @@ const unsortedGameLinks = [
         image: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/two/cover.png',
         link: 'https://ilikemycheezdrippy.ng.cissp.or.id/semag/two/index.html',
         description: 'Two Ball 3D is an engaging physics-based puzzle game where players control two balls simultaneously, navigating through challenging 3D environments filled with obstacles and traps. The game tests coordination and timing as players must maneuver both balls in sync to reach the goal. With its vibrant graphics and increasingly complex levels, Two Ball 3D offers a fun and brain-teasing experience.'
+    },
+    {
+        name: 'Grand Shift Auto',
+        image: 'https://a.silvergames.com/j/b/grand-shift-auto.jpg',
+        link: 'https://script.google.com/macros/s/AKfycbxU27V9QDRV3l7fjPpRNZYCHQ78CA_MTLrxsjUKylZhIiojp_xdzDN-uMdQ-MJ9FEIlyA/exec',
+        description: 'Grand Shift Auto is an open-world action game inspired by classic gangster-themed titles, where players explore a sprawling city filled with missions, vehicles, and intense combat. Engage in thrilling car chases, complete challenging objectives, and immerse yourself in a dynamic urban environment. With its retro-style graphics and engaging gameplay, Grand Shift Auto offers an exciting sandbox experience for fans of action and adventure.'
+    },
+    {
+        name: 'Grand Theft Grotto',
+        image: 'https://skys.follobusiness.com/semag/gtg/cover.png',
+        link: 'https://skys.follobusiness.com/semag/gtg/index.html',
+        description: 'Grand Theft Grotto is an action-packed open-world game where players explore a vibrant city filled with missions, vehicles, and chaotic gameplay reminiscent of classic crime adventures. Engage in daring heists, intense shootouts, and thrilling car chases as you rise through the ranks of the criminal underworld. With colorful graphics and dynamic environments, Grand Theft Grotto offers an exciting sandbox experience for fans of open-world games.'
+    },
+    {
+        name: 'GTA 1',
+        image: 'https://th.bing.com/th/id/OIP.tBLoRw1i_qwCUmsNJ6GSyQHaJS?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://skys.follobusiness.com/semag/gta1/index.html',
+        description: 'Grand Theft Auto 1, released in 1997, is the inaugural title in the iconic Grand Theft Auto series. This top-down, open-world action-adventure game allows players to take on the role of a criminal in a fictional city, completing various missions to earn money and rise through the ranks of the criminal underworld. Players can steal cars, engage in shootouts, and navigate through a vibrant, pixelated world filled with pedestrians and law enforcement. Its innovative gameplay and freedom of exploration laid the groundwork for the expansive and immersive experiences found in later installments of the series.'
+    },
+    {
+        name: 'GTA 2',
+        image: 'https://th.bing.com/th/id/OIP.4vsQ6rBKTlvHRJPH5-Y6gAHaJJ?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://skys.follobusiness.com/semag/gta2/index.html',
+        description: 'Grand Theft Auto 2 is a top-down action game set in a futuristic city where players take on the role of a criminal completing missions for various gangs. It expanded on its predecessor with a dynamic day-night cycle, multiple districts, and more complex gameplay mechanics. The game offers players freedom to explore, cause mayhem, and shape their criminal reputation.'
+    },
+    {
+        name: 'GTA: Advance',
+        image: 'https://th.bing.com/th/id/OIP.a1kkdp0kjUgL-lfL4iJehAHaHa?rs=1&pid=ImgDetMain&adlt=strict',
+        link: 'https://skys.follobusiness.com/semag/advgta/index.html',
+        description: 'GTA: Advance is a top-down action-adventure game for the Game Boy Advance that brings the classic Grand Theft Auto experience to handheld consoles. Players navigate the fictional city of Liberty City, completing missions, stealing vehicles, and engaging in chaotic open-world gameplay. With its compact design and familiar mechanics, GTA: Advance delivers a portable taste of the franchise’s iconic crime-filled action.'
+    },
+    {
+        name: 'A Dark Room',
+        image: 'https://skys.follobusiness.com/semag/adarkroom/favicon.ico',
+        link: 'https://skys.follobusiness.com/semag/adarkroom/index.html',
+        description: 'A Dark Room is a minimalist, text-based adventure game that begins with stoking a fire in a dark room and gradually unfolds into a deep story of survival and exploration. Players gather resources, build structures, and uncover mysteries in a haunting, atmospheric world. Its simple interface hides a rich narrative and strategic gameplay that keeps players intrigued from start to finish.'
+    },
+    {
+        name: 'Bike Champ',
+        image: 'https://selente.myclarevision.com/semag/bikechamp/logo.png',
+        link: 'https://selente.myclarevision.com/semag/bikechamp/index.html',
+        description: 'Bike Champ is an exciting racing game that focuses on motorcycle racing and stunts. Players can choose from a variety of bikes and compete in different tracks, performing tricks and maneuvers to gain points and boost their speed. With vibrant graphics and engaging gameplay, Bike Champ offers a thrilling experience for racing enthusiasts, allowing them to challenge themselves and others in high-speed competitions.'
+    },
+    {
+        name: 'Bike Champ 2',
+        image: 'https://selente.myclarevision.com/semag/bikechamp2/logo.jpg',
+        link: 'https://selente.myclarevision.com/semag/bikechamp2/index.html',
+        description: 'Bike Champ 2 is a sequel to the popular motorcycle racing game, offering enhanced graphics, improved physics, and new gameplay features. Players can race on a variety of tracks, perform stunts, and customize their bikes for a more personalized experience. With a focus on competitive racing and skillful maneuvers, Bike Champ 2 provides an exhilarating experience for fans of motorcycle games, allowing them to challenge friends and climb leaderboards.'
     }
 
 ];
@@ -2997,7 +3109,7 @@ function home() {
     document.body.appendChild(title);
 
     let description = document.createElement('p');
-    description.textContent = 'Welcome to Toothpaste Network';
+    description.textContent = 'Welcome to Toothpaste Network (scroll down for poll)';
     description.style.color = 'white'; 
     description.style.textAlign = 'center'; 
     description.style.fontSize = '30px';
@@ -3029,6 +3141,59 @@ function home() {
         update_button.style.transform = 'scale(1)';
     };
     document.body.appendChild(update_button);
+
+    const polltitletext = document.createElement('h1')
+    polltitletext.textContent = 'POLL:';
+    polltitletext.style.fontSize = '48px'
+    polltitletext.style.textAlign = 'center'
+    document.body.appendChild(polltitletext)
+
+    const question = document.createElement('h1')
+    question.textContent = 'Should we change our logo?';
+    question.style.fontSize = '32px'
+    question.style.textAlign = 'center'
+    document.body.appendChild(question)
+
+    const currentLogoText = document.createElement('h1')
+    currentLogoText.textContent = 'CURRENT LOGO:';
+    currentLogoText.style.fontSize = '32px'
+    currentLogoText.style.textAlign = 'center'
+    document.body.appendChild(currentLogoText)
+
+    const currentLogo = document.createElement('img');
+    currentLogo.src = 'https://raw.githubusercontent.com/toothpastenetwork/toothpastenetwork.github.io/refs/heads/main/toothpastenetworklogo.png';
+    currentLogo.style.display = 'block';
+    currentLogo.style.margin = '0 auto';
+    currentLogo.style.width = '500px';
+    currentLogo.style.height = '300px';
+    currentLogo.style.border = '2px yellow solid'
+    document.body.appendChild(currentLogo);
+
+    const fanArtLogoText = document.createElement('h1')
+    fanArtLogoText.textContent = 'WHAT 6TH GRADE JACK MADE:';
+    fanArtLogoText.style.fontSize = '32px'
+    fanArtLogoText.style.textAlign = 'center'
+    document.body.appendChild(fanArtLogoText)
+
+    const fanArtLogo = document.createElement('img')
+    fanArtLogo.src = 'https://raw.githubusercontent.com/toothpastenetwork/toothpastenetwork.github.io/refs/heads/main/WIN_20250601_09_44_23_Pro.jpg';
+    fanArtLogo.style.display = 'block';
+    fanArtLogo.style.margin = '0 auto';
+    fanArtLogo.style.width = '500px';
+    fanArtLogo.style.height = '300px';
+    fanArtLogo.style.border = '2px yellow solid'
+    document.body.appendChild(fanArtLogo);
+
+    const voteLink = document.createElement('a')
+    voteLink.href = 'https://forms.gle/7YfYbfwZ21tuCius7'
+    voteLink.textContent = 'CLICK HERE TO VOTE'
+    voteLink.style.display = 'block'
+    voteLink.style.textAlign = 'center'
+    voteLink.style.fontSize = '48px'
+    voteLink.style.textDecoration = 'underline'
+    document.body.appendChild(voteLink);
+
+
 }
 
 function games() {
@@ -3193,12 +3358,6 @@ const app_list = [
         description: 'A description isn\'t available for this app.'
     },
     {
-        name: 'Blackbox AI',
-        link: 'https://blackbox.ai',
-        image: 'https://play-lh.googleusercontent.com/Z_fquqqNzAd8FkpSjlnURnMtmLh8HRf_h_kIwhs0NbXKpO4WZ_fyZfi0f5yQsNmRL_lP',
-        description: 'Blackbox AI is an online artificial intelligence system that utilizes complex algorithms to process data and make decisions without revealing its internal workings. It operates in a way that users can input data and receive outputs, but the reasoning behind those outputs remains opaque. This characteristic can lead to challenges in understanding and trusting the AI\'s decisions, as users cannot easily discern how the AI arrived at its conclusions.'
-    },
-    {
         name: 'Windows 11',
         link: 'https://scratch.mit.edu/projects/929570102/embed',
         image: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/abfa1d55-5135-4daf-850c-7806f8161fe0/dgc7kbn-2b5add77-4bfa-48dd-b981-9ec9485f5d38.png/v1/fill/w_894,h_894/windows_11_logo_by_usertz_dgc7kbn-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAyNCIsInBhdGgiOiJcL2ZcL2FiZmExZDU1LTUxMzUtNGRhZi04NTBjLTc4MDZmODE2MWZlMFwvZGdjN2tibi0yYjVhZGQ3Ny00YmZhLTQ4ZGQtYjk4MS05ZWM5NDg1ZjVkMzgucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.ByWLL_W4JAcAAKPrOjaR1380Lpm9rfkbUqdTSmil4pA',
@@ -3221,12 +3380,6 @@ const app_list = [
         link: 'https://oleksandrchernokolov.github.io/Calculator/',
         image: 'https://ilikemycheezdrippy.ng.cissp.or.id/sppa/calc/cover.svg',
         description: 'A calculator is a device or software application used to perform mathematical calculations, ranging from basic arithmetic operations like addition, subtraction, multiplication, and division to more complex functions such as exponentiation, square roots, and trigonometric calculations. Calculators come in various forms, including handheld devices, desktop applications, and online tools, each designed to cater to different user needs. Scientific calculators offer advanced features for higher-level mathematics, while graphing calculators can plot functions and analyze data visually. With the advent of smartphones, many users now rely on calculator apps that provide a convenient and versatile way to perform calculations on the go.'
-    },
-    {
-        name: 'TikTok',
-        link: 'https://blockzone.github.io/active/iframe.html#https://tiktok.com',
-        image: 'https://th.bing.com/th/id/R.f6c8998e519d8da5734348e5e4422960?rik=cdSp1lSoxgsLcQ&pid=ImgRaw&r=0&adlt=strict',
-        description: 'TikTok is a popular social media platform that allows users to create, share, and discover short videos, typically set to music or sound bites. The app features a variety of editing tools and effects, enabling users to express their creativity through dance, comedy, and various challenges. TikTok\'s algorithm curates personalized feeds, keeping users engaged with content that aligns with their interests. Its vibrant community fosters trends and viral content, making it a hub for entertainment and self-expression.'
     }
 ]
 
@@ -3404,6 +3557,7 @@ function changelog() {
     document.body.appendChild(title);
 
     const versions = [
+        { version: 'version v2.7 (6/1/2025):', content: ['Fixed some games', 'Added 10 games', 'Added proxy and Live TV back!', 'Added 2 Live TV channels', 'Improve Live TV GUI and functionality', 'Removed 2 apps', 'Added random captions because why not', 'Added poll', 'Fixed "Mostly Fullscreen" button'] },
         { version: 'version v2.6 (5/26/2025):', content: ['Added Excuses', 'Live TV and proxy under maintenance', 'Slight style change (made buttons rounder)', 'Added 1 exploit', 'Added 10 games', 'Fixed some games'] },
         { version: 'version v2.5 (5/11/2025):', content: ['Exploits tab is here. Added 5 exploits', 'Small bug fixes (eagler works now)', 'Added LIVE TV (3 channels)', 'Fixed some games', 'Added 10 games'] },
         { version: 'version v2.4 (4/29/2025):', content: ['Fixed a lot of games', 'Looooooong search bar (davis accidently made it better LMAO)', 'Proxy is back', 'Added 10 games'] },
@@ -3898,70 +4052,6 @@ function excuses() {
     });
 }
 
-// const channel_list = [
-//     { 
-//         name: 'Nickelodean', 
-//         video_list: [
-//             ['https://drive.google.com/file/d/1yJbdgmU06Ri5aZiCmDiwheUFO3OmwN7k/view'], // 3:05:05 = 11105 seconds 
-//             ['https://drive.google.com/file/d/1WFgX9d6y8zXW9KyMys-wm9kTLir9ItRq/view?t=1'], // 3:05:41 = 11141 seconds
-//             ['https://drive.google.com/file/d/1wVkSBuN7mKzC8-qgT_IDfhUgV3-3e_Ks/view'], // 3:08:08 = 11388 seconds
-//             ['https://drive.google.com/file/d/1XcmJ1w3cjqVxDuoiyEZlizj98ROxX_-2/view?t=1'], // 3:07:41 = 11261 seconds
-//             ['https://drive.google.com/file/d/1Knvr5NsVPYBA-GOd8BnVIQwSkEXCa13r/view?t=1'], // 2:51:00 = 10260 seconds
-//             ['https://drive.google.com/file/d/1YdWsjNc14Nm4CP9LoyfO1fNsLaitWHK_/view?t=4'], // 3:06:44 = 11404 seconds
-//             ['https://drive.google.com/file/d/1RHaMCknWFBOAv8ULLYmRrjhMe4wwHPxv/view?t=4'], // 3:07:03 = 11223 seconds
-//             ['https://drive.google.com/file/d/1QC8SniCSrkKiNvJ_8zVx_4MH-VkAm73x/view?t=4'], // 3:03:00 = 10980 seconds
-//             ['https://drive.google.com/file/d/1uvHqpbl4WfuSngN8ESwFvGPfcxlHmb27/view?t=2'], // 3:01:04 = 10864 seconds
-//             ['https://drive.google.com/file/d/1i7Fdq8ZH1s5Re5RRY0ZGPBabQccp4Qe9/view'], // 3:07:43 = 11263 seconds
-//             ['https://drive.google.com/file/d/1hU9zhDTBVo_TCtEEhS-bEI_FON7QCBRh/view?t=1'], // 3:04:16 = 11056 seconds
-//             ['https://drive.google.com/file/d/1Qk-_EDgXWQ1TGv6oCqo0z56pE0dbhCju/view?t=1'], // 2:19:17 = 8357 seconds
-//             ['https://drive.google.com/file/d/1NDzZ9ACU-_uc_Bj4qs1PScZRzXTH2Ief/view'], // 1:50:32 = 6632 seconds
-//             ['https://drive.google.com/file/d/11mVla6Y3qLX4pplfnxMavSczJ200_8dl/view'], // 1:27:13 = 5233 seconds
-//             ['https://drive.google.com/file/d/17fAM9sipu3BPElFpqFrG3ukYahbUEZQJ/view'] // 1:22:13 = 4933 seconds
-//         ]
-//     },
-//     { 
-//         name: 'Disney', video_list: [
-//             ['https://drive.google.com/file/d/1d9oOHmblAV1B39oQB86N91NZFqschhyh/view?t=5'], 
-//             ['https://drive.google.com/file/d/1QTTpUEs2AlSpZkBNr7_KtS9HJRO1DCVf/view?t=25'], 
-//             ['https://drive.google.com/file/d/1puXyyC1VB33QzFZujt59SsGdATkXQP1n/view?t=1'], 
-//             ['https://drive.google.com/file/d/1gR46JP8yL7-t0F--rGI3z7PmQ0YRCf1J/view?t=1'], 
-//             ['https://drive.google.com/file/d/1G9zeBbjyeQqrtWT9pbo7YnO8X_67Fctl/view'],
-//             ['https://drive.google.com/file/d/1cGlGCaw_ZohCosnrgP2Rl7fUfqyRFIqp/view'],
-//             ['https://drive.google.com/file/d/11t4iIBE1NVWJkGJY71vxydeUWVIBQEr0/view?t=2'],
-//             ['https://drive.google.com/file/d/1SVJArVFy0CESngzrpt2K1w4uhVNTijYv/view'],
-//             ['https://drive.google.com/file/d/15b5oDAj-Y2_i_CqXpBw2fdcAYpWL4_65/view'],
-//             ['https://drive.google.com/file/d/1_TGbxnWLug6Qi87YsvJKCUlmZQFTpLbY/view?t=1'],
-//             ['https://drive.google.com/file/d/1X0Bm_RMDC6tG9TZCG5l0XKqw5_zZKlU9/view'],
-//             ['https://drive.google.com/file/d/1bOj15wsnciNgTK84XPswWOK2lEaUJ9nh/view'],
-//             ['https://drive.google.com/file/d/1-jy8kbPcYm38MHTirmuLZogRNQmQaHHV/view'],
-//             ['https://drive.google.com/file/d/1Jt61oDMaWqvi2xn1mzBwEm1o15H62zd_/view'],
-//             ['https://drive.google.com/file/d/1BlP3jLrDvxw__X3-kuqMY7GJr96M2pY3/view'],
-//             ['https://drive.google.com/file/d/1DGrUG9FO7SPsKcOxpTweJXwj5z8PNOci/view?t=1'],
-//             ['https://drive.google.com/file/d/1iVJq1FsNG577gesP7CaTWPLgdqAtnaEg/view'],
-//         ] 
-//     },
-//     { 
-//         name: 'FOX News', video_list: [
-//         ['https://www.youtube.com/watch?v=YDfiTGGPYCk']
-//         ] 
-//     },
-//     {
-//         name: 'Top Movies', video_list: [
-//         ['https://drive.google.com/file/d/1BCjXSK36CUtORR-yS_pYeCGNBlzTsC0h/view?t=3'],
-//         ['https://drive.google.com/file/d/1TgEV9AykxchfLMZ4zB4jJhSKKW5f9xRL/view?t=3'],
-//         ['https://drive.google.com/file/d/1dDZWmuI8_dw_-XV5jBe3gBN-1uIGxyPn/view?t=1'],
-//         ['https://drive.google.com/file/d/1Uj5yjxE0rkI0dJjciYo1ddkd7sknUIHv/view?t=1'],
-//         ['https://drive.google.com/file/d/1lLZQm6W5z5QW3IBhbkMcENZfTOBQWtwa/view?t=3'],
-//         ['https://drive.google.com/file/d/1siki1wYP3LpfjFpUT8Z9lJuJzl7MdBhX/view?t=2'],
-//         ['https://drive.google.com/file/d/1OyO1OdhtfwR883Uvi0QPP5iooGcxTVSY/view']
-//         ]
-//     },
-//     {
-//         name: 'Boxing', video_list: [
-//             ['https://drive.google.com/file/d/1z_SQU-8-fE-GDUrOAjWZBEhVPlRE7Bra/view']
-//         ]
-//     }
-// ];
 
 const channel_list = [
     {
@@ -3983,6 +4073,53 @@ const channel_list = [
             ['https://drive.google.com/file/d/11mVla6Y3qLX4pplfnxMavSczJ200_8dl/view', 5233],
             ['https://drive.google.com/file/d/17fAM9sipu3BPElFpqFrG3ukYahbUEZQJ/view', 4933]
         ]
+    },
+    {
+        name: 'Disney',
+        video_list: [
+            ['https://drive.google.com/file/d/1d9oOHmblAV1B39oQB86N91NZFqschhyh/view?t=5&pli=1', 1265],
+            ['https://drive.google.com/file/d/1QTTpUEs2AlSpZkBNr7_KtS9HJRO1DCVf/view?t=25', 1293],
+            ['https://drive.google.com/file/d/1puXyyC1VB33QzFZujt59SsGdATkXQP1n/view?t=1', 1316],
+            ['https://drive.google.com/file/d/1gR46JP8yL7-t0F--rGI3z7PmQ0YRCf1J/view?t=1', 1340],
+            ['https://drive.google.com/file/d/1G9zeBbjyeQqrtWT9pbo7YnO8X_67Fctl/view', 1232],
+            ['https://drive.google.com/file/d/1cGlGCaw_ZohCosnrgP2Rl7fUfqyRFIqp/view', 1355],
+            ['https://drive.google.com/file/d/11t4iIBE1NVWJkGJY71vxydeUWVIBQEr0/view?t=2', 1325],
+            ['https://drive.google.com/file/d/1SVJArVFy0CESngzrpt2K1w4uhVNTijYv/view', 1355],
+            ['https://drive.google.com/file/d/15b5oDAj-Y2_i_CqXpBw2fdcAYpWL4_65/view', 1295],
+            ['https://drive.google.com/file/d/1_TGbxnWLug6Qi87YsvJKCUlmZQFTpLbY/view?t=1', 1353],
+            ['https://drive.google.com/file/d/1X0Bm_RMDC6tG9TZCG5l0XKqw5_zZKlU9/view', 1299],
+            ['https://drive.google.com/file/d/1bOj15wsnciNgTK84XPswWOK2lEaUJ9nh/view', 1295],
+            ['https://drive.google.com/file/d/1-jy8kbPcYm38MHTirmuLZogRNQmQaHHV/view', 1299],
+            ['https://drive.google.com/file/d/1Jt61oDMaWqvi2xn1mzBwEm1o15H62zd_/view', 1343],
+            ['https://drive.google.com/file/d/1BlP3jLrDvxw__X3-kuqMY7GJr96M2pY3/view', 1400],
+            ['https://drive.google.com/file/d/1DGrUG9FO7SPsKcOxpTweJXwj5z8PNOci/view?t=1', 1445],
+            ['https://drive.google.com/file/d/1iVJq1FsNG577gesP7CaTWPLgdqAtnaEg/view', 5982]
+        ] 
+    },
+    {
+        name: 'FOX News',
+        video_list: [
+            ['https://www.youtube.com/watch?v=YDfiTGGPYCk']
+        ]
+    },
+    {
+        name: 'Top Movies',
+        video_list: [
+            ['https://drive.google.com/file/d/1Hd98_27UNxYQvvqqOjmHC_25S6VG8UG9/view', 5756],
+            ['https://drive.google.com/file/d/1TgEV9AykxchfLMZ4zB4jJhSKKW5f9xRL/view?t=3', 5700],
+            ['https://drive.google.com/file/d/1dDZWmuI8_dw_-XV5jBe3gBN-1uIGxyPn/view?t=1', 5825],
+            ['https://drive.google.com/file/d/1Uj5yjxE0rkI0dJjciYo1ddkd7sknUIHv/view?t=1', 7283],
+            ['https://drive.google.com/file/d/1lLZQm6W5z5QW3IBhbkMcENZfTOBQWtwa/view?t=3', 6617],
+            ['https://drive.google.com/file/d/1siki1wYP3LpfjFpUT8Z9lJuJzl7MdBhX/view?t=2', 5662],
+            ['https://drive.google.com/file/d/1OyO1OdhtfwR883Uvi0QPP5iooGcxTVSY/view', 6559]
+        ]
+    },
+    {
+        name: 'Boxing',
+        video_list: [
+            ['https://drive.google.com/file/d/1z_SQU-8-fE-GDUrOAjWZBEhVPlRE7Bra/view', 17023]
+        ]
+
     }
 ];
 
@@ -4008,17 +4145,111 @@ function convertToEmbedUrl(url, startSeconds) {
 function livetv() {
     const container = document.createElement('div');
     container.innerHTML = `
-        <style>
-        .channel-button { padding: 10px; margin: 5px; font-size: 18px; cursor: pointer; background: #333; color: white; border-radius: 8px; border: none; }
-        .video-frame { width: 100%; height: 80vh; margin-top: 10px; position: relative; }
-        .video-frame iframe { width: 100%; height: 100%; border: none; }
-        .livetv-start-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); z-index: 2; }
-        .livetv-start-btn { font-size: 24px; background: limegreen; padding: 15px 30px; border-radius: 10px; border: none; cursor: pointer; }
-        </style>
-        <h1 style="text-align:center;color:white;font-size:48px;">Live TV</h1>
+    <style>
+        body {
+            margin: 0;
+            color: white;
+        }
+
+        .livetv-container {
+            padding: 20px;
+        }
+
+        .livetv-header {
+            font-size: 48px;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 30px;
+        }
+
+        #channelMenu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 0 10px;
+        }
+
+        .channel-button {
+            padding: 20px;
+            font-size: 20px;
+            text-align: center;
+            background: #111;
+            color: #00f6ff;
+            border: 2px solid #00f6ff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 246, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .channel-button:hover {
+            background: #00f6ff;
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 246, 255, 0.9);
+        }
+
+        #videoContainer {
+            margin-top: 40px;
+            position: relative;
+            width: 100%;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 75vh;
+            position: relative;
+            border: 3px solid #00f6ff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 246, 255, 0.5);
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .livetv-start-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.75);
+            z-index: 2;
+        }
+
+        .livetv-start-btn {
+            font-size: 26px;
+            background: #00ff6a;
+            padding: 18px 40px;
+            border-radius: 14px;
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px limegreen;
+            transition: 0.2s ease-in-out;
+        }
+
+        .livetv-start-btn:hover {
+            background: limegreen;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <div class="livetv-container">
+        <div class="livetv-header">Menu</div>
         <div id="channelMenu"></div>
         <div id="videoContainer"></div>
+    </div>
     `;
+
     document.body.appendChild(container);
 
     const channelMenu = container.querySelector('#channelMenu');
@@ -4032,18 +4263,26 @@ function livetv() {
             const totalTime = getCurrentSecondsSinceMidnight();
             let accumulated = 0;
             let videoIndex = 0;
-            for (let i = 0; i < channel.video_list.length; i++) {
-                const duration = channel.video_list[i][1];
-                if (accumulated + duration > totalTime) {
+            let offset = 0;
+
+            const videos = channel.video_list;
+
+            const playlistDuration = videos.reduce((sum, [_, dur]) => sum + dur, 0);
+            const effectiveTime = totalTime % playlistDuration;
+
+            for (let i = 0; i < videos.length; i++) {
+                const duration = videos[i][1];
+                if (accumulated + duration > effectiveTime) {
                     videoIndex = i;
+                    offset = effectiveTime - accumulated;
                     break;
                 }
                 accumulated += duration;
             }
-            const [url, length] = channel.video_list[videoIndex];
-            const offset = totalTime - accumulated;
-            const embedUrl = convertToEmbedUrl(url, offset);
 
+            const [url, length] = videos[videoIndex];
+            const embedUrl = convertToEmbedUrl(url, offset);
+            
             videoContainer.innerHTML = `
                 <div class="video-frame">
                     <div class="livetv-start-overlay">
@@ -4051,6 +4290,7 @@ function livetv() {
                     </div>
                 </div>
             `;
+
             const frameWrapper = videoContainer.querySelector('.video-frame');
             const startOverlay = frameWrapper.querySelector('.livetv-start-overlay');
             const startBtn = startOverlay.querySelector('.livetv-start-btn');
@@ -4058,7 +4298,14 @@ function livetv() {
             startBtn.onclick = () => {
                 startOverlay.remove();
                 frameWrapper.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-                setTimeout(() => {
+
+                let blockerActivated = false;
+                let lastMouseMove = Date.now();
+
+                const activateBlocker = () => {
+                    if (blockerActivated) return;
+                    blockerActivated = true;
+
                     const blocker = document.createElement('div');
                     blocker.style.position = 'absolute';
                     blocker.style.top = '0';
@@ -4073,9 +4320,25 @@ function livetv() {
                     blocker.onkeydown = e => e.preventDefault();
                     blocker.onpointerdown = e => e.preventDefault();
                     frameWrapper.appendChild(blocker);
-                }, 2000);
+                };
+
+                const mouseMoveListener = () => {
+                    lastMouseMove = Date.now();
+                };
+
+                frameWrapper.addEventListener('mousemove', mouseMoveListener);
+
+                const idleCheck = setInterval(() => {
+                    if (Date.now() - lastMouseMove > 4000) {
+                        clearInterval(idleCheck);
+                        frameWrapper.removeEventListener('mousemove', mouseMoveListener);
+                        activateBlocker();
+                    }
+                }, 500);
             };
+
         };
+
         channelMenu.appendChild(btn);
     });
 }
@@ -4092,4 +4355,8 @@ home();
 
 
 
+
+
+
+ 
 
