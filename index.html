@@ -419,21 +419,51 @@
     </style>
   </head>
   <body>
-    <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
-    <h1 class="title">Toothpaste</h1>
-    <h1
-      style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;"
-      class="title"
-    >
-      NETWORK
-    </h1>
-    <p class="version"><b>WEBSITE VERSION:</b> v2.8</p>
-    <p
-      class="update-status"
-      style="color: white; text-align: center; margin: 10px 0;"
-    >
-      Checking for updates...
-    </p>
+    <div class="website" style="display: none;">
+      <a class="panicbutton" onclick="activate_panicbutton()">Panic Button</a>
+      <h1 class="title">Toothpaste</h1>
+      <h1
+        style="text-align: center; color: white; font-weight: bold; letter-spacing: 5px; font-size: 30px;"
+        class="title"
+      >
+        NETWORK
+      </h1>
+      <p class="version"><b>WEBSITE VERSION:</b> v2.8</p>
+      <p
+        class="update-status"
+        style="color: white; text-align: center; margin: 10px 0;"
+      >
+        Checking for updates...
+      </p>
+
+      <center class="adCenter">
+        <iframe
+          id="docIframe"
+          width="800"
+          height="150"
+          style="border: 2px yellow solid;"
+        ></iframe>
+      </center>
+
+      <center class="centered-download">
+        <a href="index.html" class="download-button" download="index.html"
+          >Download Website</a
+        >
+        <h1 class="changingtext" style="font-size: 32px;">Loading...</h1>
+      </center>
+
+      <div class="tabs">
+        <button class="tab" onclick="visit(home);">Home</button>
+        <button class="tab" onclick="visit(games);">Games</button>
+        <button class="tab" onclick="visit(apps)">Apps</button>
+        <button class="tab" onclick="visit(proxy)">Proxy</button>
+        <button class="tab" onclick="visit(exploits)">Exploits</button>
+        <button class="tab" onclick="visit(livetv)">Live TV</button>
+        <button class="tab" onclick="visit(excuses)">Excuses</button>
+        <button class="tab" onclick="visit(settings)">Settings</button>
+        <button class="tab" onclick="visit(changelog)">Changelog</button>
+      </div>
+    </div>
     <script>
       document.addEventListener('DOMContentLoaded', () => { const versionElement = document.querySelector('.version'); const statusElement = document.querySelector('.update-status'); if (!versionElement) return;
          const versionMatch = versionElement.textContent.match(/v\d+\.\d+/);
@@ -495,15 +525,6 @@
       })();
     </script>
 
-    <center class="adCenter">
-      <iframe
-        id="docIframe"
-        width="800"
-        height="150"
-        style="border: 2px yellow solid;"
-      ></iframe>
-    </center>
-
     <script>
       const docID = "15pS7jkF3Q9avR-OqfQkoMtdLKCrhsKEfApP4SKSySF4";
 
@@ -521,14 +542,51 @@
           .catch(error => console.error('Error fetching the document:', error));
     </script>
 
-    <center class="centered-download">
-      <a href="index.html" class="download-button" download="index.html"
-        >Download Website</a
-      >
-      <h1 class="changingtext" style="font-size: 32px;">RIP HARRISON AND KEVIN 🕊🕊😭😭😢</h1>
-    </center>
+    <script>
+          const text_list = [
+          'whos a good boy',
+          'brush your teeth lil bro',
+          'colgate or crest',
+          'now go play some games',
+          'yeahhhhh good boyy',
+          'john pork',
+          '🗿🗿🗿🗿',
+          'your teeth are yellow',
+          'somebodys watching me its my anxiety',
+          'please dont try with orange juice please',
+          'oil up',
+          'chicken jockey',
+          'warning: dentist appointments are closer than they appear',
+          'why are you reading this',
+          'did you brush your teeth today',
+          'also use mouthwash',
+          'why',
+          'i am steve',
+          'the missile knows where it is at all times',
+          'potato chips',
+          'you just read something',
+          'it says gullible on the ceiling',
+          'pull some girls bruh',
+          'you stinky',
+          'wear deoderant not eat it',
+          'look behind u',
+          'you look like a minecraft dirt block',
+          'close ur blinds',
+          'your mom',
 
-    
+      ];
+      const changingTextElem = document.querySelector('h1.changingtext');
+      function changeText() {
+          let currentText = changingTextElem.textContent;
+          let nextText;
+          do {
+              nextText = text_list[Math.floor(Math.random() * text_list.length)];
+          } while(nextText === currentText && text_list.length > 1);
+          changingTextElem.textContent = nextText;
+      }
+      changingTextElem.textContent = text_list[Math.floor(Math.random() * text_list.length)];
+      setInterval(changeText, 3000);
+    </script>
     <script>
       let offline = false;
       if (window.location.href.includes("file")) {
@@ -539,18 +597,6 @@
           }
       }
     </script>
-
-    <div class="tabs">
-      <button class="tab" onclick="visit(home);">Home</button>
-      <button class="tab" onclick="visit(games);">Games</button>
-      <button class="tab" onclick="visit(apps)">Apps</button>
-      <button class="tab" onclick="visit(proxy)">Proxy</button>
-      <button class="tab" onclick="visit(exploits)">Exploits</button>
-      <button class="tab" onclick="visit(livetv)">Live TV</button>
-      <button class="tab" onclick="visit(excuses)">Excuses</button>
-      <button class="tab" onclick="visit(settings)">Settings</button>
-      <button class="tab" onclick="visit(changelog)">Changelog</button>
-    </div>
   </body>
   <script>
     let panicButtonLink = 'https://www.classroom.google.com';
@@ -569,13 +615,8 @@
         const elements = document.body.children;
         for (let i = elements.length - 1; i >= 0; i--) {
             const element = elements[i];
-            if (!element.classList.contains('panicbutton') &&
-                !element.classList.contains('title') &&
-                !element.classList.contains('tabs') &&
-                !element.classList.contains('centered-download') &&
-                !element.classList.contains('update-status') &&
-                !element.classList.contains('adCenter') &&
-                !element.classList.contains('version')) {
+            if (
+                !element.classList.contains('website')) {
                 element.remove();
             }
         }
@@ -4585,12 +4626,283 @@
 
 
 
+    let stealthstuff;
 
+    function stealth() {
+        document.body.style.backgroundColor = "#1d1d1d";
+        document.body.style.fontFamily = "'Montserrat', sans-serif";
+        document.body.style.display = 'block';
+        document.body.style.padding = '0';
+        document.body.style.color = 'white';
 
+        stealthstuff = document.createElement('div');
+        document.body.appendChild(stealthstuff);
 
-    home();
+        let stealthtitle = document.createElement('h1');
+        stealthtitle.textContent = 'Stealth Settings to stay undercover during class';
+        stealthtitle.style.color = 'white';
+        stealthtitle.style.textAlign = 'center';
+        stealthtitle.style.fontSize = '32px';
+        stealthstuff.appendChild(stealthtitle);
+
+        let checkboxLabel = document.createElement('label');
+        checkboxLabel.textContent = 'Enable about:blank cloaking (hides website link)';
+        checkboxLabel.style.color = 'white';
+        checkboxLabel.style.fontSize = '20px';
+        checkboxLabel.style.display = 'block';
+        checkboxLabel.style.textAlign = 'center';
+        checkboxLabel.style.margin = '20px 0';
+
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.style.transform = 'scale(1.5)';
+        checkbox.style.marginRight = '10px';
+
+        checkboxLabel.prepend(checkbox);
+        stealthstuff.appendChild(checkboxLabel);
+
+        let continueButton = document.createElement('button');
+        continueButton.textContent = 'Continue';
+        continueButton.style.color = 'white';
+        continueButton.style.fontSize = '32px';
+        continueButton.style.textAlign = 'center';
+        continueButton.style.padding = '16px 48px';
+        continueButton.style.background = 'linear-gradient(45deg, #28a745, #218838)';
+        continueButton.style.border = 'none';
+        continueButton.style.borderRadius = '30px';
+        continueButton.style.cursor = 'pointer';
+        continueButton.style.boxShadow = '0 8px 15px rgba(33, 136, 56, 0.4)';
+        continueButton.style.display = 'block';
+        continueButton.style.margin = '0 auto 20px auto';
+        continueButton.style.transition = 'all 0.3s ease';
+
+        continueButton.onmouseover = () => {
+            continueButton.style.background = 'linear-gradient(45deg, #218838, #28a745)';
+            continueButton.style.boxShadow = '0 12px 20px rgba(33, 136, 56, 0.6)';
+            continueButton.style.transform = 'translateY(-3px)';
+        };
+        continueButton.onmouseout = () => {
+            continueButton.style.background = 'linear-gradient(45deg, #28a745, #218838)';
+            continueButton.style.boxShadow = '0 8px 15px rgba(33, 136, 56, 0.4)';
+            continueButton.style.transform = 'translateY(0)';
+        };
+
+        continueButton.onclick = () => {
+            if (checkbox.checked) {
+                localStorage.setItem("aboutblank_opened", "true");
+                const win = window.open('about:blank');
+
+                const fetchAndWrite = `
+                    fetch('https://raw.githubusercontent.com/toothpastenetwork/toothpastenetwork.github.io/main/index.html')
+                    .then(r => r.text())
+                    .then(t => {
+                        document.open();
+                        document.write(t);
+                        document.close();
+                        localStorage.setItem("aboutblank_opened", "confirmed");
+                    })
+                    .catch(e => {
+                        document.body.innerHTML = '<h1>Failed to load content. Email toothpasteisverygood@gmail.com</h1>';
+                    });
+                `;
+
+                const script = win.document.createElement('script');
+                script.textContent = fetchAndWrite;
+                win.document.head.appendChild(script);
+
+                window.location.href = 'https://classroom.google.com';
+            } else {
+                start();
+            }
+        };
+
+        let skipbutton = document.createElement('button');
+        skipbutton.textContent = 'Skip this';
+        skipbutton.style.color = 'white';
+        skipbutton.style.fontSize = '32px';
+        skipbutton.style.textAlign = 'center';
+        skipbutton.style.padding = '16px 48px';
+        skipbutton.style.background = 'linear-gradient(45deg, #ff416c, #ff4b2b)';
+        skipbutton.style.border = 'none';
+        skipbutton.style.borderRadius = '30px';
+        skipbutton.style.cursor = 'pointer';
+        skipbutton.style.boxShadow = '0 8px 15px rgba(255,75,43,0.4)';
+        skipbutton.style.display = 'block';
+        skipbutton.style.margin = '40px auto';
+        skipbutton.style.transition = 'all 0.3s ease';
+
+        skipbutton.onmouseover = () => {
+            skipbutton.style.background = 'linear-gradient(45deg, #ff4b2b, #ff416c)';
+            skipbutton.style.boxShadow = '0 12px 20px rgba(255,75,43,0.6)';
+            skipbutton.style.transform = 'translateY(-3px)';
+        };
+        skipbutton.onmouseout = () => {
+            skipbutton.style.background = 'linear-gradient(45deg, #ff416c, #ff4b2b)';
+            skipbutton.style.boxShadow = '0 8px 15px rgba(255,75,43,0.4)';
+            skipbutton.style.transform = 'translateY(0)';
+        };
+
+        skipbutton.onclick = start;
+
+        stealthstuff.appendChild(continueButton);
+        stealthstuff.appendChild(skipbutton);
+    }
+
+    function start() {
+        document.querySelectorAll('.website').forEach(el => el.style.display = 'block');
+        if (stealthstuff) stealthstuff.style.display = 'none';
+        home();
+    }
+
+    function home() {
+        const msg = document.createElement('p');
+        msg.textContent = 'Stealth mode active. You are safe.';
+        msg.style.fontSize = '24px';
+        msg.style.textAlign = 'center';
+        msg.style.color = '#4ade80';
+        document.body.appendChild(msg);
+    }
+
+    function decoysite() {
+        function fakeOption() {
+            container.style.display = 'none';
+            stealth();
+        }
+
+        document.body.style.margin = '0';
+        document.body.style.fontFamily = "'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#6b7280';
+        document.body.style.display = 'flex';
+        document.body.style.justifyContent = 'center';
+        document.body.style.padding = '4rem 1rem';
+
+        const container = document.createElement('div');
+        container.style.maxWidth = '900px';
+        container.style.width = '100%';
+        container.style.display = 'flex';
+        container.style.flexDirection = 'column';
+        container.style.alignItems = 'center';
+        container.style.gap = '2rem';
+
+        const fakeSiteName = window.location.href.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+        const title = document.createElement('h1');
+        title.textContent = fakeSiteName;
+        title.style.fontSize = '56px';
+        title.style.fontWeight = '700';
+        title.style.color = '#111827';
+        title.style.textAlign = 'center';
+        container.appendChild(title);
+
+        const subtitle1 = document.createElement('h2');
+        subtitle1.style.fontSize = '24px';
+        subtitle1.style.fontWeight = '600';
+        subtitle1.style.textAlign = 'center';
+        subtitle1.style.color = '#374151';
+        subtitle1.innerHTML = `The <span style="color: #d9b611; font-weight: 700;">#1 website</span> for gathering information and knowledge, according to <span style="color: #84cc16; font-weight: 600;">50+ schools.</span>`;
+        container.appendChild(subtitle1);
+
+        const subtitle2 = document.createElement('h2');
+        subtitle2.textContent = "Let's learn. Choose a topic to get started.";
+        subtitle2.style.fontSize = '24px';
+        subtitle2.style.fontWeight = '600';
+        subtitle2.style.textAlign = 'center';
+        subtitle2.style.color = '#374151';
+        container.appendChild(subtitle2);
+
+        const topicsContainer = document.createElement('div');
+        topicsContainer.style.display = 'flex';
+        topicsContainer.style.flexWrap = 'wrap';
+        topicsContainer.style.justifyContent = 'center';
+        topicsContainer.style.gap = '1.5rem';
+
+        const topics = [
+            { name: 'Mathematics', color: '#ef4444' },
+            { name: 'Science', color: '#f97316' },
+            { name: 'Literature', color: '#fbbf24' },
+            { name: 'Geography', color: '#22c55e' },
+            { name: 'History', color: '#06b6d4' }
+        ];
+
+        topics.forEach(topic => {
+            const btn = document.createElement('button');
+            btn.textContent = topic.name;
+            btn.style.fontSize = '32px';
+            btn.style.color = topic.color;
+            btn.style.background = 'none';
+            btn.style.border = 'none';
+            btn.style.textDecoration = 'underline';
+            btn.style.cursor = 'pointer';
+            btn.style.fontWeight = '600';
+            btn.style.transition = 'color 0.3s ease, transform 0.3s ease';
+            btn.style.padding = '0.25rem 0';
+            btn.style.fontFamily = "'Poppins', sans-serif";
+
+            btn.addEventListener('mouseenter', () => {
+                btn.style.color = '#111827';
+                btn.style.transform = 'scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.color = topic.color;
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('click', fakeOption);
+
+            topicsContainer.appendChild(btn);
+        });
+
+        container.appendChild(topicsContainer);
+
+        const reviewsTitle = document.createElement('h2');
+        reviewsTitle.textContent = 'Top Reviews from schools worldwide';
+        reviewsTitle.style.fontSize = '28px';
+        reviewsTitle.style.fontWeight = '700';
+        reviewsTitle.style.color = '#111827';
+        reviewsTitle.style.marginTop = '3rem';
+        container.appendChild(reviewsTitle);
+
+        const reviewsData = [
+            { text: `${fakeSiteName} is a powerhouse of knowledge that you can always rely on.`, author: 'East Atlantic School District' },
+            { text: `Our students get clear solutions in just a few clicks. Thank you ${fakeSiteName}!`, author: 'Florida Public Schools 85' },
+            { text: `We think ${fakeSiteName} is a great resource of education thanks to the vast information on their site.`, author: 'Brickhill High' },
+            { text: `Not the education resource we want. The education resource we NEED.`, author: 'Southsweet Public School District' },
+        ];
+
+        reviewsData.forEach(({ text, author }) => {
+            const p = document.createElement('p');
+            p.style.fontStyle = 'italic';
+            p.style.fontSize = '18px';
+            p.style.color = '#6b7280';
+            p.style.textAlign = 'center';
+            p.style.maxWidth = '700px';
+            p.style.margin = '0 auto 1rem';
+            p.textContent = text;
+
+            const authorSpan = document.createElement('span');
+            authorSpan.style.fontStyle = 'normal';
+            authorSpan.style.fontWeight = '600';
+            authorSpan.style.color = '#111827';
+            authorSpan.style.display = 'block';
+            authorSpan.style.marginTop = '0.25rem';
+            authorSpan.textContent = `- ${author}`;
+
+            p.appendChild(authorSpan);
+            container.appendChild(p);
+        });
+
+        document.body.appendChild(container);
+    }
+
+    if (window.location.href === 'about:blank') {
+        start();
+    } else {
+        const status = localStorage.getItem("aboutblank_opened");
+        if (status === "confirmed") {
+            decoysite();
+        } else {
+            stealth();
+        }
+    }
   </script>
 </html>
-
-
-
