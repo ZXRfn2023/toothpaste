@@ -6542,12 +6542,7 @@
         if (window.location.href === "about:blank") {
           start();
         } else {
-          const status = localStorage.getItem("aboutblank_opened");
-          if (status === "confirmed") {
-            decoysite();
-          } else {
-            start();
-          }
+          decoysite();
         }
   </script>
 </html>
